@@ -1,0 +1,2 @@
+hook('ready_register_user',array($homePage,$mail,$userName));
+hook('success_register_user',array($homePage,$mail,$userName,$userId));
