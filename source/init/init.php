@@ -63,3 +63,37 @@ foreach ($autoLang as $v)
  * 载入语言包
  */
 wsLang::setLangArr($lang);
+/**
+ * 自动载入类文件
+ */
+function __autoload($className)
+{
+	$newClassName=strtolower($className);
+	$fixClassName=substr($newClassName,0,2);
+	$newClassName=substr($newClassName,strlen($newClassName)-3);
+	if($newClassName=='lib')
+	{
+		require LIB_PATH.$className.'.php';
+	}
+	elseif ($newClassName=="mod")
+	{
+		require MODEL_PATH.$className.'.php';
+	}
+	elseif ($newClassName=='ven')
+	{
+		$className=str_replace($className,'ven','');
+		require LIB_PATH.'vendor/'.$className.'.php';
+	}
+	elseif ($newClassName=='tra')
+	{
+		require LIB_PATH.'extra/'.$className.'.php';
+	}
+	elseif ($fixClassName=="ws")
+	{
+		require WS_ROOT.'source/core/'.$className.'.class.php';
+	}
+	else 
+	{
+		require WS_ROOT.'source/util/'.$className.'.class.php';
+	}
+}
