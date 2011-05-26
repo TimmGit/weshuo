@@ -2,7 +2,7 @@
 class userExtMod
 {
 	private $db;
-	private $table="userExt";
+	private $table="userext";
 	
 	function __construct()
 	{

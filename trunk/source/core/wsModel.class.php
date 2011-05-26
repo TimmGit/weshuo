@@ -33,6 +33,11 @@ class wsModel
 		return self::$DB;
 	}
 	
+	public static function dbPrefix()
+	{
+		return self::$dbConfig['dbPrefix'];
+	}
+	
 	function __construct()
 	{
 		self::$DB=new self::$dbConfig['dbType'];

@@ -6,3 +6,8 @@
 <?php load('js/jquery-1.4.2.min.js')?>
 </head>
 <body>
+<div>
+<a href="<?php echo siteUrl()?>">首页</a>
+<a href="<?php echo siteUrl('pub')?>">广场</a>
+<a href="<?php echo siteUrl('admin')?>">我到主页</a>
+</div>

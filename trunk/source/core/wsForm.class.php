@@ -12,6 +12,7 @@ class wsForm
 	public static $string=2;//字符
 	public static $intArr=3;//int数组
 	public static $stringArr=4;//字符数组
+	public static $intMax=PHP_INT_MAX;
 	private static $value='';
 	
 	/**
@@ -26,7 +27,10 @@ class wsForm
 	 */
 	public static function formField($name,$post,$msg,$checkLen,$oterhFun=false,$ajax=false)
 	{
-		$post=strtoupper($post);
+		if(!is_array($post))
+		{
+			$post=strtoupper($post);
+		}
 		if($post=="POST")
 		{
 			self::$value=isset($_POST[$name])?$_POST[$name]:'';
@@ -116,7 +120,8 @@ class wsForm
 	private static function checkIntLen($min,$max,$value=false)
 	{
 		$intValue=$value ?$value :self::$value;
-		if(!empty($intValue) && $intValue>=$min && $max>=$intValue)
+		$intValue=empty($intValue) ?0:$intValue;
+		if($intValue>=$min && $max>=$intValue)
 		{
 			return true;
 		}

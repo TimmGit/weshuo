@@ -12,6 +12,17 @@ class topicMod
 		$this->db=wsModel::getInstance();
 	}
 	
+	public function getTopicCount()
+	{
+		return $this->db->getOne("select count(*) from ".wsModel::dbPrefix().$this->table);
+	}
+	
+	public function getTopisList($start,$limit)
+	{
+		$limit=$start.','.$limit;
+		return $this->db->selectData($this->table,'','lastTime desc',$limit);
+	}
+	
 	public function getTopicByLimit($userId,$limit=10)
 	{
 		return $this->db->selectData($this->table,array('userId'=>$userId),'time desc',$limit);
