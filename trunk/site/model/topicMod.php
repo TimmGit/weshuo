@@ -12,6 +12,11 @@ class topicMod
 		$this->db=wsModel::getInstance();
 	}
 	
+	public function getTopicInfo($topicId)
+	{
+		return $this->db->findData($this->table,array('topicId'=>$topicId));
+	}
+	
 	public function getTopicCount()
 	{
 		return $this->db->getOne("select count(*) from ".wsModel::dbPrefix().$this->table);

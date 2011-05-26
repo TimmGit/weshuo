@@ -122,7 +122,6 @@ class wsCore
 	 */
 	private function exeFun($class,$fun)
 	{
-		$par=false;
 		if(strtolower($class)=="empty")
 		{
 			wsEcho::showMsg(wsLang::getLang('system_error_contr_not_exits'));
@@ -131,7 +130,6 @@ class wsCore
 		$file=WS_ROOT.APP_PATH.'/controllers/'.$class.'Action.php';
 		if(!file_exists($file))
 		{
-			$par=strtolower($class);
 			$file=WS_ROOT.APP_PATH.'/controllers/EmptyAction.php';
 			$class="Empty";
 			$fun='index';
@@ -141,7 +139,7 @@ class wsCore
 		$className=new $className;
 		if(method_exists($className,$fun))
 		{
-			$par?$className->$fun($par):$className->$fun();
+			$className->$fun();
 		}
 		else 
 		{

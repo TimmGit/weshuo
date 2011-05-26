@@ -1,5 +1,5 @@
 <?php subView("header")?>
-<img src="<?php echo baseUrl()?>/static/upload/face/dadeng_<?php echo $userInfo['icon']?>"  width="120" height="120" alt="<?php echo $userInfo['nickName']?>" />
+<img src="<?php echo baseUrl()?>/static/upload/face/ws_<?php echo $userInfo['icon']?>"  width="120" height="120" alt="<?php echo $userInfo['nickName']?>" />
 昵称:<?php echo $userInfo['nickName']?>
 微博：<?php echo $userExt['wbCount']?>
 关注：<?php echo $userExt['gzCount']?>

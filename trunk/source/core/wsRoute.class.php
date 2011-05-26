@@ -63,6 +63,7 @@ class wsRoute
 	
 	public static function segment($int,$default=0)
 	{
+		$int=$int-1;
 		return isset(self::$path[$int]) ?self::$path[$int] :$default;
 	}
 }

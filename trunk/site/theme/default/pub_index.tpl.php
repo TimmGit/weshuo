@@ -6,7 +6,7 @@ if($list)
 	{
 	?>
 	<div>
-	<?php echo $topic['title']?><br/>
+	<?php echo $topic['title']?><a href="<?php echo siteUrl($topic['home'].'/'.$topic['topicId'])?>" target='_blank'><?php echo $topic['time']?></a><br/>
 	</div>
 	<?php
 	}

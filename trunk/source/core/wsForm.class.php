@@ -39,7 +39,7 @@ class wsForm
 		{
 			self::$value=isset($_GET[$name])?$_GET[$name]:'';
 		}
-		elseif (is_int($post))
+		elseif (is_numeric($post))
 		{
 			self::$value=wsRoute::segment($post);
 		}

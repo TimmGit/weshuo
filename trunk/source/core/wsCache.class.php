@@ -8,7 +8,18 @@
 */
 class wsCache
 {
+	private $path;
 	private static $cache=array();
+	
+	function __construct($path)
+	{
+		$this->path=$path;
+	}
+	
+	public static function wrConfig($name)
+	{
+		require_once WS_ROOT.APP_PATH.'/'.$name.'.config.php';
+	}
 	
 	public static function rwCache($name,$value=false,$path=false)
 	{
