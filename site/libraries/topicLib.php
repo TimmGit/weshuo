@@ -9,8 +9,12 @@ class topicLib
 	
 	function __construct()
 	{
-		require MODEL_PATH.'topicMod.php';
 		$this->topicMod=new topicMod();
+	}
+	
+	public function getInfo($topicId)
+	{
+		return $this->topicMod->getTopicInfo($topicId);
 	}
 	
 	public function getTopicByUserId($userId,$limit=10)

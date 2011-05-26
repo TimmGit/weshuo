@@ -1,8 +1,10 @@
 <?php
 class EmptyAction extends wsCore
 {
-	public function index($home)
+	public function index()
 	{
+		$home=wsRoute::segment(1);
+		$fun=wsRoute::segment(2);
 		require LIB_PATH.'userLib.php';
 		require LIB_PATH.'topicLib.php';
 		$userLib=new userLib();
@@ -12,14 +14,32 @@ class EmptyAction extends wsCore
 		{
 			wsEcho::showMsg("您访问了不存在的地址");
 		}
-		if(isset($_SESSION['login']))
+		if(empty($fun) || $fun=="index")
 		{
-			$this->showIndex($userLib,$topicLib,$userInfo);
+			if(isset($_SESSION['login']))
+			{
+				$this->showIndex($userLib,$topicLib,$userInfo);
+			}
+			else 
+			{
+				$this->noLogin($userLib,$topicLib,$userInfo);	
+			}
+		}
+		elseif (is_numeric($fun))
+		{
+			$this->showInfo($fun);
 		}
 		else 
 		{
-			$this->noLogin($userLib,$topicLib,$userInfo);	
+			exit;
 		}
+	}
+	
+	private function showInfo($topicId)
+	{
+		$topicLib=new topicLib();
+		$info=$topicLib->getInfo($topicId);
+		$this->loadView("blog_show",array('info'=>$info));
 	}
 	
 	private function showIndex(userLib $userLib,topicLib $topicLib,$userInfo)
