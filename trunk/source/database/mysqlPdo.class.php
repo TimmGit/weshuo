@@ -147,7 +147,7 @@ class mysqlPdo implements dbInterface
 		{
 			$data=sqlTool::array2setSql($data);
 		}
-		$sql="update ".self::$dbConfig['dbPrefix'].$table." set ".$data.' where '.$where;
+		$sql="update ".self::$dbConfig['dbPrefix'].$table." set ".$data.' where 1=1 '.$where;
 		return $this->execSql($sql);
 	}
 	
@@ -165,7 +165,7 @@ class mysqlPdo implements dbInterface
 		{
 			$where=sqlTool::array2sql($where);
 		}
-		$sql="delete from ".self::$dbConfig['dbPrefix'].$table." where ".$where;
+		$sql="delete from ".self::$dbConfig['dbPrefix'].$table." where 1=1 ".$where;
 		return $this->execSql($sql);
 		
 	}

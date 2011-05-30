@@ -120,7 +120,24 @@ class wsForm
 	private static function checkIntLen($min,$max,$value=false)
 	{
 		$intValue=$value ?$value :self::$value;
-		$intValue=empty($intValue) ?0:$intValue;
+		if(empty($intValue))
+		{
+			$intValue=0;
+			self::$value=0;
+		}
+		else 
+		{
+			if(is_numeric($intValue))
+			{
+				self::$value=intval($intValue);
+				$intValue=intval($intValue);
+			}
+			else 
+			{
+				return false;
+			}
+		}
+		
 		if($intValue>=$min && $max>=$intValue)
 		{
 			return true;

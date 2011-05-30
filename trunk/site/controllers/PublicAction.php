@@ -6,6 +6,12 @@ class PublicAction extends wsCore
 		$this->register();
 	}
 	
+	public function admLogin()
+	{
+		$this->isLogin();
+		$this->loadView('adm_login');
+	}
+	
 	public function saveFind()
 	{
 		$this->isLogin();

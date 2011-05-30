@@ -1,4 +1,5 @@
 <?php subView("header")?>
+<?php subView("user_menu")?>
 <div class="blog_title"><h3>裁剪图片</h3></div>
 <script language="javascript" type="text/javascript" src="<?php echo baseUrl()?>/static/js/drag.js"></script>
 <table width="100%" border="0">

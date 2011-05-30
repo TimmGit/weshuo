@@ -43,7 +43,7 @@ class wsTemplate
 	private static function loadFile($tplName)
 	{
 		$file=WS_ROOT.APP_PATH.'/theme/'.setting::getTheme().'/'.$tplName.'.tpl.php';
-		if(!file_exists($file) && setting::getTheme()!='default')
+		if(!file_exists($file))
 		{
 			$file=WS_ROOT.APP_PATH.'/theme/default/'.$tplName.'.tpl.php';
 			if(!file_exists($file))

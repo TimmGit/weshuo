@@ -9,6 +9,111 @@ class UserAction extends wsCore
 		$this->userId=$_SESSION['login'];
 	}
 	
+	public function groupEdit()
+	{
+		if($_POST)
+		{
+			import("string");
+			$groupName=$this->checkForm("groupName","post","请输入群组名称长度3-20字符",array(wsForm::$string,3,20));
+			$groupName=replaceHtml($groupName);
+			$groupId=$this->checkForm("id","post",'id错误',array(wsForm::$int,1,wsForm::$intMax));
+			$groupLib=new groupLib();
+			$info=$groupLib->getGroupInfoByName($groupName);
+			if($info && (( $groupId && $info['groupId']!=$groupId ) || $groupId=0))
+			{
+				$this->error("群组名称已经存在！请更换名称！");
+			}
+			elseif ($info && $info['userId']!=$this->userId)
+			{
+				$this->error('您无权修改此群！');
+			}
+			else 
+			{
+				$data=array();
+				$data['groupName']=$groupName;
+				$uploadFile=new uploadFile('group');
+				$img=$uploadFile->uploadImg("icon");
+				if($img)
+				{
+					$data['icon']=$img;
+				}
+				$isShow=$this->checkForm("isShow","post","请输入数字0-1",array(wsForm::$int,0,1));
+				$isSend=$this->checkForm("isSend","post","请输入数字0-1",array(wsForm::$int,0,1));
+				$isJoin=$this->checkForm("isJoin","post","请输入数字0-1",array(wsForm::$int,0,1));
+				$isReplay=$this->checkForm("isReplay","post","请输入数字0-1",array(wsForm::$int,0,1));
+				$data['isShow']=$isShow;
+				$data['isSend']=$isSend;
+				$data['isJoin']=$isJoin;
+				$data['isReplay']=$isReplay;
+				if($groupLib->updateGroup($data,$groupId))
+				{
+					$this->success("群组修改成功!", 'user/group');
+				}
+				else 
+				{
+					$this->error();
+				}
+			}
+		}
+		else 
+		{
+			$groupId=segment(3);
+			if(is_numeric($groupId))
+			{
+				$groupLib=new groupLib();
+				$info=$groupLib->getGroupInfo($groupId);
+				$this->loadView("group_edit",array('info'=>$info));
+			}
+			$this->error('错误的输入');
+		}
+	}
+	
+	public function groupAdm()
+	{
+		$groupId=segment(3);
+		if(is_numeric($groupId))
+		{
+			$groupLib=new groupLib();
+			$info=$groupLib->getGroupInfo($groupId);
+			if($info['userId']!=$this->userId)
+			{
+				$this->error('您无权执行次操作！');
+			}
+			$userGroupLib=new userGroupLib();
+			$list=$userGroupLib->getUserListByGroupId($groupId);
+			$this->loadView("group_adm",array('list'=>$list));
+		}
+		$this->error('错误的输入');
+		$this->loadView("group_adm");
+	}
+	
+	public function groupDel()
+	{
+		
+	}
+	
+	public function groupAdd()
+	{
+		$this->loadView("group_add");		
+	}
+	
+	public function groupSave()
+	{
+		
+	}
+	
+	public function tagDel()
+	{
+		
+	}
+	
+	public function group()
+	{
+		$groupLib=new groupLib();
+		$list=$groupLib->getGroupList($this->userId);
+		$this->loadView("user_group",array('list'=>$list));
+	}
+	
 	public function safeinfo()
 	{
 		if($_POST)

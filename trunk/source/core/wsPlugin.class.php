@@ -15,6 +15,16 @@ class wsPlugin
 		self::$plug=array('friend');
 	}
 	
+	public static function wsHeader($str)
+	{
+		return $str;
+	}
+	
+	public static function wsFooter($str)
+	{
+		return $str;
+	}
+	
 	public static function getPlugin()
 	{
 		if(!self::$plug)
