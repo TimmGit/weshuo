@@ -31,7 +31,7 @@ class EmptyAction extends wsCore
 		}
 		else 
 		{
-			exit;
+			wsEcho::showMsg("404");
 		}
 	}
 	

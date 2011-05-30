@@ -34,6 +34,11 @@ class userMod
 		return $this->db->findData($this->table,array('userId'=>$userId,'password'=>md5($password)));
 	}
 	
+	public function checkExit($field,$mail)
+	{
+		return $this->db->findData($this->table,array($field=>$mail));
+	}
+	
 	public function checkNickNameIsExit($userId,$nickName)
 	{
 		return $this->db->findData($this->table,array('userId'=>'!='.$userId,'nickName'=>$nickName));

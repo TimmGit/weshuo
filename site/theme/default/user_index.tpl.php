@@ -14,6 +14,7 @@ function setup()
     $("#s2").val("<?php echo $userInfo['city']?>");
 }
 </SCRIPT>
+<?php subView("user_menu")?>
 <form action="<?php echo siteUrl('user/saveinfo')?>" method="POST" name="form" id="form">
 <ul>
 	<li><span>用户昵称：</span><input type="text" name="nickname" id="nickname" maxlength="20" value="<?php echo $userInfo['nickName']?>">

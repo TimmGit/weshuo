@@ -24,6 +24,11 @@ class userLib
 		return $this->user->updateUserInfo($userId,$data);
 	}
 	
+	public function checkExit($field,$mail)
+	{
+		return $this->user->checkExit($field,$mail);
+	}
+	
 	public function checkNickNameIsExit($userId,$nickName)
 	{
 		return $this->user->checkNickNameIsExit($userId,$nickName);

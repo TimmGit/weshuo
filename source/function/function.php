@@ -71,14 +71,28 @@ function hook($hookName,$param=array())
 	}
 }
 
+/**
+ * 载入JS或者CSS文件
+ * @param strig $file
+ */
 function load($file)
 {
 	echo wsFile::loadStaticFile($file);
 }
 
+/**
+ * 
+ * 过滤字符
+ * @param string $string
+ */
 function replaceHtml($string)
 {
 	$string=strip_tags($string);
 	$string=string::safeHtml($string);
 	return string::RemoveXSS($string);
+}
+
+function segment($int=1,$defult='')
+{
+	return wsRoute::segment($int,$defult);
 }

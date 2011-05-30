@@ -1,4 +1,5 @@
 <?php subView("header")?>
+<?php subView("user_menu")?>
 		<div id="userinfo">
 			<div class="blog_title"><h3>密码设置</h3></div>
 			<form action="" method="post" name="saveform">

@@ -48,7 +48,8 @@ class wsCore
 	
 	/**
 	 * 载入成功模版
-	 * @param array $msg
+	 * @param string $msg
+	 * @param string $url
 	 */
 	public function success($msg,$url)
 	{
@@ -57,9 +58,9 @@ class wsCore
 	
 	/**
 	 * 载入错误处理模版
-	 * @param array $msg
+	 * @param string $msg
 	 */
-	public function error($msg)
+	public function error($msg='系统发生错误，操作失败!请稍后重试！')
 	{
 		$this->loadView("error",array('message'=>$msg));
 	}
