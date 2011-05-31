@@ -1,5 +1,5 @@
 <?php
-class PubAction extends wsCore
+class PubAction extends commonAction
 {
 	function __construct()
 	{

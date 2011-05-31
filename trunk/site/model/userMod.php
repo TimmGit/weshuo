@@ -49,21 +49,6 @@ class userMod
 		return $this->db->updateData($this->table,$data,'userId='.$userId);
 	}
 	
-	public function checkUserIsExit($mail)
-	{
-		return $this->db->findData($this->table,array('mail'=>$mail));
-	}
-	
-	public function checkUserName($name)
-	{
-		return $this->db->findData($this->table,array('userName'=>$name));
-	}
-	
-	public function checkHome($home)
-	{
-		return $this->db->findData($this->table,array('homePage'=>$home));
-	}
-	
 	public function addUser($data)
 	{
 		return $this->db->insertData($this->table,$data);

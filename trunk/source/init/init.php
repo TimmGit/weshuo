@@ -88,6 +88,10 @@ function __autoload($className)
 	{
 		require LIB_PATH.'extra/'.$className.'.php';
 	}
+	elseif ($newClassName=="ion")
+	{
+		require WS_ROOT.APP_PATH.'/controllers/'.$className.'.php';
+	}
 	elseif ($fixClassName=="ws")
 	{
 		require WS_ROOT.'source/core/'.$className.'.class.php';

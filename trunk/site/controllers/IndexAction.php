@@ -1,5 +1,5 @@
 <?php
-class IndexAction extends wsCore
+class IndexAction extends commonAction
 {
 	public function index()
 	{

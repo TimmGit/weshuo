@@ -3,18 +3,19 @@
 /**
 * weshuo microblog platform
 * @copyright  (c) 2010-2011 weshuo team http://www.weshuo.org
-* @license  The Mozilla Public License (MPL 1.1)
+* @license  Mozilla Public License (MPL 1.1)
 * @author iceweb
-*/ 
+*/
 class wsTemplate
 {
 	private function __construct(){}
 	
-	public static function loadTemplate($tpl,$var=false)
+	public static function loadTemplate($tpl,$var=array(),$data=array())
 	{
 		$file=self::loadFile($tpl);
 		if($file)
 		{
+			$var=array_merge($data,$var);
 			if($var)
 			{
 				@extract($var);

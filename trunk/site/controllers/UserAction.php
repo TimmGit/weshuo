@@ -1,12 +1,12 @@
 <?php
-class UserAction extends wsCore
+class UserAction extends commonAction
 {
 	private $userId=0;
 	
 	function __construct()
 	{
 		$this->isLogin();
-		$this->userId=$_SESSION['login'];
+		$this->userId=userSessionLib::getUserId();
 	}
 	
 	public function groupEdit()

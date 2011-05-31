@@ -1,5 +1,5 @@
 <?php
-class AjaxAction extends wsCore
+class AjaxAction extends commonAction
 {
 	public function checkNick()
 	{
@@ -7,7 +7,7 @@ class AjaxAction extends wsCore
 		$formCheck=import('formCheck',true);
 		$nickName=$this->checkForm("nickname","post",'昵称长度4-12位',array(wsForm::$string,4,12,true),array($formCheck,'isHome','不要输入特殊字符'),true);
 		$userLib=new userLib();
-		if($userLib->checkNickNameIsExit($_SESSION['login'], $nickName))
+		if($userLib->checkNickNameIsExit(userSessionLib::getUserId(), $nickName))
 		{
 			echo "昵称已经存在，请更换！";exit;
 		}

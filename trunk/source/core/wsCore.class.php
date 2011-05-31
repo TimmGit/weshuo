@@ -2,21 +2,28 @@
 !defined("WS_ROOT") && exit('No direct script access allowed');
 /**
 * weshuo microblog platform
-* @copyright  (c) 2010-2011 weshuo team http://www.weshuo.com
-* @license  The Mozilla Public License (MPL 1.1)
-* @author iceweb http://www.ciphp.com
-*/ 
+* @copyright  (c) 2010-2011 weshuo team http://www.weshuo.org
+* @license  Mozilla Public License (MPL 1.1)
+* @author iceweb
+*/
 class wsCore
 {	
+	public $data=array();
+	
 	function __construct()
 	{
 		require_once WS_ROOT.'source/core/wsForm.class.php';
+		if(DEBUG_MODE==0)
+		{
+			runtime::$time=runtime::getSecondTime();
+			runtime::$memory=runtime::getNowMem();
+		}
 	}
 	
 	
-	public function isLogin()
+	protected function isLogin()
 	{
-		if(!isset($_SESSION['login']) || empty($_SESSION['login']))
+		if(!userSessionLib::getLogin())
 		{
 			$this->redirect("public/login");
 		}
@@ -28,9 +35,9 @@ class wsCore
 	 * @param array $array
 	 * @param boolean $return
 	 */
-	public function loadView($tpl,$array=false,$return=false)
+	protected function loadView($tpl,$array=array(),$return=false)
 	{
-		$laodTemp=wsTemplate::loadTemplate($tpl,$array);
+		$laodTemp=wsTemplate::loadTemplate($tpl,$array,$this->data);
 		if($laodTemp===false)
 		{
 			wsEcho::showMsg(wsLang::getLang('system_tpl_not_exits').$tpl);
@@ -42,8 +49,20 @@ class wsCore
 		else 
 		{
 			echo $laodTemp;
+			if(DEBUG_MODE==0)
+			{
+				echo $this->showDebugInfo();
+			}
 			exit;
 		}
+	}
+	
+	private function showDebugInfo()
+	{
+		$time=runtime::getSecondTime()-runtime::$time;
+		$mem=runtime::getNowMem()-runtime::$memory;
+		$info="<div id='runtime'>Runtime:".round($time,4)."s,Memory:".round($mem,2)."KB,<br/>Sql:".runtime::$sql."</div>";
+		return $info;
 	}
 	
 	/**
@@ -51,7 +70,7 @@ class wsCore
 	 * @param string $msg
 	 * @param string $url
 	 */
-	public function success($msg,$url)
+	protected function success($msg,$url)
 	{
 		$this->loadView("success",array('message'=>$msg,'url'=>$url));
 	}
@@ -60,12 +79,12 @@ class wsCore
 	 * 载入错误处理模版
 	 * @param string $msg
 	 */
-	public function error($msg='系统发生错误，操作失败!请稍后重试！')
+	protected function error($msg='系统发生错误，操作失败!请稍后重试！')
 	{
 		$this->loadView("error",array('message'=>$msg));
 	}
 	
-	public function redirect($url='')
+	protected function redirect($url='')
 	{
 		header("Location:".siteUrl($url));
 	}
@@ -79,7 +98,7 @@ class wsCore
 	 * @param array $oterhFun
 	 * @throws Exception
 	 */
-	public function checkForm($name,$post,$msg,$checkLen,$oterhFun=false,$ajax=false)
+	protected function checkForm($name,$post,$msg,$checkLen,$oterhFun=false,$ajax=false)
 	{
 		try 
 		{
