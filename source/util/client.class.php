@@ -3,9 +3,9 @@
 /**
 * weshuo microblog platform
 * @copyright  (c) 2010-2011 weshuo team http://www.weshuo.org
-* @license  The Mozilla Public License (MPL 1.1)
+* @license  Mozilla Public License (MPL 1.1)
 * @author iceweb
-*/ 
+*/
 /**
  * 获取客户端真实IP
  */
@@ -38,10 +38,10 @@ class client
 		{
 			$ip = $_SERVER['REMOTE_ADDR'];
 		}
-		if(!$ip)
+		if(preg_match("/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/i",$ip))
 		{
-			return '';
+			return $ip;
 		}
-		return substr($ip, 0, 15);
+		return '127.0.0.1';
 	}
 }

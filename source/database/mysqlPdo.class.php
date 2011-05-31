@@ -38,6 +38,18 @@ class mysqlPdo implements dbInterface
 	}
 	
 	/**
+	 * 运行的SQL语句
+	 * @param string $sql
+	 */
+	private function setDebugSql($sql)
+	{
+		if(DEBUG_MODE==0)
+		{
+			runtime::$sql.=$sql."<br/>";
+		}
+	}
+	
+	/**
 	 * 执行SQL语句
 	 * @param string $sql;
 	 * @see dbInterface::querySql()
@@ -45,6 +57,7 @@ class mysqlPdo implements dbInterface
 	public function querySql($sql)
 	{
 		self::$sql=$sql;
+		$this->setDebugSql($sql);
 		self::$dbh=self::$dbConn->query(self::$sql);
 		return self::$dbh->fetchAll();
 	}
@@ -89,6 +102,7 @@ class mysqlPdo implements dbInterface
 	public function execSql($sql)
 	{
 		$count=false;
+		$this->setDebugSql($sql);
 		self::$sql=$sql;
 		$count=self::$dbConn->exec(self::$sql);
 		if($count===false)
@@ -126,6 +140,7 @@ class mysqlPdo implements dbInterface
 			$sql.=' limit '.$limit;
 		}
 		self::$sql=$sql;
+		$this->setDebugSql($sql);
 		self::$dbh=self::$dbConn->query(self::$sql);
 		return self::$dbh->fetchAll(PDO::FETCH_ASSOC);
 	}
@@ -180,6 +195,7 @@ class mysqlPdo implements dbInterface
 		{
 			$data=sqlTool::array2insert($data);
 			self::$sql="insert into ".self::$dbConfig['dbPrefix'].$table."(".$data['field'].")values(".$data['value'].")";
+			$this->setDebugSql(self::$sql);
 			self::$dbh=self::$dbConn->query(self::$sql);
 			return $this->lastInsertId();	
 		}
@@ -202,6 +218,7 @@ class mysqlPdo implements dbInterface
 		}
 		$sql.=' limit 1';
 		self::$sql=$sql;
+		$this->setDebugSql($sql);
 		self::$dbh=self::$dbConn->query(self::$sql);
 		return self::$dbh->fetch(PDO::FETCH_ASSOC);
 	}

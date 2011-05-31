@@ -2,10 +2,10 @@
 !defined("WS_ROOT") && exit('No direct script access allowed');
 /**
 * weshuo microblog platform
-* @copyright  (c) 2010-2011 weshuo team http://www.weshuo.com
-* @license  The Mozilla Public License (MPL 1.1)
-* @author iceweb http://www.ciphp.com
-*/ 
+* @copyright  (c) 2010-2011 weshuo team http://www.weshuo.org
+* @license  Mozilla Public License (MPL 1.1)
+* @author iceweb
+*/
 class wsEcho
 {
 	private static $httpCode=array('200'=>'OK','301'=>'Moved Permanently','302'=>'Found','304'=>'Not Modified',

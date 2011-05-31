@@ -1,5 +1,5 @@
 <?php
-class PublicAction extends wsCore
+class PublicAction extends commonAction
 {
 	public function index()
 	{
@@ -40,7 +40,7 @@ class PublicAction extends wsCore
 	
 	public function login()
 	{
-		if(isset($_SESSION['login']))
+		if(userSessionLib::getLogin())
 		{
 			$this->redirect();
 		}
@@ -54,22 +54,21 @@ class PublicAction extends wsCore
 	{
 		$loginOk=false;
 		$formCheck=import("formCheck",true);
-		require MODEL_PATH.'userMod.php';
-		$user=new userMod();
+		$userLib=new userLib();
 		$password=$this->checkForm("passwd","POST","请输入密码6-16位",array(wsForm::$string,6,16));
 		if(stripos($_POST['mail'],'@')!==false)
 		{
 			$mail=$this->checkForm("mail","POST","请输入email地址",array(wsForm::$string,5,72),array($formCheck,'isMail','email格式错误'));
-			$loginOk=$user->checkLoginByMail($mail,$password);
+			$loginOk=$userLib->checkUserLogin($mail, $password);
 		}
 		else 
 		{
 			$userName=$this->checkForm("mail","POST","请输入帐号5-16位",array(wsForm::$string,5,16,true),array($formCheck,'isHome','登陆帐号不要输入特殊字符'));
-			$loginOk=$user->checkLoginByUserName($userName,$password);
+			$loginOk=$userLib->checkUserLogin($userName,$password,'userName');
 		}
 		if($loginOk)
 		{
-			$_SESSION['login']=$loginOk['userId'];
+			$this->setLogin($userLib,$loginOk);
 			$this->redirect($loginOk['homePage']);
 		}
 		$this->error('登陆失败,请检查帐号信息');
@@ -87,34 +86,39 @@ class PublicAction extends wsCore
 		{
 			$this->error('两次密码不一致！');
 		}
-		require MODEL_PATH.'userMod.php';
-		$user=new userMod();
-		if($user->checkHome($homePage))
+		$userLib=new userLib();
+		if($userLib->checkExit("homePage",$homePage))
 		{
 			$this->error('个性主页地址已经存在请更换！');
 		}
-		if($user->checkUserIsExit($mail))
+		if($userLib->checkExit('mail',$mail))
 		{
 			$this->error('电子邮件地址已经存在，请更换！');
 		}
-		if($user->checkUserName($userName))
+		if($userLib->checkExit('userName', $userName))
 		{
 			$this->error('帐号已经存在，请更换！');
 		}
 		hook('ready_register_user',array($homePage,$mail,$userName));
-		$data=array('userName'=>$userName,'mail'=>$mail,'password'=>md5($password),'icon'=>'','createTime'=>time(),
-					'createIp'=>client::getClientIp(),'groupId'=>0,'roleId'=>0,'score'=>0,'nickName'=>$userName,'status'=>1
-					,'tags'=>'','province'=>'','city'=>'','homePage'=>$homePage);
-		$userId=$user->addUser($data);
+		$userId=$userLib->addUser($userName, $mail, $password, $userName, $homePage);
 		if($userId)
 		{
 			hook('success_register_user',array($homePage,$mail,$userName,$userId));
-			$_SESSION['login']=$mail;
+			$loginfInfo=$userLib->getUserInfo($homePage);
+			$this->setLogin($userLib,$loginfInfo);
 			$this->success('恭喜您注册成功！','public/find');
 		}
 		else 
 		{
 			$this->error('注册失败,请稍后重试！');
 		}
+	}
+	
+	private function setLogin($userLib,$loginfInfo)
+	{
+		userSessionLib::setLogin(true);
+		userSessionLib::setUserId($loginfInfo['userId']);
+		userSessionLib::setUserInfo($loginfInfo);
+		userSessionLib::setUserExt($userLib->getUserExtInfo($loginfInfo['userId']));
 	}
 }

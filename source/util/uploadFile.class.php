@@ -1,4 +1,10 @@
 <?php
+/**
+* weshuo microblog platform
+* @copyright  (c) 2010-2011 weshuo team http://www.weshuo.org
+* @license  Mozilla Public License (MPL 1.1)
+* @author iceweb
+*/
 class uploadFile
 {
 	private $path='';

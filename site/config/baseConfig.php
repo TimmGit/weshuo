@@ -1,6 +1,7 @@
 <?php
 /**
  * 设置系统运行模式
+ * 0:debug 1:online log 2:online
  */
 define("DEBUG_MODE",0);
 /**

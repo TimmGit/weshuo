@@ -3,8 +3,8 @@
 /**
 * weshuo microblog platform
 * @copyright  (c) 2010-2011 weshuo team http://www.weshuo.org
-* @license  The Mozilla Public License (MPL 1.1)
-* @author iceweb http://www.ciphp.com
+* @license  Mozilla Public License (MPL 1.1)
+* @author iceweb
 */
 class wsModel
 {

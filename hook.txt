@@ -1,2 +1,19 @@
-hook('ready_register_user',array($homePage,$mail,$userName));
-hook('success_register_user',array($homePage,$mail,$userName,$userId));
+1、session已经默认启动
+2、时区已经默认设置东8区
+3、GET POST COOKIE已经默认转义
+4、登录用户的SESSION在userSessionLib中 属于静态类 userSessionLib::调用方法
+5、可以自动包含类文件 规则如下
+   控制器目录 必须是Action.php结尾
+   类库目录必须是Lib.php结尾
+   类库扩展目录必须是Extra.php结尾
+   模型文件必须是Mod.php结尾
+   插件文件必须是_ws.php结尾
+   模板文件必须是.tpl.php结尾
+   core目录的文件手动加载
+   source/util目录下的类文件必须是.class.php结尾
+6、import可以导入一个人 参数true时自动实例化 返回实例
+   其他的函数参见source/function/function.php
+7、目前只支持MYSQL PDO模式连接数据库
+8、内置的插件挂载点
+	hook('ready_register_user',array($homePage,$mail,$userName));
+	hook('success_register_user',array($homePage,$mail,$userName,$userId));
