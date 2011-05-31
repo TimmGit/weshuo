@@ -1,5 +1,5 @@
 <?php
-class runtime
+class runTime
 {
 	public static $time;
 	public static $memory;
