@@ -15,8 +15,8 @@ class wsCore
 		require_once WS_ROOT.'source/core/wsForm.class.php';
 		if(DEBUG_MODE==0)
 		{
-			runtime::$time=runtime::getSecondTime();
-			runtime::$memory=runtime::getNowMem();
+			runTime::$time=runTime::getSecondTime();
+			runTime::$memory=runTime::getNowMem();
 		}
 	}
 	
@@ -59,9 +59,9 @@ class wsCore
 	
 	private function showDebugInfo()
 	{
-		$time=runtime::getSecondTime()-runtime::$time;
-		$mem=runtime::getNowMem()-runtime::$memory;
-		$info="<div id='runtime'>Runtime:".round($time,4)."s,Memory:".round($mem,2)."KB,<br/>Sql:".runtime::$sql."</div>";
+		$time=runTime::getSecondTime()-runTime::$time;
+		$mem=runTime::getNowMem()-runTime::$memory;
+		$info="<div id='runTime'>runTime:".round($time,4)."s,Memory:".round($mem,2)."KB,<br/>Sql:".runTime::$sql."</div>";
 		return $info;
 	}
 	
