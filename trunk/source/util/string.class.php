@@ -1,6 +1,15 @@
 <?php
 class string
 {
+	public static function getUrlByContent($content)
+	{
+		if(preg_match("/(http:\/\/.+?)/i", $content,$matches))
+		{
+			return $matches[0];
+		}
+		return FALSE;
+	}
+	
 	public static function safeHtml($text, $tags = null){
 		$text	=	trim($text);
 		//完全过滤注释

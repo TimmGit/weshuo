@@ -21,11 +21,18 @@ class wsCore
 	}
 	
 	
-	protected function isLogin()
+	protected function isLogin($ajax=FALSE)
 	{
 		if(!userSessionLib::getLogin())
 		{
-			$this->redirect("public/login");
+			if($ajax)
+			{
+				echo "请登陆系统";exit;
+			}
+			else 
+			{
+				$this->redirect("public/login");
+			}
 		}
 	}
 	

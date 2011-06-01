@@ -13,3 +13,7 @@
 <a href="<?php echo siteUrl('admin/')?>">我到微薄</a>
 <a href="<?php echo siteUrl('user')?>">设置</a>
 </div>
+<script type="text/javascript">
+var group=0;
+var tag='';
+</script>

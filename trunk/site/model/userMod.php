@@ -88,4 +88,9 @@ class userMod
 	{
 		return $this->db->selectData($this->table,'','RAND() desc',10);
 	}
+	
+	public function getUserInfoByNick($nickName)
+	{
+		return $this->db->findData($this->table,array('nickName'=>$nickName));
+	}
 }

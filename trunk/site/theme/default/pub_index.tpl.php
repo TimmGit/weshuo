@@ -1,4 +1,5 @@
 <?php subView("header")?>
+<?php subView("inc_sendMsg")?>
 <?php 
 if($list)
 {

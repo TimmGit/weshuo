@@ -57,13 +57,13 @@ class userLib
 	
 	/**
 	 * 
-	 * 检测mail是否存在
+	 * 检测某个字段对应的值是否存在
 	 * @param string $field
-	 * @param string $mail
+	 * @param string $content
 	 */
-	public function checkExit($field,$mail)
+	public function checkExit($field,$content)
 	{
-		return $this->user->checkExit($field,$mail);
+		return $this->user->checkExit($field,$content);
 	}
 	/**
 	 * 
@@ -95,6 +95,10 @@ class userLib
 		elseif ($type=='id')
 		{
 			return $this->user->getUserInfoById($home);
+		}
+		elseif ($type=='nick')
+		{
+			return $this->user->getUserInfoByNick($home);
 		}
 		else 
 		{
