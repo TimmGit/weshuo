@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2011 年 05 月 27 日 20:50
+-- 生成日期: 2011 年 06 月 01 日 10:10
 -- 服务器版本: 5.1.54
 -- PHP 版本: 5.3.5-1ubuntu7.2
 
@@ -3943,11 +3943,11 @@ INSERT INTO `iw_site` (`siteId`, `title`, `fTitle`, `description`, `keyword`, `d
 -- --------------------------------------------------------
 
 --
--- 表的结构 `iw_site_config`
+-- 表的结构 `iw_siteext`
 --
 
-CREATE TABLE IF NOT EXISTS `iw_site_config` (
-  `siteConfigId` tinyint(1) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `iw_siteext` (
+  `siteExtId` tinyint(1) unsigned NOT NULL,
   `userCheck` tinyint(1) DEFAULT '1',
   `httpCheck` tinyint(1) DEFAULT '0',
   `mailCheck` tinyint(1) DEFAULT '0',
@@ -3978,14 +3978,14 @@ CREATE TABLE IF NOT EXISTS `iw_site_config` (
   `hotTime` tinyint(3) DEFAULT '48',
   `catchTime` tinyint(2) DEFAULT '20',
   `sendTime` tinyint(2) DEFAULT '5',
-  PRIMARY KEY (`siteConfigId`)
+  PRIMARY KEY (`siteExtId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `iw_site_config`
+-- 转存表中的数据 `iw_siteext`
 --
 
-INSERT INTO `iw_site_config` (`siteConfigId`, `userCheck`, `httpCheck`, `mailCheck`, `ipCheck`, `sendCheck`, `loginCheck`, `scoreStart`, `userScore`, `scoreLog`, `loginScore`, `createGet`, `replayGet`, `createDel`, `replayDel`, `hotScore`, `inviteScore`, `createGroup`, `sendImg`, `downloadScore`, `uploadScore`, `ucLogin`, `textLen`, `fileSize`, `commentOpen`, `unloginSend`, `openReg`, `inviteReg`, `hotTime`, `catchTime`, `sendTime`) VALUES
+INSERT INTO `iw_siteext` (`siteExtId`, `userCheck`, `httpCheck`, `mailCheck`, `ipCheck`, `sendCheck`, `loginCheck`, `scoreStart`, `userScore`, `scoreLog`, `loginScore`, `createGet`, `replayGet`, `createDel`, `replayDel`, `hotScore`, `inviteScore`, `createGroup`, `sendImg`, `downloadScore`, `uploadScore`, `ucLogin`, `textLen`, `fileSize`, `commentOpen`, `unloginSend`, `openReg`, `inviteReg`, `hotTime`, `catchTime`, `sendTime`) VALUES
 (1, 0, 0, 0, 0, 0, 1, 1, 10, 0, 2, 2, 1, 4, 2, 30, 20, 10, 4, 6, 4, 1, 160, 512000, 1, 0, 1, 0, 48, 20, 5);
 
 -- --------------------------------------------------------
