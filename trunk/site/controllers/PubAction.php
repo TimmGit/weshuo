@@ -1,5 +1,5 @@
 <?php
-class PubAction extends commonAction
+class PubAction extends CommonAction
 {
 	function __construct()
 	{
@@ -8,9 +8,12 @@ class PubAction extends commonAction
 	public function index()
 	{
 		$topicLib=new topicLib();
-		$page=$this->checkForm("page",array(3,1),'',array(wsForm::$int,0,wsForm::$intMax));
+		$page=$this->checkForm("page",array(4,1),'分页标记错误',array(wsForm::$int,0,wsForm::$intMax));
 		$limit=10;
+		$allCount=$topicLib->getTopicCount();
+		$pageTool=new pageTool($page, $allCount, $limit);
 		$list=$topicLib->getTopisList($page,$limit);
-		$this->loadView('pub_index',array('list'=>$list));
+		$pageInfo=$pageTool->showNum('pub/index');
+		$this->loadView('pub_index',array('list'=>$list,'pageInfo'=>$pageInfo));
 	}
 }

@@ -11,8 +11,9 @@ interface dbInterface
 	/**
 	 * 执行SQL语句 返回数组 用于select
 	 * @param string $sql
+	 * @param boolean $one
 	 */
-	public function querySql($sql);
+	public function querySql($sql,$one=FALSE);
 	/**
 	 * 执行SQL语句 返回boolean
 	 * @param string $sql

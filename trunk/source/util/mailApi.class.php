@@ -1,4 +1,5 @@
 <?php
+!defined("WS_ROOT") && exit('No direct script access allowed');
 class mailApi
 {
 	private $sendType=1;

@@ -61,7 +61,7 @@ class wsCore
 	{
 		$time=runTime::getSecondTime()-runTime::$time;
 		$mem=runTime::getNowMem()-runTime::$memory;
-		$info="<div id='runTime'>runTime:".round($time,4)."s,Memory:".round($mem,2)."KB,<br/>Sql:".runTime::$sql."</div>";
+		$info="<div id='runTime' style='border:1px solid #ccc;padding:5px;'>runTime:".round($time,4)."s,Memory:".round($mem,2)."KB<br/>".runTime::$sql."</div>";
 		return $info;
 	}
 	

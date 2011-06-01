@@ -25,7 +25,7 @@ define("LOG_PATH", WS_ROOT.APP_PATH.'/log/');
 /**
  * 定义缓存路径
  */
-define("CACHE_PATH",WS_ROOT.APP_PATH.'cache/');
+define("CACHE_PATH",WS_ROOT.APP_PATH.'/cache/');
 /**
  * 类库路径
  */

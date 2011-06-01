@@ -91,8 +91,22 @@ function replaceHtml($string)
 	$string=string::safeHtml($string);
 	return string::RemoveXSS($string);
 }
-
+/**
+ * 获取URL中的一段
+ * @param int $int
+ * @param string $defult
+ */
 function segment($int=1,$defult='')
 {
 	return wsRoute::segment($int,$defult);
+}
+/**
+ * 读写缓存
+ * @param string $name
+ * @param string $value
+ * @param string $path
+ */
+function c($name,$value=false,$path=false)
+{
+	return wsCache::rwCache($name,$value,$path);
 }

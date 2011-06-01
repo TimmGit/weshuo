@@ -30,6 +30,10 @@ $timeZone='Asia/Chongqing';
  */
 $lang=array();
 /**
+ * 加密KEY 
+ */
+define("key",'DSFL4%ref');
+/**
  * 载入语言包
  */
 $autoLang=array('form');

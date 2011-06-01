@@ -1,5 +1,5 @@
 <?php
-class UserAction extends commonAction
+class UserAction extends CommonAction
 {
 	private $userId=0;
 	

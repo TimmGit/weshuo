@@ -1,5 +1,5 @@
 <?php
-class AjaxAction extends commonAction
+class AjaxAction extends CommonAction
 {
 	public function checkNick()
 	{
