@@ -11,5 +11,6 @@ if($list)
 	<?php
 	}
 }
+echo "<div>$pageInfo</div>";
 ?>
 <?php subView("footer")?>

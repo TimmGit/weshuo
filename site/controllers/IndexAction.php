@@ -1,9 +1,8 @@
 <?php
-class IndexAction extends commonAction
+class IndexAction extends CommonAction
 {
 	public function index()
 	{
-		require_once MODEL_PATH.'userMod.php';
 		$this->loadView('index',array('a'=>'weshuo.org'));
 	}
 	

@@ -8,22 +8,28 @@
 */
 class checkRun
 {
-	private static $phpVersion;
-	
-	private function __construct(){}
 	
 	private static function getPHP()
 	{
 		$phpVersion=phpversion();
-		self::$phpVersion=$phpVersion{0}*100+$phpVersion{2}*10+$phpVersion{4};
+		return $phpVersion{0}*100+$phpVersion{2}*10+$phpVersion{4};
 	}
 	
 	public static function checkPHP()
 	{
-		self::getPHP();
-		if(self::$phpVersion<520)
+		if(self::getPHP()<520)
 		{
 			throw new Exception(wsLang::getLang('system_php_is_lower'));
 		}
+	}
+	
+	public static function checkGd()
+	{
+		$info=@gd_info();
+		if(is_array($info))
+		{
+			return $info['GD Version'];
+		}
+		return FALSE;
 	}
 }

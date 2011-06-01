@@ -1,5 +1,5 @@
 <?php
-class PublicAction extends commonAction
+class PublicAction extends CommonAction
 {
 	public function index()
 	{

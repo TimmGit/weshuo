@@ -1,5 +1,5 @@
 <?php
-class EmptyAction extends commonAction
+class EmptyAction extends CommonAction
 {
 	public function index()
 	{
@@ -16,7 +16,7 @@ class EmptyAction extends commonAction
 		}
 		if(empty($fun) || $fun=="index")
 		{
-			if(isset($_SESSION['login']))
+			if(userSessionLib::getLogin())
 			{
 				$this->showIndex($userLib,$topicLib,$userInfo);
 			}

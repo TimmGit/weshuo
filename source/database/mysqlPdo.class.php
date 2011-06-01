@@ -54,11 +54,15 @@ class mysqlPdo implements dbInterface
 	 * @param string $sql;
 	 * @see dbInterface::querySql()
 	 */
-	public function querySql($sql)
+	public function querySql($sql,$one=FALSE)
 	{
 		self::$sql=$sql;
 		$this->setDebugSql($sql);
 		self::$dbh=self::$dbConn->query(self::$sql);
+		if($one)
+		{
+			return self::$dbh->fetch();
+		}
 		return self::$dbh->fetchAll();
 	}
 	
@@ -79,7 +83,8 @@ class mysqlPdo implements dbInterface
 	 */
 	public function getOne($sql, $int=0)
 	{
-		self::$dbh=$this->querySql($sql);
+		self::$dbh=self::$dbConn->query($sql);
+		$this->setDebugSql($sql);
 		return self::$dbh->fetchColumn($int);
 	}
 	
@@ -91,7 +96,7 @@ class mysqlPdo implements dbInterface
 	public function getRow($sql)
 	{
 		$sql=$sql.' limit 1';
-		return $this->querySql($sql);
+		return $this->querySql($sql,true);
 	}
 	
 	/**
