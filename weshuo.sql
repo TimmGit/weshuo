@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.10deb1
+-- version 3.3.9
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2011 年 06 月 01 日 10:10
--- 服务器版本: 5.1.54
--- PHP 版本: 5.3.5-1ubuntu7.2
+-- 生成日期: 2011 年 06 月 01 日 14:15
+-- 服务器版本: 5.5.8
+-- PHP 版本: 5.2.9
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -3996,7 +3996,7 @@ INSERT INTO `iw_siteext` (`siteExtId`, `userCheck`, `httpCheck`, `mailCheck`, `i
 
 CREATE TABLE IF NOT EXISTS `iw_tag` (
   `tagId` int(10) NOT NULL AUTO_INCREMENT,
-  `tagName` varchar(100) NOT NULL,
+  `tagName` varchar(30) NOT NULL,
   `createUser` int(10) NOT NULL,
   `createTime` int(10) NOT NULL,
   `userHome` varchar(30) NOT NULL,
@@ -5704,6 +5704,7 @@ CREATE TABLE IF NOT EXISTS `iw_userext` (
   `gmailId` varchar(35) NOT NULL DEFAULT '0',
   `oicqId` varchar(11) NOT NULL DEFAULT '0',
   `medal` varchar(200) DEFAULT NULL,
+  `theme` varchar(20) NOT NULL DEFAULT 'default',
   PRIMARY KEY (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
 
@@ -5711,8 +5712,8 @@ CREATE TABLE IF NOT EXISTS `iw_userext` (
 -- 转存表中的数据 `iw_userext`
 --
 
-INSERT INTO `iw_userext` (`userId`, `wbCount`, `gzCount`, `fsCount`, `loginTime`, `LoginIp`, `sinaId`, `gmailId`, `oicqId`, `medal`) VALUES
-(19, 111, 22, 33, '1000-01-01 00:00:00', '127.0.0.1', '0', '0', '0', NULL);
+INSERT INTO `iw_userext` (`userId`, `wbCount`, `gzCount`, `fsCount`, `loginTime`, `LoginIp`, `sinaId`, `gmailId`, `oicqId`, `medal`, `theme`) VALUES
+(19, 111, 22, 33, '1000-01-01 00:00:00', '127.0.0.1', '0', '0', '0', NULL, 'default');
 
 -- --------------------------------------------------------
 
