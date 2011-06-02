@@ -1,13 +1,57 @@
 <?php
 class string
 {
-	public static function getUrlByContent($content)
+	/**
+	 * 获取汉字长度 一汉字=2
+	 * @param string $string
+	 */
+	public static function getChinsesLenTwo($string)
 	{
-		if(preg_match("/(http:\/\/.+?)/i", $content,$matches))
+		$length = strlen(preg_replace('/[\x00-\x7F]/', '', $string));
+	    if ($length)
+	    {
+	        $valueLen=strlen($string) - $length + intval($length / 3) * 2;
+	    }
+	    else
+	    {
+	        $valueLen=strlen($string);
+	    }
+	    return $length;
+	}
+	
+	/**
+	 * 获取汉字的长度 1汉字=1
+	 * @param unknown_type $string
+	 */
+	public static function getChineseLenOne($string)
+	{
+		$length=0;
+		if(function_exists("mb_strlen"))
 		{
-			return $matches[0];
+			$length=mb_strlen($string,CHARSET);
 		}
-		return FALSE;
+		elseif(function_exists('iconv_strlen'))
+		{
+			$length=iconv_strlen($string,CHARSET);
+		}
+		else
+		{
+			$length=self::getChinsesLibOnePrivate($string);
+		}
+		return $length;
+	}
+	
+	private static function getChinsesLibOnePrivate($str)
+	{
+		$length = strlen(preg_replace('/[\x00-\x7F]/', '', $str));
+	    if ($length)
+	    {
+	        return strlen($str) - $length + intval($length / 3);
+	    }
+	    else
+	    {
+	        return strlen($str);
+	    }
 	}
 	
 	public static function safeHtml($text, $tags = null){

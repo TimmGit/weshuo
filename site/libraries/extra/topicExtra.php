@@ -1,6 +1,33 @@
 <?php
 class topicExtra
 {
+	
+	public static function getUrlByContent($content)
+	{
+		if(preg_match("/(http:\/\/.+?)/i", $content,$matches))
+		{
+			return $matches[0];
+		}
+		return FALSE;
+	}
+	
+	public function replaceSortUrl($content,$short)
+	{
+		return str_replace($short,"<a href='".siteUrl('url/'.$short)."'>http://".$short."</a>", $content);
+	}
+	
+	public function sendWeibo($content,$userId,$group,$parentId,$tag,$zhuan,$status,$share,$client,$home,$address,$ipAddress)
+	{
+		$topicLib= new topicLib();
+		$tagStr= !empty($tag)?implode(',', $tag):'';
+		$address=$ipAddress?$ipAddress:$address;
+		if(empty($address))
+		{
+			return false;
+		}
+		return $topicLib->addTopic($content, $userId,$group,$parentId,$tagStr, $zhuan, $status, $share, $client, $home, $address);
+	}
+	
 	/**
 	 * 获取微博的内容 处理URL
 	 * @param string $content
@@ -11,17 +38,28 @@ class topicExtra
 	{
 		$shortUrl=FALSE;
 		$content=replaceHtml($content);
-		$url=string::getUrlByContent($content);
+		$url=$this->getUrlByContent($content);
 		if($url)
 		{
 			$shortUrl=$this->shorturl($url);
 			$content=str_replace($url,$shortUrl,$content);
 			$start=stripos($content,$shortUrl);
-			$length=$start>$length ?($start+strlen($shortUrl)) :$length;
+			if($start>$length)
+			{
+				$shortUrl=FALSE;
+				$url=FALSE;
+			}
+			else 
+			{
+				$strLen=$start+strlen($shortUrl);
+				$length=$strLen > $length ?$strLen :$length;
+			}
 		}
-		$content=$length ?substr($content,0,$length) :$content;
+		$content=$length ?mb_substr($content,0,$length,CHARSET) :$content;
 		return array('content'=>$content,'url'=>$url,'short'=>$shortUrl);
 	}
+	
+	
 	
 	/**
 	 * 
@@ -46,11 +84,11 @@ class topicExtra
 					$aboutme[$k]='@'.$userNick.' ';
 				else 
 				{
-					$sendMsg[]=$userNick;
+					$sendMsg[$info['userId']]=$userNick;
 					$aboutme[$k]="<a href='".siteUrl($info['homePage'])."' target='_blank' class='aboutme'>@".$userNick."</a>";
 				}
 			}
-			return array(preg_replace($oldme,$aboutme,$content),$sendMsg);
+			return array('content'=>preg_replace($oldme,$aboutme,$content),'sendUser'=>$sendMsg);
 		}
 		return $content;
 	}

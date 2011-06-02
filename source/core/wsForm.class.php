@@ -151,24 +151,11 @@ class wsForm
 		$valueLen=0;
 		if($double)
 		{
-			$length = strlen(preg_replace('/[\x00-\x7F]/', '', $stringValue));
-		    if ($length)
-		    {
-		        $valueLen=strlen($stringValue) - $length + intval($length / 3) * 2;
-		    }
-		    else
-		    {
-		        $valueLen=strlen($stringValue);
-		    }
+			$valueLen=string::getChinsesLenTwo($stringValue);
 		}
 		else 
 		{
-			if(function_exists("mb_strlen"))
-		        $valueLen=mb_strlen($stringValue,CHARSET);
-		    elseif(function_exists('iconv_strlen'))
-		        $valueLen=iconv_strlen($stringValue,CHARSET);
-			else
-				$valueLen=self::getstrlen($stringValue);
+			$valueLen=string::getChineseLenOne($stringValue);
 		}
 		if($valueLen>=$min && $max>=$valueLen)
 		{
@@ -177,16 +164,4 @@ class wsForm
 		return false;
 	}
 	
-	private static function getstrlen($str)
-	{
-	    $length = strlen(preg_replace('/[\x00-\x7F]/', '', $str));
-	    if ($length)
-	    {
-	        return strlen($str) - $length + intval($length / 3);
-	    }
-	    else
-	    {
-	        return strlen($str);
-	    }
-	}
 }

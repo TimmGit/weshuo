@@ -3,11 +3,23 @@ class tagExtra
 {
 	public function getTopicTag($title)
 	{
-		preg_match_all("/#([\w+\d+-&$*@]|[\x{4e00}-\x{9fa5}]+)#/ui",$title,$matches);
+		preg_match_all("/#([\w+\d+-]+)#/iu",$title,$matches);
 		if(!empty($matches[0]))
 		{
-			return $matches[0];
+			$tagArray=array();
+			foreach ($matches[0] as $value)
+			{
+				$urlValue=$this->replaceSharp($value);
+				$tagArray[]=$urlValue;
+				$title=str_replace($value,"<a href=".siteUrl('tag/'.$urlValue).">$value</a>", $title);
+			}
+			return array('content'=>$title,'tag'=>$tagArray);
 		}
-		return FALSE;
+		return $title;
+	}
+	
+	private function replaceSharp($tagName)
+	{
+		return str_replace('#','', $tagName);
 	}
 }

@@ -175,12 +175,8 @@ class mysqlPdo implements dbInterface
 	 * 删除数据
 	 * @see dbInterface::deleteData()
 	 */
-	public function deleteData($table, $data, $where)
+	public function deleteData($table, $where)
 	{
-		if(is_array($data))
-		{
-			$data=sqlTool::array2setSql($data);
-		}
 		if(is_array($where))
 		{
 			$where=sqlTool::array2sql($where);
