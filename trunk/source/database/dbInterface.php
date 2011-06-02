@@ -45,10 +45,9 @@ interface dbInterface
 	/**
 	 * 删除数据
 	 * @param string $table
-	 * @param array $data
 	 * @param string or array $where
 	 */
-	public function deleteData($table,$data,$where);
+	public function deleteData($table,$where);
 	/**
 	 * 获取数据
 	 * @param string $table

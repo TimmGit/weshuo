@@ -20,7 +20,12 @@ class tagMod
 	public function addTag($tag,$userId,$home,$topicId,$time)
 	{
 		return $this->db->insertData($this->table,
-				array('tagName'=>$tag,'createUser'=>$userId,'home'=>$home,'topicId'=>$topicId,'createTime'=>$time));
+				array('tagName'=>$tag,'userId'=>$userId,'home'=>$home,'topicId'=>$topicId,'time'=>$time));
+	}
+
+	public function updateCount($count,$tagId)
+	{
+		return $this->db->updateData($this->table, array('count'=>$count), array('tagId'=>$tagId));
 	}
 	
 	public function updateTag($tagId,$newTopicId)

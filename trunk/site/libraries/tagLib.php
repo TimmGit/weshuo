@@ -11,11 +11,29 @@ class tagLib
 		$this->tagMod=new tagMod();
 	}
 	
-	public function addTag($tag,$userId,$home,$topicId)
+	public function checkTagExit($tagName)
 	{
-		if(!$this->tagMod->checkTagExit($tag))
+		return $this->tagMod->checkTagExit($tagName);
+	}
+	
+	public function addTag($tagName,$userId,$home,$topicId)
+	{
+		if(empty($tagName) || empty($userId) || empty($home))
 		{
-			return $this->tagMod->addTag($tag, $userId, $home, $topicId, time());
+			return false;
 		}
+		$info=$this->checkTagExit($tagName);
+		if(!$info)
+		{
+			return $this->tagMod->addTag($tagName, $userId, $home, $topicId, time());
+		}
+		else 
+		{
+			$newTopicId=$info['topicId'].','.$topicId;
+			$this->tagMod->updateTag($info['tagId'], $newTopicId);
+			$count=is_numeric($info['count'])?$info['count']+1:1;
+			return $this->tagMod->updateCount($count, $info['tagId']);
+		}
+		
 	}
 }
