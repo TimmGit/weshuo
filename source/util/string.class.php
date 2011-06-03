@@ -10,11 +10,11 @@ class string
 		$length = strlen(preg_replace('/[\x00-\x7F]/', '', $string));
 	    if ($length)
 	    {
-	        $valueLen=strlen($string) - $length + intval($length / 3) * 2;
+	        $length=strlen($string) - $length + intval($length / 3) * 2;
 	    }
 	    else
 	    {
-	        $valueLen=strlen($string);
+	        $length=strlen($string);
 	    }
 	    return $length;
 	}

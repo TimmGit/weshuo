@@ -70,7 +70,7 @@ class AjaxAction extends CommonAction
 		if($topicId && $url)
 		{
 			$linkLib=new linkLib();
-			$linkLib->addLink($content['url'],$content['short']);
+			$linkLib->addLink($url,$short);
 		}
 		if(!empty($userArr) && $topicId)
 		{

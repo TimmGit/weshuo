@@ -4,7 +4,7 @@ class topicExtra
 	
 	public static function getUrlByContent($content)
 	{
-		if(preg_match("/(http:\/\/.+?)/i", $content,$matches))
+		if(preg_match("/(http:\/\/[\w:\/\.\?=&-_]+)/i", $content,$matches))
 		{
 			return $matches[0];
 		}
@@ -13,7 +13,7 @@ class topicExtra
 	
 	public function replaceSortUrl($content,$short)
 	{
-		return str_replace($short,"<a href='".siteUrl('url/'.$short)."'>http://".$short."</a>", $content);
+		return str_replace($short,"<a href=\"".siteUrl('url/'.$short)."\">http://".$short."</a>", $content);
 	}
 	
 	public function sendWeibo($content,$userId,$group,$parentId,$tag,$zhuan,$status,$share,$client,$home,$address,$ipAddress)
