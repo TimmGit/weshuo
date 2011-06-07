@@ -5,17 +5,17 @@ class EmptyAction extends CommonAction
 	{
 		$home=wsRoute::segment(1);
 		$fun=wsRoute::segment(2);
-		require LIB_PATH.'userLib.php';
-		require LIB_PATH.'topicLib.php';
-		$userLib=new userLib();
-		$topicLib=new topicLib();
-		$userInfo=$userLib->getUserInfo($home);
-		if(!$userInfo)
-		{
-			wsEcho::showMsg("您访问了不存在的地址");
-		}
 		if(empty($fun) || $fun=="index")
 		{
+			require LIB_PATH.'userLib.php';
+			require LIB_PATH.'topicLib.php';
+			$userLib=new userLib();
+			$topicLib=new topicLib();
+			$userInfo=$userLib->getUserInfo($home);
+			if(!$userInfo)
+			{
+				wsEcho::showMsg("您访问了不存在的地址");
+			}
 			if(userSessionLib::getLogin())
 			{
 				$this->showIndex($userLib,$topicLib,$userInfo);
@@ -37,6 +37,7 @@ class EmptyAction extends CommonAction
 	
 	private function showInfo($topicId)
 	{
+		$topicId=intval($topicId);
 		$topicLib=new topicLib();
 		$info=$topicLib->getInfo($topicId);
 		$this->loadView("blog_show",array('info'=>$info));

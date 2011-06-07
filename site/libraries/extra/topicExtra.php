@@ -16,7 +16,7 @@ class topicExtra
 		return str_replace($short,"<a href=\"".siteUrl('url/'.$short)."\">http://".$short."</a>", $content);
 	}
 	
-	public function sendWeibo($content,$userId,$group,$parentId,$tag,$zhuan,$status,$share,$client,$home,$address,$ipAddress)
+	public function sendWeibo($content,$userId,$group,$parentId,$tag,$status,$share,$client,$home,$address,$ipAddress)
 	{
 		$topicLib= new topicLib();
 		$tagStr= !empty($tag)?implode(',', $tag):'';
@@ -25,7 +25,7 @@ class topicExtra
 		{
 			return false;
 		}
-		return $topicLib->addTopic($content, $userId,$group,$parentId,$tagStr, $zhuan, $status, $share, $client, $home, $address);
+		return $topicLib->addTopic($content, $userId,$group,$parentId,$tagStr, $status, $share, $client, $home, $address);
 	}
 	
 	/**

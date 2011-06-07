@@ -33,12 +33,12 @@ class topicMod
 		return $this->db->selectData($this->table,array('userId'=>$userId),'time desc',$limit);
 	}
 	
-	public function addTopic($title,$userId,$groupId,$parentId,$tagName,$zhuan,$status,$share,$client,$home,$address,$time,$lastTime)
+	public function addTopic($title,$userId,$groupId,$parentId,$tagName,$status,$share,$client,$home,$address,$time,$lastTime)
 	{
 		return $this->db->insertData($this->table,
 				array('title'=>$title,'userId'=>$userId,'time'=>$time,'groupId'=>$groupId,'parentId'=>$parentId,
-				'zhuan'=>$zhuan,'tagName'=>$tagName,'status'=>$status,'share'=>$share,'client'=>$client,
-				'home'=>$home,'address'=>$address,'lastTime'=>$lastTime)
+				'shareCount'=>0,'tagName'=>$tagName,'status'=>$status,'share'=>$share,'client'=>$client,
+				'home'=>$home,'address'=>$address,'lastTime'=>$lastTime,'commentCount'=>0)
 			);
 	}
 }
