@@ -44,4 +44,22 @@ class client
 		}
 		return '127.0.0.1';
 	}
+	
+	public static function getIPaddress($ip=false)
+	{
+		require_once LIB_PATH.'vendor/iplocation.class.php';
+		$ip=$ip ?$ip :self::getClientIp();
+		$format = "text";//默认text,json,xml,js
+		$charset = CHARSET; //默认utf-8,gbk或gb2312
+		$ipLocation=new ipLocation(WS_ROOT.'/static/ipData/QQWry.Dat');
+		$address=$ipLocation->getaddress($ip);
+		$address["area1"] = iconv('GB2312',$charset,$address["area1"]);
+		$address["area2"] = iconv('GB2312',$charset,$address["area2"]);
+		$add=$address["area1"].$address["area2"];
+		if($add=="本机地址 ")
+		{
+			$add="银河";
+		}
+		return  $add;
+	}
 }

@@ -33,13 +33,13 @@ class topicLib
 		return $this->topicMod->getTopisList($start,$limit);
 	}
 	
-	public function addTopic($title,$userId,$groupId,$parentId,$tagName,$zhuan,$status,$share,$client,$home,$address)
+	public function addTopic($title,$userId,$groupId,$parentId,$tagName,$status,$share,$client,$home,$address)
 	{
 		if(empty($title) || empty($address))
 		{
 			return false;
 		}
 		$lastTime=date("Y-m-d H:i:s");
-		return $this->topicMod->addTopic($title,$userId,$groupId,$parentId,$tagName,$zhuan,$status,$share,$client,$home,$address,time(),$lastTime);
+		return $this->topicMod->addTopic($title,$userId,$groupId,$parentId,$tagName,$status,$share,$client,$home,$address,time(),$lastTime);
 	}
 }

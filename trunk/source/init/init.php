@@ -79,11 +79,6 @@ function __autoload($className)
 	{
 		require MODEL_PATH.$className.'.php';
 	}
-	elseif ($newClassName=='ven')
-	{
-		$className=str_replace($className,'ven','');
-		require LIB_PATH.'vendor/'.$className.'.php';
-	}
 	elseif ($newClassName=='tra')
 	{
 		require LIB_PATH.'extra/'.$className.'.php';
