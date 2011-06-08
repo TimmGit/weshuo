@@ -5,7 +5,7 @@ class EmptyAction extends CommonAction
 	{
 		$home=wsRoute::segment(1);
 		$fun=wsRoute::segment(2);
-		if(empty($fun) || $fun=="index")
+		if(empty($fun) || $fun=="index" || $fun=='private')
 		{
 			require LIB_PATH.'userLib.php';
 			require LIB_PATH.'topicLib.php';
@@ -18,7 +18,14 @@ class EmptyAction extends CommonAction
 			}
 			if(userSessionLib::getLogin())
 			{
-				$this->showIndex($userLib,$topicLib,$userInfo);
+				if($fun=='private')
+				{
+					$this->showHome($userLib,$topicLib,$userInfo);
+				}
+				else 
+				{
+					$this->showIndex($userLib,$topicLib,$userInfo);
+				}	
 			}
 			else 
 			{
@@ -39,11 +46,31 @@ class EmptyAction extends CommonAction
 	{
 		$topicId=intval($topicId);
 		$topicLib=new topicLib();
+		$commentLib=new commentLib();
 		$info=$topicLib->getInfo($topicId);
-		$this->loadView("blog_show",array('info'=>$info));
+		$list=$commentLib->getComment($topicId);
+		$this->loadView("blog_show",array('info'=>$info,'list'=>$list));
 	}
 	
 	private function showIndex(userLib $userLib,topicLib $topicLib,$userInfo)
+	{
+		$limit=10;
+		$formCheck=import("formCheck");
+		$page=$this->checkForm("page",array(3,1),'分页ID错误', array(wsForm::$int,1,wsForm::$intMax));
+		$start=($page-1)*$limit;
+		$topicLib=new topicLib();
+		$allCount=$topicLib->getUserHomeCount($userInfo['userId']);
+		$pageTool=new pageTool($page, $allCount, $limit);
+		$data=array();
+		$data['userInfo']=$userInfo;
+		$data['userExt']=$userLib->getUserExtInfo($userInfo['userId']);
+		$data['wblist']=$topicLib->getUserHomeList($userInfo['userId'],$start,$limit);
+		$data['attlist']=$userLib->getUserAttList($userInfo['userId']);
+		$data['page']=$pageTool->showNum($userInfo['homePage'].'/index');
+		$this->loadView("home_index",$data);
+	}
+	
+	private function showHome(userLib $userLib,topicLib $topicLib,$userInfo)
 	{
 		$data=array();
 		$data['userInfo']=$userInfo;

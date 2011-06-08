@@ -16,6 +16,17 @@ class tagLib
 		return $this->tagMod->checkTagExit($tagName);
 	}
 	
+	public function getAllTagCount()
+	{
+		return $this->tagMod->getAllTagCount();
+	}
+	
+	public function getAllTag($start,$limit)
+	{
+		$limit=$start.','.$limit;
+		return $this->tagMod->getAllTag($limit);
+	}
+	
 	public function addTag($tagName,$userId,$home,$topicId)
 	{
 		if(empty($tagName) || empty($userId) || empty($home))

@@ -9,7 +9,7 @@ class attentionMod
 		$this->db=wsModel::getInstance();
 	}
 	
-	public function getUserAttenList($userId,$limit)
+	public function getUserAttenList($userId,$limit=FALSE)
 	{
 		return $this->db->selectData($this->table,array('userId'=>$userId),'actionTime desc',$limit);
 	}

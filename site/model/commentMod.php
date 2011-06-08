@@ -19,9 +19,9 @@ class commentMod
 		return $this->db->insertData($this->table, $data);
 	}
 	
-	public function getComment($id,$where,$limit=FALSE)
+	public function getComment($where,$limit=FALSE)
 	{
-		return $this->db->selectData($this->table, $where,'commentId desc',$limit);
+		return $this->db->selectData($this->table, $where,'commentId asc',$limit);
 	}
 	
 	public function delComment($where)

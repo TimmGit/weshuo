@@ -36,7 +36,7 @@ class wsRoute
 	{
 		if($path)
 		{
-			if(preg_match("/^[a-zA-Z0-9\-_?$#&\/\.@]+$/i", $path))
+			if(preg_match("/^([a-zA-Z0-9\-_?$#&\/\.@]|[\x{4e00}-\x{9fa5}])+$/iu", $path))
 			{
 				$path=explode("/", $path);
 				if(!isset($path[1]) || empty($path[1]))

@@ -12,6 +12,33 @@ class topicLib
 		$this->topicMod=new topicMod();
 	}
 	
+	public function getUserHomeCount($userId)
+	{
+		$userList=array();
+		$att=new attenLib();
+		$attUser=$att->getUserAtt($userId);
+		foreach ($attUser as $v)
+		{
+			$userList[]=$v['objUser'];
+		}
+		$userList=implode(',',$userList);
+		return $this->topicMod->getTopisCountByAtt($userId,$userList);	
+	}
+	
+	public function getUserHomeList($userId,$start,$limit)
+	{
+		$userList=array();
+		$att=new attenLib();
+		$attUser=$att->getUserAtt($userId);
+		foreach ($attUser as $v)
+		{
+			$userList[]=$v['objUser'];
+		}
+		$userList=implode(',',$userList);
+		$limit=$start.','.$limit;
+		return $this->topicMod->getTopisListByAtt($userId,$userList,$limit);
+	}
+	
 	public function getInfo($topicId)
 	{
 		return $this->topicMod->getTopicInfo($topicId);

@@ -10,7 +10,7 @@
 <a href="<?php echo siteUrl()?>">首页</a>
 <a href="<?php echo siteUrl('pub')?>">广场</a>
 <a href="<?php echo siteUrl('admin')?>">我到主页</a>
-<a href="<?php echo siteUrl('admin/')?>">我到微薄</a>
+<a href="<?php echo siteUrl('admin/private')?>">我的微博</a>
 <a href="<?php echo siteUrl('user')?>">设置</a>
 </div>
 <script type="text/javascript">
