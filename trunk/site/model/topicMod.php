@@ -12,6 +12,18 @@ class topicMod
 		$this->db=wsModel::getInstance();
 	}
 	
+	public function getTopisCountByAtt($userId,$attUser)
+	{
+		$sql="select count(*) from ".wsModel::dbPrefix().$this->table." where userId=".$userId." or instr('".$attUser."',userId) ";
+		return $this->db->getOne($sql);
+	}
+	
+	public function getTopisListByAtt($userId,$attUser,$limit)
+	{
+		$sql="select * from ".wsModel::dbPrefix().$this->table." where userId=".$userId." or instr('".$attUser."',userId) order by lastTime desc limit ".$limit;
+		return $this->db->querySql($sql);
+	}
+	
 	public function getTopicInfo($topicId)
 	{
 		return $this->db->findData($this->table,array('topicId'=>$topicId));

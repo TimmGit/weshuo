@@ -168,6 +168,10 @@ class wsCore
 		{
 			$className->$fun();
 		}
+		elseif (method_exists($className,'_ws'))
+		{
+			$className->_ws();
+		}
 		else 
 		{
 			wsEcho::showMsg(wsLang::getLang('system_fun_error').$fun);

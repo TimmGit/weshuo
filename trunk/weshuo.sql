@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.10deb1
+-- version 3.3.9
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2011 年 06 月 02 日 14:06
--- 服务器版本: 5.1.54
--- PHP 版本: 5.3.5-1ubuntu7.2
+-- 生成日期: 2011 年 06 月 08 日 12:51
+-- 服务器版本: 5.5.8
+-- PHP 版本: 5.2.9
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -2377,9 +2377,9 @@ INSERT INTO `iw_attention` (`attenId`, `userId`, `objUser`, `actionTime`) VALUES
 CREATE TABLE IF NOT EXISTS `iw_comment` (
   `commentId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `userId` int(10) unsigned NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `parentId` int(10) unsigned NOT NULL,
+  `content` varchar(255) NOT NULL,
   `topicId` int(10) unsigned NOT NULL,
+  `parentId` int(10) unsigned NOT NULL,
   `time` int(10) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `home` varchar(30) DEFAULT NULL,
@@ -2391,7 +2391,7 @@ CREATE TABLE IF NOT EXISTS `iw_comment` (
 -- 转存表中的数据 `iw_comment`
 --
 
-INSERT INTO `iw_comment` (`commentId`, `userId`, `title`, `parentId`, `topicId`, `time`, `status`, `home`, `address`) VALUES
+INSERT INTO `iw_comment` (`commentId`, `userId`, `content`, `topicId`, `parentId`, `time`, `status`, `home`, `address`) VALUES
 (40, 45, '怎么站长知道用户知道吗.最好加个关闭文字图片加文字提示', 138, 0, 1280137142, 1, '0538sd', NULL),
 (39, 45, '起码要加个返回顶部吧', 142, 0, 1280137190, 1, '0538sd', NULL),
 (38, 19, '暂时没有专业的美工！可以自己制作了更换！', 142, 0, 1280137008, 1, 'admin', '福建省厦门市'),
@@ -2800,7 +2800,7 @@ INSERT INTO `iw_comment` (`commentId`, `userId`, `title`, `parentId`, `topicId`,
 (465, 124, '你要点击“分享”，在里面输入的网址才会解析的', 823, 461, 1288407154, 1, 'hongbin', '广东省'),
 (466, 19, 'UC整合失败的原因比较多，通信没有成！功之前不要开启UC整合登陆，以免无法登陆系统！', 845, 0, 1288419321, 1, 'admin', '福建省厦门市'),
 (467, 19, '我也想啊 容易~涅', 822, 0, 1288419616, 1, 'admin', '福建省厦门市');
-INSERT INTO `iw_comment` (`commentId`, `userId`, `title`, `parentId`, `topicId`, `time`, `status`, `home`, `address`) VALUES
+INSERT INTO `iw_comment` (`commentId`, `userId`, `content`, `topicId`, `parentId`, `time`, `status`, `home`, `address`) VALUES
 (468, 19, '有这么牛A~周末又过去了~', 850, 0, 1288528535, 1, 'admin', '福建省厦门市'),
 (469, 81, '哇塞，可以通过QQ签名更新呢？', 853, 0, 1288574895, 1, 'sushehao', '陕西省西安市'),
 (470, 81, '你又可以投入到开发中去了', 850, 468, 1288574914, 1, 'sushehao', '陕西省西安市'),

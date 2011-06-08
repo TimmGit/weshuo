@@ -11,6 +11,11 @@ class commentLib
 		$this->mod=new commentMod();
 	}
 	
+	public function getComment($topicId)
+	{
+		return $this->mod->getComment(array('topicId'=>$topicId));
+	}
+	
 	public function addComment($userId,$title,$parentId,$topicId,$home,$address,$status=1)
 	{
 		if($userId && $title && $topicId && $home)

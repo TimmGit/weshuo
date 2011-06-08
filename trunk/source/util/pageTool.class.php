@@ -47,7 +47,7 @@ class pageTool
 		else 
 		{
 			$page=($this->nowPage-1)>0 ?$this->nowPage-1 :1;
-			$html="<a href='".siteUrl($url.'/p/1')."'>$this->first</a>  <a href='".siteUrl($url.'/p/'.$page)."'>$this->prov</a>  ";
+			$html="<a href='".siteUrl($url.'/1')."'>$this->first</a>  <a href='".siteUrl($url.'/'.$page)."'>$this->prov</a>  ";
 		}
 		if($this->nowPage > $this->allPage)
 		{
@@ -56,7 +56,7 @@ class pageTool
 		else 
 		{
 			$page=($this->nowPage+1)>$this->allPage ?$this->allPage :($this->nowPage+1);
-			$html.="<a href='".siteUrl($url.'/p/'.$page)."'>$this->next</a>  <a href='".siteUrl($url.'/p/'.$this->allPage)."'>$this->last</a> ";
+			$html.="<a href='".siteUrl($url.'/'.$page)."'>$this->next</a>  <a href='".siteUrl($url.'/'.$this->allPage)."'>$this->last</a> ";
 		}
 		$html.=$this->nowPage.'/'.$this->allPage.$this->pageName;
 		return $html;
@@ -68,12 +68,12 @@ class pageTool
 		if($this->nowPage>$num)
 		{
 			$page=$this->nowPage-1;
-			$html="<a href='".siteUrl($url.'/p/1')."'>$this->first</a>  <a href='".siteUrl($url.'/p/'.$page)."'>$this->prov</a>  ";
+			$html="<a href='".siteUrl($url.'/1')."'>$this->first</a>  <a href='".siteUrl($url.'/'.$page)."'>$this->prov</a>  ";
 		}
 		if($this->nowPage>$num)
 		{
 			$page=$this->nowPage-$num;
-			$html.=" <a href='".siteUrl($url.'/p/'.$page)."'>".$this->up.$num.$this->pageName."</a> ";
+			$html.=" <a href='".siteUrl($url.'/'.$page)."'>".$this->up.$num.$this->pageName."</a> ";
 		}
 		if($this->allPage>1)
 		{
@@ -81,23 +81,23 @@ class pageTool
 			{
 				if($this->nowPage+$num>$this->allPage)
 				{
-					$html.=" <a href='".siteUrl($url.'/p/'.($this->nowPage-$num+$i))."'>".($this->nowPage-$num+$i)."</a> ";
+					$html.=" <a href='".siteUrl($url.'/'.($this->nowPage-$num+$i))."'>".($this->nowPage-$num+$i)."</a> ";
 				}
 				else 
 				{
-					$html.=" <a href='".siteUrl($url.'/p/'.($this->nowPage+$i))."'>".($this->nowPage+$i)."</a> ";
+					$html.=" <a href='".siteUrl($url.'/'.($this->nowPage+$i))."'>".($this->nowPage+$i)."</a> ";
 				}			
 			}
 		}
 		if($this->allPage>=$num)
 		{
 			$page=$this->nowPage+$num;
-			$html.=" <a href='".siteUrl($url.'/p/'.$page)."'>".$this->down.$num.$this->pageName."</a> ";
+			$html.=" <a href='".siteUrl($url.'/'.$page)."'>".$this->down.$num.$this->pageName."</a> ";
 		}
 		if($this->nowPage+$num < $this->allPage)
 		{
 			$page=$this->nowPage+1;
-			$html.="<a href='".siteUrl($url.'/p/'.$page)."'>$this->next</a>  <a href='".siteUrl($url.'/p/'.$this->allPage)."'>$this->last</a> ";
+			$html.="<a href='".siteUrl($url.'/'.$page)."'>$this->next</a>  <a href='".siteUrl($url.'/'.$this->allPage)."'>$this->last</a> ";
 		}
 		return $html;
 	}
