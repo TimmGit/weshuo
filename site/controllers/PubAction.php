@@ -8,7 +8,7 @@ class PubAction extends CommonAction
 	public function index()
 	{
 		$topicLib=new topicLib();
-		$page=$this->checkForm("page",array(4,1),'分页标记错误',array(wsForm::$int,0,wsForm::$intMax));
+		$page=$this->checkForm("page",array(3,1),'分页标记错误',array(wsForm::$int,0,wsForm::$intMax));
 		$limit=10;
 		$allCount=$topicLib->getTopicCount();
 		$pageTool=new pageTool($page, $allCount, $limit);

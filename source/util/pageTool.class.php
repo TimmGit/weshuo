@@ -65,7 +65,7 @@ class pageTool
 	public function showNum($url,$num=5)
 	{
 		$html='';
-		if($this->nowPage>$num)
+		if($this->nowPage>1)
 		{
 			$page=$this->nowPage-1;
 			$html="<a href='".siteUrl($url.'/1')."'>$this->first</a>  <a href='".siteUrl($url.'/'.$page)."'>$this->prov</a>  ";
@@ -75,7 +75,7 @@ class pageTool
 			$page=$this->nowPage-$num;
 			$html.=" <a href='".siteUrl($url.'/'.$page)."'>".$this->up.$num.$this->pageName."</a> ";
 		}
-		if($this->allPage>1)
+		if($this->allPage>$num)
 		{
 			for ($i=0;$i<$num;$i++)
 			{
@@ -94,7 +94,7 @@ class pageTool
 			$page=$this->nowPage+$num;
 			$html.=" <a href='".siteUrl($url.'/'.$page)."'>".$this->down.$num.$this->pageName."</a> ";
 		}
-		if($this->nowPage+$num < $this->allPage)
+		if($this->nowPage < $this->allPage)
 		{
 			$page=$this->nowPage+1;
 			$html.="<a href='".siteUrl($url.'/'.$page)."'>$this->next</a>  <a href='".siteUrl($url.'/'.$this->allPage)."'>$this->last</a> ";

@@ -25,6 +25,18 @@ class groupLib
 	{
 		return $this->mod->getGroupInfoByName($name);
 	}
+	
+	public function getGroupCount($userId=FALSE)
+	{
+		if(!$userId)
+		{
+			return $this->mod->getGroupCount();
+		}
+		else 
+		{
+			return $this->mod->getGroupCountByUserId($userId);
+		}
+	}
 		
 	public function getGroupList($userId=FALSE,$limit=FALSE)
 	{
