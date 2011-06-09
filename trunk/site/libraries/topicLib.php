@@ -12,6 +12,17 @@ class topicLib
 		$this->topicMod=new topicMod();
 	}
 	
+	public function getListByGroup($id,$page,$limit)
+	{
+		$limit=($page-1)*$limit.','.$limit;
+		return $this->topicMod->getListByGroup($id,$limit);
+	}
+	
+	public function getCountByGroup($id)
+	{
+		return $this->topicMod->getCountByGroup($id);
+	}
+	
 	public function getTopicByTopicId($topicId)
 	{
 		return $this->topicMod->getTopicBytopicId($topicId);

@@ -1,6 +1,11 @@
 <?php
 class TagAction extends CommonAction
 {
+	function __construct()
+	{
+		$this->isLogin();
+	}
+	
 	public function index()
 	{
 		$page=$this->checkForm("page",array(3,1), '分页ID错误', array(wsForm::$int,1,wsForm::$intMax));

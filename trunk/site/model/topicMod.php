@@ -12,6 +12,16 @@ class topicMod
 		$this->db=wsModel::getInstance();
 	}
 	
+	public function getCountByGroup($id)
+	{
+		return $this->db->getOne("select count(*) from ".wsModel::dbPrefix().$this->table." where groupId=".$id);
+	}
+	
+	public function getListByGroup($id,$limit=FALSE)
+	{
+		return $this->db->selectData($this->table, array('groupId'=>$id),'lastTime desc,topicId desc',$limit);
+	}
+	
 	public function getTopicBytopicId($topicId)
 	{
 		$sql="select * from ".wsModel::dbPrefix().$this->table." where instr('".$topicId."',topicId) order by lastTime desc";
