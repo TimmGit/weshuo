@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.10deb1
+-- version 3.3.9
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2011 年 06 月 09 日 11:36
--- 服务器版本: 5.1.54
--- PHP 版本: 5.3.5-1ubuntu7.2
+-- 生成日期: 2011 年 06 月 09 日 15:41
+-- 服务器版本: 5.5.8
+-- PHP 版本: 5.2.9
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 

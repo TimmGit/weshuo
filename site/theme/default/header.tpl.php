@@ -7,10 +7,14 @@
 </head>
 <body>
 <div>
-<a href="<?php echo siteUrl()?>">首页</a>
 <a href="<?php echo siteUrl('pub')?>">广场</a>
+<a href="<?php echo siteUrl('map')?>">地图</a>
+<a href="<?php echo siteUrl('pic')?>">图片</a>
+<a href="javascript:showMenu()">应用</a>
 <a href="<?php echo siteUrl('admin')?>">我到主页</a>
 <a href="<?php echo siteUrl('admin/private')?>">我的微博</a>
+<a href="<?php echo siteUrl('tag')?>">话题</a>
+<a href="<?php echo siteUrl('group')?>">群组</a>
 <a href="<?php echo siteUrl('user')?>">设置</a>
 </div>
 <script type="text/javascript">

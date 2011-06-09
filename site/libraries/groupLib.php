@@ -11,6 +11,11 @@ class groupLib
 		$this->mod=new groupMod();
 	}
 	
+	public function getInfoByName($name)
+	{
+		return $this->mod->getGroupInfoByName($name);
+	}
+	
 	public function updateGroup($data,$id)
 	{
 		return $this->mod->updateGroup($data,$id);
