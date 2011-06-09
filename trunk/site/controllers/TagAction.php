@@ -16,6 +16,26 @@ class TagAction extends CommonAction
 	
 	public function _ws()
 	{
-		$this->loadView("tag_show");
+		$tagName=segment(2,FALSE);
+		if(!$tagName)
+		{
+			$this->error('404');
+		}
+		$tagLib=new tagLib();
+		$tagInfo=$tagLib->getInfoByName($tagName);
+		if($tagInfo)
+		{
+			$topidId=str_replace(',,', ',', $tagInfo['topicId']);
+			$topidId=(substr($topidId,0,1)==',')?substr($topidId,1):$topidId;
+			$topidArr=explode(',', $topidId);
+			$count=count($topidArr);
+			$topicLib=new topicLib();
+			$list=$topicLib->getTopicByTopicId($topidId);
+			$this->loadView("tag_show",array('list'=>$list));
+		}
+		else 
+		{
+			$this->error('不存在的话题');
+		}
 	}
 }

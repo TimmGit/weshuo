@@ -12,6 +12,16 @@ class tagMod
 		$this->db=wsModel::getInstance();
 	}
 	
+	public function getInfoByName($tagName)
+	{
+		return $this->db->findData($this->table, array('tagName'=>$tagName));
+	}
+	
+	public function getInfo($tagId)
+	{
+		return $this->db->findData($this->table,array('tagId'=>$tagId));
+	}
+	
 	public function getAllTag($limit)
 	{
 		return $this->db->selectData($this->table,'','tagId desc',$limit);

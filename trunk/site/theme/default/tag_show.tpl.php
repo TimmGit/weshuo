@@ -7,5 +7,4 @@ foreach ($list as $v)
 }
 ?>
 </div>
-<?php echo $page?>
 <?php subView("footer")?>

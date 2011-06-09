@@ -28,9 +28,19 @@ class groupMod
 		return $this->db->findData($this->tableName,array('groupName'=>$name));
 	}
 	
-	public function getGroupByUserId($userId,$limit)
+	public function getGroupByUserId($userId,$limit=FALSE)
 	{
 		return $this->db->selectData($this->tableName,array('userId'=>$userId),'groupId desc',$limit);
+	}
+	
+	public function getGroupCountByUserId($userId)
+	{
+		return $this->db->getOne("select count(*) from ".wsModel::dbPrefix().$this->tableName." where userId=".$userId);
+	}
+	
+	public function getGroupCount()
+	{
+		return $this->db->getOne("select count(*) from ".wsModel::dbPrefix().$this->tableName);
 	}
 	
 	public function getGroup($limit=FALSE)

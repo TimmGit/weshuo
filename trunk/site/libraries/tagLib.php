@@ -11,6 +11,16 @@ class tagLib
 		$this->tagMod=new tagMod();
 	}
 	
+	public function getInfoByName($tagName)
+	{
+		return $this->tagMod->getInfoByName($tagName);
+	}
+	
+	public function getInfo($tagId)
+	{
+		return $this->tagMod->getInfo($tagId);
+	}
+	
 	public function checkTagExit($tagName)
 	{
 		return $this->tagMod->checkTagExit($tagName);
