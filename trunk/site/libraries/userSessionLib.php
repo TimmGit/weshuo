@@ -13,6 +13,17 @@ class userSessionLib
 	{
 		return isset($_SESSION[self::$key][$keyName]) ?$_SESSION[self::$key][$keyName] :false;
 	}
+	
+	public static function setAdmUser($flog=FALSE)
+	{
+		self::setSession('admin', $flog);
+	}
+	
+	public static function getAdmUsre()
+	{
+		return self::getSession('admin');
+	}
+	
 	/**
 	 * 设置用户ID 
 	 * @param int $userId

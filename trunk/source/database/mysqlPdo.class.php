@@ -43,6 +43,7 @@ class mysqlPdo implements dbInterface
 	 */
 	private function setDebugSql($sql)
 	{
+		self::$sql=$sql;
 		if(DEBUG_MODE==0)
 		{
 			runtime::$sql.=$sql."<br/>";
@@ -56,7 +57,6 @@ class mysqlPdo implements dbInterface
 	 */
 	public function querySql($sql,$one=FALSE)
 	{
-		self::$sql=$sql;
 		$this->setDebugSql($sql);
 		self::$dbh=self::$dbConn->query(self::$sql);
 		if($one)
@@ -108,7 +108,6 @@ class mysqlPdo implements dbInterface
 	{
 		$count=false;
 		$this->setDebugSql($sql);
-		self::$sql=$sql;
 		$count=self::$dbConn->exec(self::$sql);
 		if($count===false)
 		{
@@ -144,7 +143,6 @@ class mysqlPdo implements dbInterface
 		{
 			$sql.=' limit '.$limit;
 		}
-		self::$sql=$sql;
 		$this->setDebugSql($sql);
 		self::$dbh=self::$dbConn->query(self::$sql);
 		return self::$dbh->fetchAll(PDO::FETCH_ASSOC);
@@ -195,8 +193,8 @@ class mysqlPdo implements dbInterface
 		if(is_array($data))
 		{
 			$data=sqlTool::array2insert($data);
-			self::$sql="insert into ".self::$dbConfig['dbPrefix'].$table."(".$data['field'].")values(".$data['value'].")";
-			$this->setDebugSql(self::$sql);
+			$sql="insert into ".self::$dbConfig['dbPrefix'].$table."(".$data['field'].")values(".$data['value'].")";
+			$this->setDebugSql($sql);
 			self::$dbh=self::$dbConn->query(self::$sql);
 			return $this->lastInsertId();	
 		}
@@ -218,10 +216,21 @@ class mysqlPdo implements dbInterface
 			$sql.=" order by ".$order;
 		}
 		$sql.=' limit 1';
-		self::$sql=$sql;
 		$this->setDebugSql($sql);
 		self::$dbh=self::$dbConn->query(self::$sql);
 		return self::$dbh->fetch(PDO::FETCH_ASSOC);
+	}
+	
+	public function getCount($table,$where='')
+	{
+		if(is_array($where))
+		{
+			$where=sqlTool::array2sql($where);
+		}
+		$sql="select count(*) from ".self::$dbConfig['dbPrefix'].$table." where 1=1 ".$where;
+		$this->setDebugSql($sql);
+		self::$dbh=self::$dbConn->query(self::$sql);
+		return self::$dbh->fetchColumn();
 	}
 	
 	public function getLastSql()

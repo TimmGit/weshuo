@@ -57,6 +57,10 @@ class wsForm
 		}
 		if($oterhFun)
 		{
+			if(count($oterhFun)!=3)
+			{
+				wsEcho::showMsg('自定义表单检测函数错误',500);
+			}
 			list($class,$fun,$funMsg)=$oterhFun;
 			if(!$class->$fun(self::$value))
 			{

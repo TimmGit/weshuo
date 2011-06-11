@@ -2,7 +2,7 @@
 class userMod
 {
 	/**
-	 * @var wsModel
+	 * @var mysqlPdo
 	 */
 	protected $db;
 	private $table='user';
@@ -10,6 +10,16 @@ class userMod
 	function __construct()
 	{
 		$this->db=wsModel::getInstance();
+	}
+	
+	public function getUserAllCount()
+	{
+		return $this->db->getCount($this->table);
+	}
+	
+	public function getUserAllList($limit)
+	{
+		return $this->db->selectData($this->table,'','userId desc',$limit);
 	}
 	
 	public function checkUserLogin($userId,$password,$loginType='id')

@@ -16,6 +16,7 @@
 <a href="<?php echo siteUrl('tag')?>">话题</a>
 <a href="<?php echo siteUrl('group')?>">群组</a>
 <a href="<?php echo siteUrl('user')?>">设置</a>
+<a href="<?php echo siteUrl('public/admLogin')?>">高级</a>
 </div>
 <script type="text/javascript">
 var group=0;
