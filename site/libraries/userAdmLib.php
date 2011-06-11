@@ -1,9 +1,23 @@
 <?php
 class userAdmLib
 {
+	private $userMod;
+	
 	function __construct()
 	{
-		require MODEL_PATH.'attentionMod.php';
+		$this->userMod=new userMod();
+	}
+	
+	public function getUserAllCount()
+	{
+		return $this->userMod->getUserAllCount();
+	}
+	
+	public function getUserAllList($page,$limit)
+	{
+		$start=($page-1)*$limit;
+		$limit=$start.','.$limit;
+		return $this->userMod->getUserAllList($limit);
 	}
 	
 	public function addAttention($userId,$userArr)

@@ -17,6 +17,15 @@ class formCheck
 		return false;
 	}
 	
+	public function isIndex($index)
+	{
+		if($index=="map" || $index=="index" || $index=="pic")
+		{
+			return true;
+		}
+		return false;
+	}
+	
 	public function isHome($str)
 	{
       	if (preg_match("/^([a-z0-9]+|[\x{4e00}-\x{9fa5}]+)$/iu", $str))

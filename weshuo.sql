@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2011 年 06 月 09 日 15:41
+-- 生成日期: 2011 年 06 月 11 日 15:29
 -- 服务器版本: 5.5.8
 -- PHP 版本: 5.2.9
 
@@ -3915,12 +3915,11 @@ INSERT INTO `iw_score` (`scoreId`, `userId`, `scoreType`, `num`, `memo`, `time`)
 CREATE TABLE IF NOT EXISTS `iw_site` (
   `siteId` int(5) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
-  `fTitle` varchar(20) DEFAULT NULL,
+  `subTitle` varchar(20) DEFAULT NULL,
   `description` varchar(255) NOT NULL,
   `keyword` varchar(255) NOT NULL,
-  `domain` varchar(50) NOT NULL,
   `noUser` text,
-  `noTag` text,
+  `replaceWord` text,
   `copyright` text NOT NULL,
   `icp` varchar(20) DEFAULT NULL,
   `mailType` tinyint(1) DEFAULT NULL,
@@ -3938,8 +3937,8 @@ CREATE TABLE IF NOT EXISTS `iw_site` (
 -- 转存表中的数据 `iw_site`
 --
 
-INSERT INTO `iw_site` (`siteId`, `title`, `fTitle`, `description`, `keyword`, `domain`, `noUser`, `noTag`, `copyright`, `icp`, `mailType`, `smtp`, `smtpUser`, `smtpPwd`, `receive`, `mailText`, `version`, `home`) VALUES
-(1, '大嶝开源微博V0.8-开源微博-微博开源-开源微博程序-微博--ThinkPHP--dadeng.org', '大嶝开源微博V0.8', '大嶝开源微博是基于开源框架Thinkphp开发的开源微博程序,！支持群组,话题,图片批量上传,MP3分享,V0.8版!支持文件上传,支持ucenter整合', '大嶝开源微博,大嶝网,开源微博,PHP开源,微博开源', 'http://www.weshuo.com', 'admin&#124;大嶝&#124;iceweb&#124;vip&#124;管理员', '毛&#124;发票&#124;彩票&#124;色情&#124;法论功&#124;共产党&#124;奶子&#124;乳房&#124;国民党&#124;胡锦涛&#124;温家宝', '大嶝微博 版权所有 ©2010 <script src="http://s4.cnzz.com/stat.php?id=2145590&web_id=2145590" language="JavaScript"></script>', '闽ICP备10022095号', 1, 'smtp.163.com', 'webluoye', 'xxxxx', 'zweb@vip.qq.com', '您好：@userid@欢迎注册@site@，这是来自系统的激活邮件！\r\n点击下面的连接可以激活！', 'V0.8测试版', 'home');
+INSERT INTO `iw_site` (`siteId`, `title`, `subTitle`, `description`, `keyword`, `noUser`, `replaceWord`, `copyright`, `icp`, `mailType`, `smtp`, `smtpUser`, `smtpPwd`, `receive`, `mailText`, `version`, `home`) VALUES
+(1, '大嶝开源微博V0.8-开源微博-微博开源-开源微博程序-微博--ThinkPHP--dadeng.org', '11123123', '大嶝开源微博是基于开源框架Thinkphp开发的开源微博程序,！支持群组,话题,图片批量上传,MP3分享,V0.8版!支持文件上传,支持ucenter整合', '大嶝开源微博,大嶝网,开源微博,PHP开源,微博开源', 'admin|大嶝|iceweb|vip|管理员', '毛|发票|彩票|色情|法论功|共产党|奶子|乳房|国民党|胡锦涛|温家宝', '大嶝微博 版权所有 ©2010 <script src="http://s4.cnzz.com/stat.php?id=2145590&web_id=2145590" language="JavaScript"></script>', '闽ICP备10022095号', 2, 'smtp.163.com', 'webluoye', 'xxxxx', 'zweb@vip.qq.com', '您好：@userid@欢迎注册@site@，这是来自系统的激活邮件！\r\n点击下面的连接可以激活！', 'V0.8测试版', 'index');
 
 -- --------------------------------------------------------
 
@@ -3969,7 +3968,6 @@ CREATE TABLE IF NOT EXISTS `iw_siteext` (
   `sendImg` tinyint(2) DEFAULT '4',
   `downloadScore` tinyint(2) DEFAULT '6',
   `uploadScore` tinyint(2) DEFAULT '4',
-  `ucLogin` tinyint(1) DEFAULT '0',
   `textLen` int(10) DEFAULT '140',
   `fileSize` int(10) DEFAULT '512000',
   `commentOpen` tinyint(1) DEFAULT '1',
@@ -3979,6 +3977,8 @@ CREATE TABLE IF NOT EXISTS `iw_siteext` (
   `hotTime` tinyint(3) DEFAULT '48',
   `catchTime` tinyint(2) DEFAULT '20',
   `sendTime` tinyint(2) DEFAULT '5',
+  `isClose` tinyint(1) NOT NULL DEFAULT '2',
+  `closeInfo` varchar(200) NOT NULL,
   PRIMARY KEY (`siteExtId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -3986,8 +3986,8 @@ CREATE TABLE IF NOT EXISTS `iw_siteext` (
 -- 转存表中的数据 `iw_siteext`
 --
 
-INSERT INTO `iw_siteext` (`siteExtId`, `userCheck`, `httpCheck`, `mailCheck`, `ipCheck`, `sendCheck`, `loginCheck`, `scoreStart`, `userScore`, `scoreLog`, `loginScore`, `createGet`, `replayGet`, `createDel`, `replayDel`, `hotScore`, `inviteScore`, `createGroup`, `sendImg`, `downloadScore`, `uploadScore`, `ucLogin`, `textLen`, `fileSize`, `commentOpen`, `unloginSend`, `openReg`, `inviteReg`, `hotTime`, `catchTime`, `sendTime`) VALUES
-(1, 0, 0, 0, 0, 0, 1, 1, 10, 0, 2, 2, 1, 4, 2, 30, 20, 10, 4, 6, 4, 1, 160, 512000, 1, 0, 1, 0, 48, 20, 5);
+INSERT INTO `iw_siteext` (`siteExtId`, `userCheck`, `httpCheck`, `mailCheck`, `ipCheck`, `sendCheck`, `loginCheck`, `scoreStart`, `userScore`, `scoreLog`, `loginScore`, `createGet`, `replayGet`, `createDel`, `replayDel`, `hotScore`, `inviteScore`, `createGroup`, `sendImg`, `downloadScore`, `uploadScore`, `textLen`, `fileSize`, `commentOpen`, `unloginSend`, `openReg`, `inviteReg`, `hotTime`, `catchTime`, `sendTime`, `isClose`, `closeInfo`) VALUES
+(1, 0, 0, 0, 0, 0, 1, 1, 10, 2, 2, 2, 1, 4, 2, 30, 20, 10, 4, 6, 4, 160, 512000, 1, 0, 2, 2, 48, 20, 5, 2, '');
 
 -- --------------------------------------------------------
 

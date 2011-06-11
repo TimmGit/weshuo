@@ -8,8 +8,26 @@ class PublicAction extends CommonAction
 	
 	public function admLogin()
 	{
-		$this->isLogin();
-		$this->loadView('adm_login');
+		if($_POST)
+		{
+			$amdPwd=$this->checkForm("admpwd","post","密码长度错误",array(wsForm::$string,6,16));
+			$userPwd=userSessionLib::getUserInfo();
+			$userPwd=$userPwd['password'];
+			if(md5($amdPwd)!=$userPwd)
+			{
+				$this->error('密码错误,登录失败！');
+			}
+			else 
+			{
+				userSessionLib::setAdmUser(TRUE);
+				$this->redirect('cp');
+			}
+		}
+		else 
+		{
+			$this->isLogin();
+			$this->loadView('adm_login');
+		}
 	}
 	
 	public function saveFind()

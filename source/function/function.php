@@ -34,7 +34,7 @@ function baseUrl()
 /**
  * 导入一个文件
  * @param string $file
- * @param booean $boj
+ * @param boolean $boj
  * @param string $folder
  */
 function import($file,$obj=FALSE,$folder='util')

@@ -20,6 +20,20 @@ class wsCore
 		}
 	}
 	
+	protected function isAdmin($ajax=FALSE)
+	{
+		if(!userSessionLib::getAdmUsre())
+		{
+			if($ajax)
+			{
+				echo "请登录管理中心";exit;
+			}
+			else 
+			{
+				$this->redirect('public/admLogin');
+			}
+		}
+	}
 	
 	protected function isLogin($ajax=FALSE)
 	{
@@ -27,7 +41,7 @@ class wsCore
 		{
 			if($ajax)
 			{
-				echo "请登陆系统";exit;
+				echo "请登录系统";exit;
 			}
 			else 
 			{
@@ -77,8 +91,9 @@ class wsCore
 	 * @param string $msg
 	 * @param string $url
 	 */
-	protected function success($msg,$url)
+	protected function success($msg,$url=FALSE)
 	{
+		$url=$url===FALSE ?$_SERVER['HTTP_REFERER'] :siteUrl($url);
 		$this->loadView("success",array('message'=>$msg,'url'=>$url));
 	}
 	

@@ -38,7 +38,7 @@ class wsCache
 		$fileName=$path.'/'.$name.'.php';
 		if(is_null($value))
 		{
-			return unlink($fileName);
+			return @unlink($fileName);
 		}
 		if($value===false)
 		{

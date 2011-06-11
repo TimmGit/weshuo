@@ -74,4 +74,10 @@ interface dbInterface
 	 * 获取最后执行的SQL语句
 	 */
 	public function getLastSql();
+	/**
+	 * 统计
+	 * @param string $table
+	 * @param array $where
+	 */
+	public function getCount($table,$where='');
 }

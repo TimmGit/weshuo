@@ -2,11 +2,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET?>">
-<meta http-equiv="refresh" content="5; url=<?php echo $url?>" />
-<title>success</title>
+<title>error</title>
 </head>
 <body>
 <div style='width:600px;height:150px;margin:0 auto;bordre:#ccc 1px solid;'><?php echo $message?>,
-<a href="<?php echo $url?>"><?php if(isset($urlName)) echo $urlName;else echo 'click here'?></a></div>
+<span style="cursor:pointer" onclick="javascript:history.go(-1)">click to back</span></div>
 </body>
 </html>
