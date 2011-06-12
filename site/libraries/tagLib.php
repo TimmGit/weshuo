@@ -11,6 +11,36 @@ class tagLib
 		$this->tagMod=new tagMod();
 	}
 	
+	public function setTagInfo($data,$tagId)
+	{
+		return $this->tagMod->setTagInfo($data,$tagId);
+	}
+	
+	public function delTag($tagId)
+	{
+		return $this->tagMod->delTag($tagId);
+	}
+	
+	public function getTagAllCount()
+	{
+		return $this->tagMod->getTagAllCount();
+	}
+	
+	public function getTagAllList($page,$limit)
+	{
+		$userLib=new userLib();
+		$start=($page-1)*$limit;
+		$limit=$start.','.$limit;
+		$list=$this->tagMod->getTagAllList($limit);
+		foreach ($list as $k=>$v)
+		{
+			$userInfo=$userLib->getUserInfo($v['userId'],'id');
+			$list[$k]['userName']=$userInfo['userName'];
+			$list[$k]['time']=date("Y-m-d",$v['time']);
+		}
+		return $list;
+	}
+	
 	public function getInfoByName($tagName)
 	{
 		return $this->tagMod->getInfoByName($tagName);

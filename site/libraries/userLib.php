@@ -8,9 +8,6 @@ class userLib
 	
 	function __construct()
 	{
-		require MODEL_PATH.'userMod.php';
-		require MODEL_PATH.'userExtMod.php';
-		require MODEL_PATH.'attentionMod.php';
 		$this->user=new userMod();
 	}
 	

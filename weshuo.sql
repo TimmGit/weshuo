@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2011 年 06 月 11 日 15:29
+-- 生成日期: 2011 年 06 月 12 日 10:36
 -- 服务器版本: 5.5.8
 -- PHP 版本: 5.2.9
 
@@ -4076,9 +4076,7 @@ INSERT INTO `iw_tag` (`tagId`, `topicId`, `tagName`, `userId`, `time`, `home`, `
 (79, '', '网易评论', 19, 1294486876, '', 0),
 (80, '', '人托人', 394, 1294637149, '', 0),
 (81, '', '美女郑爽', 82, 1294674915, '', 0),
-(82, '', '(3.gif)', 410, 1295145636, '', 0),
 (83, '', '091;投稿掲示板&', 420, 1295597524, '', 0),
-(84, '', '(2.gif)(3.gif)', 423, 1295696366, '', 0),
 (85, '', 'fdsaadsf', 426, 1295797154, '', 0),
 (86, '', 'fdsafdsfds', 426, 1295797164, '', 0),
 (87, '', '哈哈', 444, 1297398003, '', 0),
@@ -4088,7 +4086,7 @@ INSERT INTO `iw_tag` (`tagId`, `topicId`, `tagName`, `userId`, `time`, `home`, `
 (91, '', 'cnpeta评论', 494, 1300450603, '', 0),
 (92, '', 'hello world', 510, 1301328886, '', 0),
 (93, '', 'GOGO', 259, 1302140910, '', 0),
-(94, '', 'myGOD', 524, 1302156950, '', 0),
+(94, '123', 'myGOD', 524, 1302156950, 'home45', 1),
 (95, '', 'ssss', 539, 1303018666, '', 0);
 
 -- --------------------------------------------------------
@@ -5683,7 +5681,6 @@ INSERT INTO `iw_user` (`userId`, `userName`, `mail`, `password`, `homePage`, `ic
 (562, '888888', '545452421@qq.com', '0b2952b0d93576dd24b49dcb66a9c7d8', '888888', '', 1304308238, '59.46.174.159', 0, 0, 0, '', 1, '', '', '', 0, NULL),
 (563, 'weijt', 'weijtzn@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'weijt', '', 1304403155, '113.64.186.211', 0, 0, 0, '', 1, '', '', '', 0, NULL),
 (564, 'jizhuiyangsheng', 'jizhuiyangsheng@sina.com', '77140cd0e411de7bc14f113c7f6e49dc', 'jizhuiyangsheng', '1304492112501.jpg', 1304472827, '123.119.237.221', 0, 0, 2, '脊椎养生', 1, '', '北京', '北京', 0, NULL),
-(566, 'qq1066731386', '1066731386@qq.com', 'ef09908f6554db65d3abca15fda27b2a', '', '', 1304523333, '222.35.169.33', 0, 0, 0, '', 0, '', '', '', 0, NULL),
 (567, 'lovefuwei', 'fuweiqs163@163.com', 'd959117644ce911c7249ebf2b9c10b8d', 'lovefuwei', '', 1304526323, '113.111.196.178', 0, 0, 0, '', 1, '', '', '', 0, NULL),
 (568, 'winfly', 'winfly.luo@hrdb.net', '103ae1646229b7f1133ddac1fc632c14', 'winfly', '', 1304582825, '211.136.253.228', 0, 0, 0, '', 1, '', '', '', 0, NULL),
 (569, 'jimmie', 'jimmiexu@foxmail.com', '2f868dc426845cc12c8d206f4ec3161f', 'jimmie', '', 1304653130, '122.80.156.101', 0, 0, 0, '', 1, '', '', '', 0, NULL),
@@ -5691,7 +5688,7 @@ INSERT INTO `iw_user` (`userId`, `userName`, `mail`, `password`, `homePage`, `ic
 (571, 'hemustudio', 'hemu@hemustudio.com', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', 'hemustudio', '', 1304743069, '221.198.56.180', 0, 0, 0, '', 1, '', '', '', 0, NULL),
 (572, 'recool000', '286370694@qq.com', '58f991f7b6709c1d347d636839b64dba', 'recool000', '', 1304779362, '58.251.92.218', 0, 0, 0, '', 1, '', '', '', 0, NULL),
 (573, '793314728', '793314728@qq.com', 'a8ef7bba54ee37a8beab56f5091c552f', '793314728', '', 1304823496, '111.224.43.16', 0, 0, 0, '', 1, '', '', '', 0, NULL),
-(576, 'admin5', 'xxx@xxx.com', '4297f44b13955235245b2497399d7a93', '', '', 1304853112, '127.0.0.1', 0, 0, 0, 'admin5', 1, '', '', '', 0, NULL);
+(576, 'admin5', 'xxx@xxx.com', '4297f44b13955235245b2497399d7a93', 'fasfdf', '', 1304853112, '127.0.0.1', 0, 0, 0, 'admin5', 1, '', '', '', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -5705,7 +5702,7 @@ CREATE TABLE IF NOT EXISTS `iw_userext` (
   `gzCount` int(10) unsigned NOT NULL DEFAULT '0',
   `fsCount` int(10) unsigned NOT NULL DEFAULT '0',
   `loginTime` datetime NOT NULL DEFAULT '1000-01-01 00:00:00',
-  `LoginIp` varchar(15) NOT NULL DEFAULT '127.0.0.1',
+  `loginIp` varchar(15) NOT NULL DEFAULT '127.0.0.1',
   `sinaId` varchar(25) NOT NULL DEFAULT '0',
   `gmailId` varchar(35) NOT NULL DEFAULT '0',
   `oicqId` varchar(11) NOT NULL DEFAULT '0',
@@ -5718,7 +5715,7 @@ CREATE TABLE IF NOT EXISTS `iw_userext` (
 -- 转存表中的数据 `iw_userext`
 --
 
-INSERT INTO `iw_userext` (`userId`, `wbCount`, `gzCount`, `fsCount`, `loginTime`, `LoginIp`, `sinaId`, `gmailId`, `oicqId`, `medal`, `theme`) VALUES
+INSERT INTO `iw_userext` (`userId`, `wbCount`, `gzCount`, `fsCount`, `loginTime`, `loginIp`, `sinaId`, `gmailId`, `oicqId`, `medal`, `theme`) VALUES
 (19, 111, 22, 33, '1000-01-01 00:00:00', '127.0.0.1', '0', '0', '0', NULL, 'default');
 
 -- --------------------------------------------------------

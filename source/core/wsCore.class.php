@@ -132,6 +132,16 @@ class wsCore
 		}
 	}
 	
+	protected function checkFormItem($checkType)
+	{
+		$checkType=strtolower($checkType);
+		switch ($checkType)
+		{
+			case "":
+		}
+		
+	}
+	
 	/**
 	 * 启动路由解析
 	 */

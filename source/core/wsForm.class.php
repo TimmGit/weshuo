@@ -89,12 +89,13 @@ class wsForm
 		}
 		else 
 		{
-			return self::checkArray($valueType,$min,$max);
+			return self::checkArray($valueType,$min,$max,$double);
 		}
 	}
 	
-	private static function checkArray($valueType,$min,$max)
+	private static function checkArray($valueType,$min,$max,$double)
 	{
+		self::$value=empty(self::$value)?array(0=>'0'):self::$value;
 		if(is_array(self::$value))
 		{
 			foreach (self::$value as $k=>$v)
@@ -123,26 +124,15 @@ class wsForm
 	
 	private static function checkIntLen($min,$max,$value=false)
 	{
-		$intValue=$value ?$value :self::$value;
+		$intValue=$value===false ?self::$value :$value;
 		if(empty($intValue))
 		{
 			$intValue=0;
-			self::$value=0;
+			self::$value=is_array(self::$value)? array(0=>'0') :0;
 		}
-		else 
-		{
-			if(is_numeric($intValue))
-			{
-				self::$value=intval($intValue);
-				$intValue=intval($intValue);
-			}
-			else 
-			{
-				return false;
-			}
-		}
-		
-		if($intValue>=$min && $max>=$intValue)
+		$intValue=is_numeric($intValue) ?intval($intValue) :false;
+				
+		if($intValue!==false && $intValue>=$min && $max>=$intValue)
 		{
 			return true;
 		}
@@ -151,7 +141,7 @@ class wsForm
 	
 	private static function checkStringLen($min,$max,$double,$value=false)
 	{
-		$stringValue=$value ?$value :self::$value;
+		$stringValue=$value!==FALSE ?$value :self::$value;
 		$valueLen=0;
 		if($double)
 		{

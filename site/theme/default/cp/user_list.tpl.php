@@ -15,7 +15,7 @@
     {
     	?>
     <tr>
-      <td><input type="checkbox" name="checkId" id="checkId" value="<?php echo $user['userId']?>"/></td>
+      <td><input type="checkbox" name="checkId[]" id="checkId" value="<?php echo $user['userId']?>"/></td>
       <td><?php echo $user['userName']?></td>
       <td><?php echo $user['homePage']?></td>
       <td><?php echo $user['nickName']?></td>
@@ -28,7 +28,7 @@
     ?>
     <tr>
       <td colspan="2">&nbsp;</td>
-      <td><input type="submit" name="button" id="button" value="提交" /></td>
+      <td><input type="submit" name="button" id="button" value="提交" onclick="return confirm('确认删除?');"/></td>
       <td colspan="4"><?php echo $page?></td>
     </tr>
   </table>

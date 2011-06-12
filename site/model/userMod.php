@@ -12,6 +12,31 @@ class userMod
 		$this->db=wsModel::getInstance();
 	}
 	
+	public function setUserInfo($data,$id)
+	{
+		return $this->db->updateData($this->table, $data, array('userId'=>$id));
+	}
+	
+	public function delUserById($userId)
+	{
+		return $this->db->deleteData($this->table, array('userId'=>$userId));
+	}
+	
+	public function delUserByHome($homePage)
+	{
+		return $this->db->deleteData($this->table, array('homePage'=>$homePage));
+	}
+	
+	public function delUserByName($userName)
+	{
+		return $this->db->deleteData($this->table, array('userName'=>$userName));
+	}
+	
+	public function delUserByMail($mail)
+	{
+		return $this->db->deleteData($this->table, array('mail'=>$mail));
+	}
+	
 	public function getUserAllCount()
 	{
 		return $this->db->getCount($this->table);
