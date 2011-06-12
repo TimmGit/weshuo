@@ -8,5 +8,5 @@
 			<a href="<?php echo siteUrl('sys/link')?>" target="weShuo">友情连接</a>
 			<a href="<?php echo siteUrl('sys/news')?>" target="weShuo">新闻公告</a>
 			<a href="<?php echo siteUrl('tcp/comment')?>" target="weShuo">评论管理</a>
-            <a href="<?php echo siteUrl('sys/extend')?>" target="weShuo">扩展</a>
+            <a href="<?php echo siteUrl('ext')?>" target="weShuo">扩展</a>
             <a href="<?php echo siteUrl('sys/logout')?>" target="parent">退出系统</a>

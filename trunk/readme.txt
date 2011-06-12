@@ -1,4 +1,4 @@
-1、session已经默认启动
+﻿1、session已经默认启动
 2、时区已经默认设置东8区
 3、GET POST COOKIE已经默认转义
 4、登录用户的SESSION在userSessionLib中 属于静态类 userSessionLib::调用方法
@@ -17,3 +17,10 @@
 8、内置的插件挂载点
 	hook('ready_register_user',array($homePage,$mail,$userName));
 	hook('success_register_user',array($homePage,$mail,$userName,$userId));
+9、所有继承自wscore的控制器都可以调用loadView() success() error()方法
+	checkForm($name,$post,$msg,$checkLen,$oterhFun=false,$ajax=false)
+	input名字，方法，报错信息，检测函数array,其他检测函数array,是否ajax
+	方法：post,get,array(3,1),3
+	检测函数：array(wsForm:$int,0,20)
+10、所有前台控制器继承自CommonAction 后台继承自AdmCommonAction
+	$this->isLogin() 判断用户是否登录 $this->isAdmin() 判断用户是否登录后台

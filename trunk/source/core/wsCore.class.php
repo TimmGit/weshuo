@@ -132,12 +132,24 @@ class wsCore
 		}
 	}
 	
-	protected function checkFormItem($checkType)
+	protected function checkFormItem($checkType,$post="post")
 	{
+		$formCheck=import("formCheck",TRUE);
 		$checkType=strtolower($checkType);
 		switch ($checkType)
 		{
-			case "":
+			case "homePage":
+				return $this->checkForm("homePage",$post, "主页地址长度错误5-30", array(wsForm::$string,5,30),array($formCheck,'isHome','主页地址不能输入特殊符号'));
+				break;
+			case "mail":
+				return $this->checkForm("mail",$post, "电子邮件长度错误5-50", array(wsForm::$string,5,50),array($formCheck,'isMail','电子邮件不合格！'));; 
+				break;
+			case "nickName":
+				return $this->checkForm("nickName",$post, "昵称长度错误4-10", array(wsForm::$string,4,10),array($formCheck,'isHome','昵称不能输入特殊符号'));
+				break;
+			default:
+				return $this->checkForm("userName",$post, "帐号长度错误5-20", array(wsForm::$string,5,20),array($formCheck,'isHome','帐号不能输入特殊符号'));
+				break;
 		}
 		
 	}
