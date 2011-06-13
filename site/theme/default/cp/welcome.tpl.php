@@ -1,3 +1,5 @@
+<?php subView('cp/header')?>
+<?php subView('cp/left')?>
 <div id="guide">欢迎使用大嶝开源微博系统</div>
 			<table border=0 cellspacing=1 align=center class="list" width="100%">
 			<tr>
@@ -18,3 +20,4 @@
 				<td>感谢下列朋友的建议：[排名不分先后]</td><td>杨大狼,Winkey,狐狐</td>
 			</tr>
 			</table>
+<?php subView('cp/header')?>
