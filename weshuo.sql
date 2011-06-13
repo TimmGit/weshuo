@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9
+-- version 3.3.10deb1
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2011 年 06 月 12 日 10:36
--- 服务器版本: 5.5.8
--- PHP 版本: 5.2.9
+-- 生成日期: 2011 年 06 月 13 日 12:50
+-- 服务器版本: 5.1.54
+-- PHP 版本: 5.3.5-1ubuntu7.2
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -3676,6 +3676,25 @@ INSERT INTO `iw_news` (`id`, `title`, `time`, `content`, `sort`) VALUES
 (15, '大嶝开源微博官网升级到V0.8测试版', 1293462009, '大嶝开源微博 于2010-12-27 23:05分成功升级到V0.8测试版！', 1),
 (16, '微博V0.8版开放下载，附下载地址', 1294639745, '<div>大嶝开源微博V0.8下载地址</div>\r\n<div>http://down.chinaz.com/soft/27495.htm</div>\r\n<div>http://dadeng.googlecode.com/files/dadeng-v0.8%20beta.7z</div>\r\n<div>安装前请阅读0.8.readme.txt文件</div>', 1),
 (17, '机器人dadeng.org@gmail.com', 1299025953, '<p>发布Gtalk机器人  dadeng.org@gmail.com</p>\r\n<p>欢迎大家试用！在个人信息页面输入你的Gtalk帐号，然后加为好友即可！</p>', 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `iw_plugin`
+--
+
+CREATE TABLE IF NOT EXISTS `iw_plugin` (
+  `plugId` int(11) NOT NULL AUTO_INCREMENT,
+  `plugName` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `plugPath` varchar(30) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`plugId`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- 转存表中的数据 `iw_plugin`
+--
+
 
 -- --------------------------------------------------------
 

@@ -40,22 +40,26 @@ class wsFile
 	 * @param string $path
 	 * @param int $deep
 	 */
-	public static function readPath($path,$deep=2)
+	public static function readPath($path,$deep=3)
 	{
-		$return=array();
+		static $return=array();
 		if($path && $deep)
 		{
 			$deep--;
 			$hander=opendir($path);
 			while (($file = readdir($hander)) !== false) 
 			{
-				if(is_dir($file) && $file!='.' && $file!='..')
+				if(substr($file,0,1)!='.')
 				{
-					self::readPath($path.$file,$deep);
-				}
-				else 
-				{
-					$return[]=$file;
+					
+					if(is_dir($path.'/'.$file))
+					{
+						self::readPath($path.'/'.$file,$deep);
+					}
+					else 
+					{
+						$return[]=$path.'/'.$file;
+					}
 				}
 			}
 		}
