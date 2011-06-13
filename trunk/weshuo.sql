@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.10deb1
+-- version 3.3.9
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2011 年 06 月 13 日 12:50
--- 服务器版本: 5.1.54
--- PHP 版本: 5.3.5-1ubuntu7.2
+-- 生成日期: 2011 年 06 月 13 日 15:11
+-- 服务器版本: 5.5.8
+-- PHP 版本: 5.2.9
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -3300,7 +3300,7 @@ CREATE TABLE IF NOT EXISTS `iw_invite` (
   `code` varchar(17) NOT NULL,
   `isUse` tinyint(1) NOT NULL,
   PRIMARY KEY (`inviteId`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- 转存表中的数据 `iw_invite`
@@ -3688,13 +3688,19 @@ CREATE TABLE IF NOT EXISTS `iw_plugin` (
   `plugName` varchar(20) CHARACTER SET utf8 NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `plugPath` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `description` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `link` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `author` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `version` varchar(10) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`plugId`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- 转存表中的数据 `iw_plugin`
 --
 
+INSERT INTO `iw_plugin` (`plugId`, `plugName`, `status`, `plugPath`, `description`, `link`, `author`, `version`) VALUES
+(1, 'friend', 1, 'friend_ws.php', 'test', 'http', 'iceweb', '1');
 
 -- --------------------------------------------------------
 
@@ -3710,7 +3716,7 @@ CREATE TABLE IF NOT EXISTS `iw_score` (
   `memo` varchar(255) NOT NULL,
   `time` int(10) NOT NULL,
   PRIMARY KEY (`scoreId`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=312 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=311 ;
 
 --
 -- 转存表中的数据 `iw_score`

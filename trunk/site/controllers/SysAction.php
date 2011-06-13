@@ -109,9 +109,10 @@ class SysAction extends admCommonAction
 			{
 				if($file !='.' && $file!='..')
 				{
-					unlink(CACHE_PATH.'/'.$file);
+					unlink($file);
 				}
 			}
+			wsPlugin::checkPlugCache();
 			$this->success();
 		}
 		else 
