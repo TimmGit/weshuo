@@ -4,9 +4,39 @@ class ExtAction extends admCommonAction
 	public function index()
 	{
 		$plugLib=new plugLib();
-		$data['list']=$plugLib->getAllPlug();
+		$data['list']=$plugLib->getAllPlug(3);
 		$data['local']=$this->getLocalPlug();
 		$this->loadView("ext_index",$data);
+	}
+	
+	public function uninstll()
+	{
+		$id=$this->checkForm("id", array(3,0), "操作ID错误", array(wsForm::$int,1,2));
+		$path=$this->checkForm("path", array(4,0), "插件路径错误", array(wsForm::$string,1,100));
+		$plugLib=new plugLib();
+		$plugInfo=$plugLib->getPlugInfoByPath($path);
+		if(!$plugInfo)
+		{
+			$this->error('不存在的插件');
+		}
+		if($id==1)
+		{
+			$status=$plugInfo['status']==1 ?2:1;
+			if($plugInfo && $plugLib->updatePlubInfo(array('status'=>$status), $plugInfo['plugId']))
+			{
+				wsPlugin::checkPlugCache(TRUE);
+				$this->success();
+			}
+			$this->error();
+		}
+		elseif ($id==2)
+		{
+			$plugLib->delPlugById($plugInfo['plugId']);
+			wsPlugin::checkPlugCache(TRUE);
+			wsPlugin::delPluginVal($plugInfo['plugPath']);
+			$this->success();
+		}
+		$this->error('不存在的操作ID');
 	}
 	
 	public function plugInstall()
@@ -31,6 +61,7 @@ class ExtAction extends admCommonAction
 		}
 		if($plugLib->addPlug($plugInfo, $plugPath))
 		{
+			wsPlugin::plugInstall($className, PLUG_PATH.$plugPath);
 			wsPlugin::checkPlugCache(true);
 			$this->success('插件安装成功！');
 		}

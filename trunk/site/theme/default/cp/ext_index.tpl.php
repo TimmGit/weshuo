@@ -1,4 +1,7 @@
 <?php subView("cp/header")?>
+<?php 
+hook("adminMenu");
+?>
 <a href="<?php echo siteUrl('ext/index')?>">已经安装</a>
 <a href="<?php echo siteUrl('ext/localPlug')?>">本地插件</a>
 <div>
@@ -11,7 +14,8 @@
 插件作者：<?php echo $plug['author'];?>
 插件版本：<?php echo $plug['version'];?>
 插件网址：<?php echo $plug['link'];?>
-插件状态：<?php if($plug['status']==1) echo "启用";else echo "停用"?>
+插件状态：<a href="<?php echo siteUrl('ext/uninstll/1/'.$plug['plugPath'])?>"><?php if($plug['status']==1) echo "启用";else echo "停用"?></a>
+卸载插件：<a href="<?php echo siteUrl('ext/uninstll/2/'.$plug['plugPath'])?>" onclick="return confirm('确认卸载?');">卸载</a>
 </div>
 <?php
 }?>

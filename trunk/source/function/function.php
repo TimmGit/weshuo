@@ -56,16 +56,20 @@ function subView($tpl)
  */
 function hook($hookName,$param=array())
 {
-	foreach (wsPlugin::getPlugin() as $file)
+	$plugFile=wsPlugin::getPlugin();
+	if($plugFile)
 	{
-		$fileName=PLUG_PATH.$file.'_ws.php';
-		if(file_exists($fileName))
+		foreach ($plugFile as $file)
 		{
-			require_once $fileName;
-			$plugObj=new $file;
-			if(method_exists($plugObj,$hookName))
+			$fileName=PLUG_PATH.$file.'_ws.php';
+			if(file_exists($fileName))
 			{
-				return $plugObj->$hookName();
+				require_once $fileName;
+				$plugObj=new $file;
+				if(method_exists($plugObj,$hookName))
+				{
+					return $plugObj->$hookName();
+				}
 			}
 		}
 	}

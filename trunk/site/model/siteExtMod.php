@@ -6,7 +6,7 @@ class siteExtMod
 	 * @var mysqlPdo
 	 */
 	private $db;
-	private $table='siteext';
+	private $table='siteExt';
 	
 	function __construct()
 	{

@@ -43,14 +43,22 @@ class wsTemplate
 	
 	private static function loadFile($tplName)
 	{
-		$file=WS_ROOT.APP_PATH.'/theme/'.setting::getTheme().'/'.$tplName.'.tpl.php';
+		$file='';
+		if(stripos($tplName, PLUG_PATH)!==false)
+		{
+			$file=$tplName.'.tpl.php';
+		}
+		else 
+		{
+			$file=WS_ROOT.APP_PATH.'/theme/'.setting::getTheme().'/'.$tplName.'.tpl.php';
+			if(!file_exists($file) && setting::getTheme()!='default')
+			{
+				$file=WS_ROOT.APP_PATH.'/theme/default/'.$tplName.'.tpl.php';
+			}
+		}
 		if(!file_exists($file))
 		{
-			$file=WS_ROOT.APP_PATH.'/theme/default/'.$tplName.'.tpl.php';
-			if(!file_exists($file))
-			{
-				return FALSE;
-			}
+			return FALSE;
 		}
 		return $file;
 	}

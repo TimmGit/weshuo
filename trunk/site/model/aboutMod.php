@@ -6,7 +6,7 @@ class aboutMod
 	 * @var mysqlPdo
 	 */
 	private $db;
-	private $table='aboutme';
+	private $table='aboutMe';
 	
 	function __construct()
 	{
