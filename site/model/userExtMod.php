@@ -6,7 +6,7 @@ class userExtMod
 	 * @var mysqlPdo
 	 */
 	private $db;
-	private $table="userext";
+	private $table="userExt";
 	
 	function __construct()
 	{

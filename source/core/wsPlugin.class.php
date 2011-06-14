@@ -19,11 +19,50 @@ class wsPlugin
 		return self::$plug;
 	}
 	
+	public static function plugInstall($className,$path)
+	{
+		require_once PLUG_PATH.$path;
+		$className=self::getPlugClass($className);
+		$className=new $className();
+		if(method_exists($className,'install'))
+		{
+			$className->install();
+		}
+	}
+	
+	public static function plugUninstall($className,$path)
+	{
+		require_once PLUG_PATH.$path;
+		$className=self::getPlugClass($className);
+		$className=new $className();
+		if(method_exists($className,'uninstall'))
+		{
+			$className->uninstall();
+		}
+	}
+	
+	private static function getPlugClass($plugPath)
+	{
+		$plugPath=str_replace('_ws.php','', $plugPath);
+		$plugPath=substr($plugPath,0,1)=='/' ?substr($plugPath,1) :$plugPath;
+		return str_replace('/', '_', $plugPath);
+	}
+	
+	public static function delPluginVal($plugPath)
+	{
+		$pluginVarLib=new pluginVarLib();
+		$pluginVarLib->delVar(self::getPlugClass($plugPath));
+	}
+	
 	public static function checkPlugCache($reWrite=FALSE)
 	{
 		$filename=CACHE_PATH.'plug.php';
 		if(!@file_get_contents($filename) || $reWrite)
 		{
+			if($reWrite)
+			{
+				wsCache::rwCache("plug",null);
+			}
 			$plugArr=array();
 			$plugLib=new plugLib();
 			$info=$plugLib->getAllPlug();
@@ -33,13 +72,7 @@ class wsPlugin
 			}
 			foreach ($info as $plug)
 			{
-				$plugPath=str_replace('_ws.php','', $plug['plugPath']);
-				$index=stripos($plugPath, "/");
-				if($index!==FALSE)
-				{
-					$plugPath=substr($plugPath,$index);
-				}
-				$plugArr[]=str_replace('/', '', $plugPath);
+				$plugArr[]=self::getPlugClass($plug['plugPath']);
 			}
 			wsCache::rwCache('plug',$plugArr);
 		}

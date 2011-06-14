@@ -62,3 +62,7 @@ require_once WS_ROOT.'source/function/function.php';
  * 载入插件类
  */
 require WS_ROOT.'source/core/wsPlugin.class.php';
+/**
+ * 载入控制器基类
+ */
+require WS_ROOT.'source/core/wsAction.class.php';

@@ -1,5 +1,5 @@
 <?php
-class admCommonAction extends wsCore
+class admCommonAction extends wsAction
 {
 	function __construct()
 	{

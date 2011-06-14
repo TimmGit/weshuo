@@ -5,7 +5,7 @@ class userGroupMod
 	 * @var mysqlPdo
 	 */
 	private $db;
-	private $table="usergroup";
+	private $table="userGroup";
 	
 	function __construct()
 	{
