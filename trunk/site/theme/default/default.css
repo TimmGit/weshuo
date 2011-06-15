@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	margin:0px; padding:0px; line-height:180%; font-size:12px; background-color:#3c5a76;
+}
+
+#main{width:900px; margin:0 auto;}
+.clear{ clear:both;}
+/*login*/
+#login_map{ background-image:url('images/login_map.jpg'); background-repeat:no-repeat;height:505px}
+#map_logo{width:180px;height:53px; background-image:url('images/logo.png');background-repeat:no-repeat;margin-top:28px; float:left}
+#map_logo a{width:178px;height:53px; display:block;}
+#login_form{ clear:both;}

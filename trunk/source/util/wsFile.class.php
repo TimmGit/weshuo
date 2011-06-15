@@ -97,7 +97,7 @@ class wsFile
 		}
 		else 
 		{
-			return "<link href=\"".baseUrl()."static/".$file."\" rel=\"stylesheet\" type=\"text/css\" />\r\n";
+			return "<link href=\"".baseUrl().APP_PATH."/theme/".setting::getTheme()."/".$file."\" rel=\"stylesheet\" type=\"text/css\" />\r\n";
 		}
 	}
 }
