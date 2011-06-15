@@ -13,6 +13,11 @@ class groupMod
 		$this->db=wsModel::getInstance();
 	}
 	
+	public function delGroup($id)
+	{
+		return $this->db->deleteData($this->tableName, array('groupId'=>$id));
+	}
+	
 	public function updateGroup($data,$id)
 	{
 		return $this->db->updateData($this->tableName,$data,array('groupId'=>$id));

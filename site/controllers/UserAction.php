@@ -256,8 +256,8 @@ class UserAction extends CommonAction
 	
 	public function cutimg()
 	{
-		import("uploadLib");
-		$uploadLib=new uploadLib('temp');
+		import("uploadFile");
+		$uploadLib=new uploadFile('temp');
 		$imgName=$uploadLib->uploadImg('newico');
 		if($imgName)
 		{

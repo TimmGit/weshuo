@@ -11,6 +11,11 @@ class groupLib
 		$this->mod=new groupMod();
 	}
 	
+	public function delGroup($id)
+	{
+		return $this->mod->delGroup($id);
+	}
+	
 	public function getInfoByName($name)
 	{
 		return $this->mod->getGroupInfoByName($name);
@@ -43,8 +48,13 @@ class groupLib
 		}
 	}
 		
-	public function getGroupList($userId=FALSE,$limit=FALSE)
+	public function getGroupList($userId=FALSE,$page=FALSE,$limit=FALSE)
 	{
+		if($limit && $page)
+		{
+			$start=($page-1)*$limit;
+			$limit=$start.','.$limit;
+		}
 		if($userId===false)
 		{
 			return $this->mod->getGroup($limit);

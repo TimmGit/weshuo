@@ -12,6 +12,11 @@ class topicLib
 		$this->topicMod=new topicMod();
 	}
 	
+	public function delTopic($id)
+	{
+		return $this->topicMod->delTopic($id);
+	}
+	
 	public function getListByGroup($id,$page,$limit)
 	{
 		$limit=($page-1)*$limit.','.$limit;
@@ -70,10 +75,19 @@ class topicLib
 		return $this->topicMod->getTopicCount();
 	}
 	
-	public function getTopisList($page=1,$limit)
+	public function getTopicList($page=1,$limit)
 	{
 		$start=($page-1)*$limit;
-		return $this->topicMod->getTopisList($start,$limit);
+		return $this->topicMod->getTopicList($start,$limit);
+	}
+	
+	public function setTopic($data,$topicId)
+	{
+		if(is_array($data) && $topicId)
+		{
+			return $this->topicMod->setTopic($data,$topicId);
+		}
+		return FALSE;
 	}
 	
 	public function addTopic($title,$userId,$groupId,$parentId,$tagName,$status,$share,$client,$home,$address)
