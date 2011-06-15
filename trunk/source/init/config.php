@@ -6,6 +6,7 @@
 * @license  The Mozilla Public License (MPL 1.1)
 * @author iceweb
 */ 
+define("WWW_PATH", substr($_SERVER['PHP_SELF'],1,stripos($_SERVER['PHP_SELF'],"index.php")));
 /**
  * 定义语言包路径
  */

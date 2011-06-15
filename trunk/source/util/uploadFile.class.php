@@ -69,6 +69,10 @@ class uploadFile
 		  		$this->allow =true;
 		  		$this->ext='png';
 		  		break;
+		  	case "image/png":
+		  		$this->allow =true;
+		  		$this->ext='png';
+		  		break;
 		  	case "application/x-rar-compressed":
 		  		$this->allow=true;
 		  		$this->ext='rar';
@@ -122,9 +126,10 @@ class uploadFile
 				$this->errInfo='1002';
 				return false;
 			}
-			$newName=date("YmdHis").mt_rand(10,9999).'.'.$this->ext;
+			$newName=uniqid().'.'.$this->ext;
 			$newPath=$this->path.$newName;
 			move_uploaded_file($_FILES [$dir]['tmp_name'],$newPath);
+			@chmod($$newPath,0777);
 			if ($_FILES[$dir]['error']==0)
 			{
 				if(@getimagesize($newPath)!==false)

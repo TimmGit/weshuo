@@ -18,7 +18,7 @@ class wsAction
 			}
 			else 
 			{
-				$this->redirect('public/admLogin');
+				$this->loadView("adm_unlogin");
 			}
 		}
 	}

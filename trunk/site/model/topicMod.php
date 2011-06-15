@@ -12,6 +12,11 @@ class topicMod
 		$this->db=wsModel::getInstance();
 	}
 	
+	public function delTopic($id)
+	{
+		return $this->db->deleteData($this->table, array('topicId'=>$id));
+	}
+	
 	public function getCountByGroup($id)
 	{
 		return $this->db->getOne("select count(*) from ".wsModel::dbPrefix().$this->table." where groupId=".$id);
@@ -50,7 +55,7 @@ class topicMod
 		return $this->db->getOne("select count(*) from ".wsModel::dbPrefix().$this->table);
 	}
 	
-	public function getTopisList($start,$limit)
+	public function getTopicList($start,$limit)
 	{
 		$limit=$start.','.$limit;
 		return $this->db->selectData($this->table,'','lastTime desc',$limit);
@@ -59,6 +64,11 @@ class topicMod
 	public function getTopicByLimit($userId,$limit=10)
 	{
 		return $this->db->selectData($this->table,array('userId'=>$userId),'time desc',$limit);
+	}
+	
+	public function setTopic($data,$id)
+	{
+		return $this->db->updateData($this->table, $data, array('topicId'=>$id));
 	}
 	
 	public function addTopic($title,$userId,$groupId,$parentId,$tagName,$status,$share,$client,$home,$address,$time,$lastTime)

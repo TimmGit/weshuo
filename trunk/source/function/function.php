@@ -23,6 +23,15 @@ function siteUrl($url='')
 {
 	return wsUrl::siteUrl($url);
 }
+
+/**
+ * 用于物理路径
+ * @param string $url
+ */
+function pathUrl($url='')
+{
+	return str_replace("/index.php",'', wsUrl::siteUrl($url));
+}
 /**
  * 返回根URL地址
  */
