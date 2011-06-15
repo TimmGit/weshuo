@@ -23,8 +23,8 @@
     </tr>
     <tr>
       <td>图标</td>
-      <td><a href="<?php echo pathUrl('static/upload/group/'.$info['icon'])?>" target="_blank">
-      <img src="<?php echo pathUrl('static/upload/group/'.$info['icon'])?>" width="40"></a>
+      <td><a href="<?php echo baseUrl('static/upload/group/'.$info['icon'])?>" target="_blank">
+      <img src="<?php echo baseUrl('static/upload/group/'.$info['icon'])?>" width="40"></a>
       <input type="file" name="icon" id="icon"/>
       </td>
     </tr>
