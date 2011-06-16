@@ -2,6 +2,7 @@
 class wsAction
 {
 	public $data=array();
+	public static $plug=array();
 	
 	function __construct()
 	{

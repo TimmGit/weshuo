@@ -71,23 +71,26 @@ class PublicAction extends CommonAction
 	public function onlogin()
 	{
 		$loginOk=false;
+		$loginName='';
 		$formCheck=import("formCheck",true);
 		$userLib=new userLib();
 		$password=$this->checkForm("passwd","POST","请输入密码6-16位",array(wsForm::$string,6,16));
 		if(stripos($_POST['mail'],'@')!==false)
 		{
-			$mail=$this->checkForm("mail","POST","请输入email地址",array(wsForm::$string,5,72),array($formCheck,'isMail','email格式错误'));
-			$loginOk=$userLib->checkUserLogin($mail, $password);
+			$loginName=$this->checkForm("mail","POST","请输入email地址",array(wsForm::$string,5,72),array($formCheck,'isMail','email格式错误'));
+			$loginOk=$userLib->checkUserLogin($loginName, $password);
 		}
 		else 
 		{
-			$userName=$this->checkForm("mail","POST","请输入帐号5-16位",array(wsForm::$string,5,16,true),array($formCheck,'isHome','登陆帐号不要输入特殊字符'));
-			$loginOk=$userLib->checkUserLogin($userName,$password,'userName');
+			$loginName=$this->checkForm("mail","POST","请输入帐号5-16位",array(wsForm::$string,5,16,true),array($formCheck,'isHome','登陆帐号不要输入特殊字符'));
+			$loginOk=$userLib->checkUserLogin($loginName,$password,'userName');
 		}
+		$loginOk=hook("user_login",array($loginName,$password,$loginOk));
 		if($loginOk)
 		{
-			$this->setLogin($userLib,$loginOk);
-			$this->redirect($loginOk['homePage']);
+			$userLib->setLogin($loginOk);
+			$loginInfo=hook("login_success",array($loginOk,$password));
+			$this->loadView('login_success',array('homePage'=>$loginOk['homePage'],'loginInfo'=>$loginInfo));
 		}
 		$this->error('登陆失败,请检查帐号信息');
 	}
@@ -121,22 +124,14 @@ class PublicAction extends CommonAction
 		$userId=$userLib->addUser($userName, $mail, $password, $userName, $homePage);
 		if($userId)
 		{
-			hook('success_register_user',array($homePage,$mail,$userName,$userId));
-			$loginfInfo=$userLib->getUserInfo($homePage);
-			$this->setLogin($userLib,$loginfInfo);
+			hook('success_register_user',array($homePage,$mail,$userName,$userId,$password));
+			$loginfInfo=$userLib->getUserInfo($userId,'id');
+			$userLib->setLogin($loginfInfo);
 			$this->success('恭喜您注册成功！','public/find');
 		}
 		else 
 		{
 			$this->error('注册失败,请稍后重试！');
 		}
-	}
-	
-	private function setLogin($userLib,$loginfInfo)
-	{
-		userSessionLib::setLogin(true);
-		userSessionLib::setUserId($loginfInfo['userId']);
-		userSessionLib::setUserInfo($loginfInfo);
-		userSessionLib::setUserExt($userLib->getUserExtInfo($loginfInfo['userId']));
 	}
 }

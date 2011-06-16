@@ -19,6 +19,37 @@ class wsPlugin
 		return self::$plug;
 	}
 	
+	public static function exexPlugFun($hookName,$param)
+	{
+		$plugObj=FALSE;
+		$plugFile=self::getPlugin();
+		if($plugFile && $hookName)
+		{
+			foreach ($plugFile as $file)
+			{
+				if(!isset(wsAction::$plug[$file]))
+				{
+					$fileName=PLUG_PATH.self::getPlugPath($file).'_ws.php';
+					if(file_exists($fileName))
+					{
+						include_once $fileName;
+						$plugObj=& new $file();
+						wsAction::$plug[$file]=$plugObj;
+					}
+				}
+				else 
+				{
+					$plugObj=wsAction::$plug[$file];
+				}
+				if($plugObj && method_exists($plugObj,$hookName))
+				{
+					return $plugObj->$hookName($param);
+				}
+			}
+			
+		}
+	}
+	
 	public static function plugInstall($className,$path)
 	{
 		require_once PLUG_PATH.$path;
@@ -39,6 +70,11 @@ class wsPlugin
 		{
 			$className->uninstall();
 		}
+	}
+	
+	public static function getPlugPath($class)
+	{
+		return str_replace('_', '/', $class);
 	}
 	
 	private static function getPlugClass($plugPath)

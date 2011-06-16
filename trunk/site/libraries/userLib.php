@@ -20,12 +20,12 @@ class userLib
 	 * @param string $userName
 	 * @param string $homePage
 	 */
-	public function addUser($userName,$mail,$password,$userName,$homePage)
+	public function addUser($userName,$mail,$password,$nickName,$homePage)
 	{
-		if($userName && $mail && $homePage && $userName)
+		if($userName && $mail && $password)
 		{
 			$data=array('userName'=>$userName,'mail'=>$mail,'password'=>md5($password),'icon'=>'','createTime'=>time(),
-						'createIp'=>client::getClientIp(),'groupId'=>0,'roleId'=>0,'score'=>0,'nickName'=>$userName,
+						'createIp'=>client::getClientIp(),'groupId'=>0,'roleId'=>0,'score'=>0,'nickName'=>$nickName,
 						'status'=>1,'tags'=>'','province'=>'','city'=>'','homePage'=>$homePage);
 			return $this->user->addUser($data);
 		}
@@ -80,6 +80,10 @@ class userLib
 	 */
 	public function getUserInfo($home,$type='home')
 	{
+		if(!$home)
+		{
+			return false;
+		}
 		$type=strtolower($type);
 		if($type=="home")
 		{
@@ -204,5 +208,13 @@ class userLib
 	private function checkLoginByUser($userName, $password)
 	{
 		return $this->user->checkLoginByUserName($userName, $password);
+	}
+	
+	public function setLogin($loginfInfo)
+	{
+		userSessionLib::setLogin(true);
+		userSessionLib::setUserId($loginfInfo['userId']);
+		userSessionLib::setUserInfo($loginfInfo);
+		userSessionLib::setUserExt($this->getUserExtInfo($loginfInfo['userId']));
 	}
 }

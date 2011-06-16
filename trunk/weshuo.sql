@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2011 年 06 月 15 日 17:01
+-- 生成日期: 2011 年 06 月 16 日 18:01
 -- 服务器版本: 5.1.54
 -- PHP 版本: 5.3.5-1ubuntu7.2
 
@@ -5181,7 +5181,7 @@ CREATE TABLE IF NOT EXISTS `iw_user` (
   `sex` tinyint(1) NOT NULL DEFAULT '0',
   `memo` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`userId`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=577 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=586 ;
 
 --
 -- 转存表中的数据 `iw_user`
@@ -5732,7 +5732,9 @@ INSERT INTO `iw_user` (`userId`, `userName`, `mail`, `password`, `homePage`, `ic
 (571, 'hemustudio', 'hemu@hemustudio.com', '0b4e7a0e5fe84ad35fb5f95b9ceeac79', 'hemustudio', '', 1304743069, '221.198.56.180', 0, 0, 0, '', 1, '', '', '', 0, NULL),
 (572, 'recool000', '286370694@qq.com', '58f991f7b6709c1d347d636839b64dba', 'recool000', '', 1304779362, '58.251.92.218', 0, 0, 0, '', 1, '', '', '', 0, NULL),
 (573, '793314728', '793314728@qq.com', 'a8ef7bba54ee37a8beab56f5091c552f', '793314728', '', 1304823496, '111.224.43.16', 0, 0, 0, '', 1, '', '', '', 0, NULL),
-(576, 'admin5', 'xxx@xxx.com', '4297f44b13955235245b2497399d7a93', 'fasfdf', '', 1304853112, '127.0.0.1', 0, 0, 0, 'admin5', 1, '', '', '', 1, NULL);
+(576, 'admin5', 'xxx@xxx.com', '4297f44b13955235245b2497399d7a93', 'fasfdf', '', 1304853112, '127.0.0.1', 0, 0, 0, 'admin5', 1, '', '', '', 1, NULL),
+(577, 'weshuo', 'adm@weshuo.com', '4297f44b13955235245b2497399d7a93', '', '', 1308200452, '127.0.0.1', 0, 0, 0, 'weshuo', 1, '', '', '', 0, NULL),
+(585, 'xx6xx1', 'xx6xx@dddd.comd', '7c705ac3234feca93fe5408f54671696', 'xx6xx1', '', 1308207399, '127.0.0.1', 0, 0, 0, 'xx6xx1', 1, '', '', '', 0, NULL);
 
 -- --------------------------------------------------------
 
