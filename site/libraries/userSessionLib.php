@@ -68,7 +68,7 @@ class userSessionLib
 	 * @param boolean $login
 	 * @return void
 	 */
-	public static function setLogin($login)
+	public static function setLogin($login=FALSE)
 	{
 		self::setSession('isLogin',$login);
 	}

@@ -12,7 +12,7 @@ class PubAction extends CommonAction
 		$limit=10;
 		$allCount=$topicLib->getTopicCount();
 		$pageTool=new pageTool($page, $allCount, $limit);
-		$list=$topicLib->getTopisList($page,$limit);
+		$list=$topicLib->getTopicList($page,$limit);
 		$pageInfo=$pageTool->showNum('pub/index');
 		$this->loadView('pub_index',array('list'=>$list,'pageInfo'=>$pageInfo));
 	}
