@@ -20,7 +20,7 @@ class userExtMod
 	
 	public function getHostUserList($limit=10)
 	{
-		return $this->db->selectData($this->table,'','loginTime desc',10);
+		return $this->db->selectData($this->table,'','loginTime desc',$limit);
 	}
 	
 	public function setUserExtInfo($data,$userId)

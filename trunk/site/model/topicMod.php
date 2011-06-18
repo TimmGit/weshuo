@@ -55,10 +55,10 @@ class topicMod
 		return $this->db->getOne("select count(*) from ".wsModel::dbPrefix().$this->table);
 	}
 	
-	public function getTopicList($start,$limit)
+	public function getTopicList($start,$limit,$order='lastTime desc')
 	{
 		$limit=$start.','.$limit;
-		return $this->db->selectData($this->table,'','lastTime desc',$limit);
+		return $this->db->selectData($this->table,'',$order,$limit);
 	}
 	
 	public function getTopicByLimit($userId,$limit=10)

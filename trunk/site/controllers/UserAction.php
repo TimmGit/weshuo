@@ -18,41 +18,50 @@ class UserAction extends CommonAction
 			$groupName=replaceHtml($groupName);
 			$groupId=$this->checkForm("id","post",'id错误',array(wsForm::$int,1,wsForm::$intMax));
 			$groupLib=new groupLib();
-			$info=$groupLib->getGroupInfoByName($groupName);
-			if($info && (( $groupId && $info['groupId']!=$groupId ) || $groupId=0))
+			if($groupId)
 			{
-				$this->error("群组名称已经存在！请更换名称！");
+				$info=$groupLib->getGroupInfo($groupId);
+				if($info && (( $groupId && $info['groupId']!=$groupId ) || $groupId==0))
+				{
+					$this->error("群组名称已经存在！请更换名称！");
+				}
+				elseif ($info && $info['userId']!=$this->userId)
+				{
+					$this->error('您无权修改此群！');
+				}
 			}
-			elseif ($info && $info['userId']!=$this->userId)
+			$data=array();
+			$data['groupName']=$groupName;
+			$uploadFile=new uploadFile('group');
+			$img=$uploadFile->uploadImg("icon");
+			if($img)
 			{
-				$this->error('您无权修改此群！');
+				$data['icon']=$img;
+			}
+			$isShow=$this->checkForm("isShow","post","请输入数字0-1",array(wsForm::$int,0,1));
+			$isSend=$this->checkForm("isSend","post","请输入数字0-1",array(wsForm::$int,0,1));
+			$isJoin=$this->checkForm("isJoin","post","请输入数字0-1",array(wsForm::$int,0,1));
+			$isReplay=$this->checkForm("isReplay","post","请输入数字0-1",array(wsForm::$int,0,1));
+			$data['isShow']=$isShow;
+			$data['isSend']=$isSend;
+			$data['isJoin']=$isJoin;
+			$data['isReplay']=$isReplay;
+			$result=FALSE;
+			if($groupId)
+			{
+				$result=$groupLib->updateGroup($data,$groupId);
 			}
 			else 
 			{
-				$data=array();
-				$data['groupName']=$groupName;
-				$uploadFile=new uploadFile('group');
-				$img=$uploadFile->uploadImg("icon");
-				if($img)
-				{
-					$data['icon']=$img;
-				}
-				$isShow=$this->checkForm("isShow","post","请输入数字0-1",array(wsForm::$int,0,1));
-				$isSend=$this->checkForm("isSend","post","请输入数字0-1",array(wsForm::$int,0,1));
-				$isJoin=$this->checkForm("isJoin","post","请输入数字0-1",array(wsForm::$int,0,1));
-				$isReplay=$this->checkForm("isReplay","post","请输入数字0-1",array(wsForm::$int,0,1));
-				$data['isShow']=$isShow;
-				$data['isSend']=$isSend;
-				$data['isJoin']=$isJoin;
-				$data['isReplay']=$isReplay;
-				if($groupLib->updateGroup($data,$groupId))
-				{
-					$this->success("群组修改成功!", 'user/group');
-				}
-				else 
-				{
-					$this->error();
-				}
+				
+			}
+			if($result)
+			{
+				$this->success("群组修改成功!", 'user/group');
+			}
+			else 
+			{
+				$this->error();
 			}
 		}
 		else 

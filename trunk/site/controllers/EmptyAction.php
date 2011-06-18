@@ -64,7 +64,15 @@ class EmptyAction extends CommonAction
 		$data=array();
 		$data['userInfo']=$userInfo;
 		$data['userExt']=$userLib->getUserExtInfo($userInfo['userId']);
-		$data['wblist']=$topicLib->getUserHomeList($userInfo['userId'],$start,$limit);
+		$wbList=$topicLib->getUserHomeList($userInfo['userId'],$start,$limit);
+		$userLib=new userLib();
+		foreach ($wbList as $k=>$topic)
+		{
+			$userInfo=$userLib->getUserInfo($topic['userId'],'id');
+			$wbList[$k]['icon']=$userInfo['icon'];
+			$wbList[$k]['nickName']=$userInfo['nickName'] ?$userInfo['nickName'] :$userInfo['userName'];
+		}
+		$data['wblist']=$wbList;
 		$data['attlist']=$userLib->getUserAttList($userInfo['userId']);
 		$data['page']=$pageTool->showNum($userInfo['homePage'].'/index');
 		$this->loadView("home_index",$data);

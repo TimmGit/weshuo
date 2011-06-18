@@ -102,6 +102,12 @@ class userSessionLib
 		return self::getSession('extInfo');
 	}
 	
+	public static function unsetSession()
+	{
+		session_unset();
+    	session_destroy();
+	}
+	
 	public function __destruct()
 	{
 		session_unset();

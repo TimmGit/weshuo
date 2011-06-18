@@ -11,6 +11,11 @@ class tagLib
 		$this->tagMod=new tagMod();
 	}
 	
+	public function getHotTag($limit)
+	{
+		return $this->tagMod->getHotTag($limit);
+	}
+	
 	public function setTagInfo($data,$tagId)
 	{
 		return $this->tagMod->setTagInfo($data,$tagId);

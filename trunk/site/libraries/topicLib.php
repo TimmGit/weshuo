@@ -75,10 +75,18 @@ class topicLib
 		return $this->topicMod->getTopicCount();
 	}
 	
-	public function getTopicList($page=1,$limit)
+	public function getTopicList($page,$limit,$order='lastTime desc')
 	{
 		$start=($page-1)*$limit;
-		return $this->topicMod->getTopicList($start,$limit);
+		$list=$this->topicMod->getTopicList($start,$limit,$order);
+		$userLib=new userLib();
+		foreach ($list as $k=>$topic)
+		{
+			$userInfo=$userLib->getUserInfo($topic['userId'],'id');
+			$list[$k]['icon']=$userInfo['icon'];
+			$list[$k]['nickName']=$userInfo['nickName'] ?$userInfo['nickName'] :$userInfo['userName'];
+		}
+		return $list;
 	}
 	
 	public function setTopic($data,$topicId)
