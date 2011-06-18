@@ -157,7 +157,15 @@ class userLib
 	public function getHotUserList($limit=10)
 	{
 		$userExt=new userExtMod();
-		return $userExt->getHostUserList($limit);
+		$list=$userExt->getHostUserList($limit);
+		foreach ($list as $k=>$user)
+		{
+			$userInfo=$this->getUserInfo($user['userId'],'id');
+			$list[$k]['icon']=$userInfo['icon'];
+			$list[$k]['nickName']=$userInfo['nickName']?$userInfo['nickName']:$userInfo['userName'];
+			$list[$k]['home']=$userInfo['homePage'];
+		}
+		return $list;
 	}
 	/**
 	 * 

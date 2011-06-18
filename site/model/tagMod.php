@@ -12,6 +12,11 @@ class tagMod
 		$this->db=wsModel::getInstance();
 	}
 	
+	public function getHotTag($limit)
+	{
+		return $this->db->selectData($this->table, '','count desc,tagId asc',$limit);
+	}
+	
 	public function setTagInfo($data,$tagId)
 	{
 		return $this->db->updateData($this->table, $data, array('tagId'=>$tagId));

@@ -5,7 +5,7 @@ class PublicAction extends CommonAction
 	{
 		$this->register();
 	}
-	
+		
 	public function admLogin()
 	{
 		if($_POST)
@@ -74,18 +74,19 @@ class PublicAction extends CommonAction
 		$loginName='';
 		$formCheck=import("formCheck",true);
 		$userLib=new userLib();
-		$password=$this->checkForm("passwd","POST","请输入密码6-16位",array(wsForm::$string,6,16));
-		if(stripos($_POST['mail'],'@')!==false)
+		$password=$this->checkForm("loginPassword","POST","请输入密码6-16位",array(wsForm::$string,6,16));
+		if(stripos($_POST['loginMail'],'@')!==false)
 		{
-			$loginName=$this->checkForm("mail","POST","请输入email地址",array(wsForm::$string,5,72),array($formCheck,'isMail','email格式错误'));
+			$loginName=$this->checkForm("loginMail","POST","请输入email地址",array(wsForm::$string,5,72),array($formCheck,'isMail','email格式错误'));
 			$loginOk=$userLib->checkUserLogin($loginName, $password);
 		}
 		else 
 		{
-			$loginName=$this->checkForm("mail","POST","请输入帐号5-16位",array(wsForm::$string,5,16,true),array($formCheck,'isHome','登陆帐号不要输入特殊字符'));
+			$loginName=$this->checkForm("loginMail","POST","请输入帐号5-16位",array(wsForm::$string,5,16,true),array($formCheck,'isHome','登陆帐号不要输入特殊字符'));
 			$loginOk=$userLib->checkUserLogin($loginName,$password,'userName');
 		}
-		$loginOk=hook("user_login",array($loginName,$password,$loginOk));
+		$loginPlug=hook("user_login",array($loginName,$password,$loginOk));
+		$loginOk=$loginOk ?$loginOk :$loginPlug;
 		if($loginOk)
 		{
 			$userLib->setLogin($loginOk);
@@ -133,5 +134,11 @@ class PublicAction extends CommonAction
 		{
 			$this->error('注册失败,请稍后重试！');
 		}
+	}
+	
+	public function loginOut()
+	{
+		userSessionLib::unsetSession();
+		$this->redirect();
 	}
 }

@@ -8,8 +8,7 @@
 */
 class wsTemplate
 {
-	private function __construct(){}
-	
+	private static $data=array();
 	public static function loadTemplate($tpl,$var=array(),$data=array())
 	{
 		$file=self::loadFile($tpl);
@@ -18,10 +17,11 @@ class wsTemplate
 			$var=array_merge($data,$var);
 			if($var)
 			{
+				self::$data=$var;
 				@extract($var);
 			}
 			ob_start();
-			require_once $file;
+			require $file;
 			$buffer = ob_get_contents();
 			@ob_end_clean();
 			return $buffer;
@@ -37,7 +37,8 @@ class wsTemplate
 		$file=self::loadFile($tpl);
 		if($file)
 		{
-			require_once $file;
+			@extract(self::$data);
+			require $file;
 		}
 	}
 	

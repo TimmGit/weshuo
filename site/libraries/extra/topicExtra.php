@@ -1,6 +1,25 @@
 <?php
 class topicExtra
 {
+	public static function getTime($time)
+	{
+		$re="";
+		if($time)
+		{
+			$sec=time()-$time;
+			if($sec>=2*24*3600)
+				$re=date("Y-m-d H:i",$time);
+			else if(($sec>=24*3600)&&($sec<2*24*360))
+				$re="1天前";
+			else if($sec>3600)
+				$re=intval($sec/3600).'小时前';
+			else if($sec>120)
+				$re=intval($sec/60).'分钟前';
+			else
+				$re=$sec.'秒前';
+		}
+		return $re;
+	}
 	
 	public static function getUrlByContent($content)
 	{
