@@ -54,9 +54,12 @@ ul,li,form,img{margin:0px; padding:0px;}
 .boxFooter{ background-image:url('images/box_footer.png');background-repeat:no-repeat; width:534px;height:11px; margin-left: 18px;}
 #sendBtn input{ background-image:url('images/sendBtn.png'); background-repeat:no-repeat; width:67px;
 		height:27px;border:0px; cursor:pointer;margin-top: 3px;float:right}
-/*box js*/
+/*box*/
 .box_icon{ cursor:pointer;}
-#iconBox{ background-color:#fff;pading:1px 5px; position:absolute;}
+#iconMyBox{display:none;background-color:#fff;padding:1px 5px; position:absolute;margin-top: 12px;width:450px;border:1px solid #ccc;}
+.close{ border-bottom:#999 1px solid; overflow:hidden}
+.close em{ cursor: pointer;float: right;font-size: 25px}
+#iconMyBox img{margin:1px}
 /*right*/
 #main_right{color:#d5dae0}
 #main_right li{ list-style:none}

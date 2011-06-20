@@ -11,7 +11,8 @@
 	<div class="content">
 		<textarea rows="5" cols="30" id="wbContent" name="wbContent"></textarea>
 		<span class="right_all_bg" id="showFace" onclick="return showIcon('<?php echo baseUrl()?>');">表情</span>
-		<div id="iconBox"></div>
+        <?php hook("sendBoxFooter")?>
+		<div id="iconMyBox"></div>
 	</div>
 </div>
 <div class="boxFooter"></div>
