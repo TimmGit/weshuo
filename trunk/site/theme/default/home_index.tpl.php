@@ -7,7 +7,7 @@
 昵称:<?php echo $userInfo['nickName']?>
 微博：<?php echo $userExt['wbCount']?>
 关注：<?php echo $userExt['gzCount']?>
-粉丝：<?php echo $userExt['fsCount']?>
+听众：<?php echo $userExt['fsCount']?>
 <div>
 <?php 
 foreach ($wblist as $topic)

@@ -4,6 +4,7 @@ class TagAction extends CommonAction
 	function __construct()
 	{
 		$this->isLogin();
+		parent::__construct();
 	}
 	
 	public function index()

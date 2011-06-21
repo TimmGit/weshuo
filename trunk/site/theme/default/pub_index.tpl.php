@@ -39,12 +39,12 @@ echo "<div>$pageInfo</div>";
 <div class="top_guanzhu">我的关注(<?php echo $extInfo['gzCount']?>)</div>
 <div class="top_shoucang">我的收藏</div>
 <div class="line"></div>
-<ul>
-	<li><span></span><?php echo str_replace("http://", '', siteUrl($info['homePage']))?></li>
-	<li><span></span><?php echo $extInfo['wbCount']?>条微博</li>
-	<li><span></span><?php echo $extInfo['fsCount']?>位听众</li>
-	<li><span></span>10条未读私信</li>
-	<li><span></span>账户设置</li>
+<ul class="config">
+	<li><span class="myhome"></span><a href="<?php echo siteUrl($info['homePage'])?>"><?php echo str_replace("http://", '', siteUrl($info['homePage']))?></a></li>
+	<li><span class="mywb"></span><?php echo $extInfo['wbCount']?>条微博</li>
+	<li><span class="myfs"></span><?php echo $extInfo['fsCount']?>位听众</li>
+	<li><span class="mymsg"></span><a href="<?php echo siteUrl('user/message')?>">10条未读私信</a></li>
+	<li><span class="myconfig"></span><a href="<?php echo siteUrl('user')?>">账户设置</a></li>
 </ul>
 <div class="line"></div>
 <div class="right_user">
@@ -72,6 +72,7 @@ echo "<div>$pageInfo</div>";
 		<?php }?>
 	</ul>
 </div>
+<div class="line"></div>
 <div class="right_topic">
 	<h2>最新回复微博</h2>
 	<ul class="right_topic_ul">
