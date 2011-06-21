@@ -55,7 +55,6 @@ class EmptyAction extends CommonAction
 	private function showIndex(userLib $userLib,topicLib $topicLib,$userInfo)
 	{
 		$limit=10;
-		$formCheck=import("formCheck");
 		$page=$this->checkForm("page",array(3,1),'分页ID错误', array(wsForm::$int,1,wsForm::$intMax));
 		$start=($page-1)*$limit;
 		$topicLib=new topicLib();
@@ -65,17 +64,22 @@ class EmptyAction extends CommonAction
 		$data['userInfo']=$userInfo;
 		$data['userExt']=$userLib->getUserExtInfo($userInfo['userId']);
 		$wbList=$topicLib->getUserHomeList($userInfo['userId'],$start,$limit);
-		$userLib=new userLib();
-		foreach ($wbList as $k=>$topic)
-		{
-			$userInfo=$userLib->getUserInfo($topic['userId'],'id');
-			$wbList[$k]['icon']=$userInfo['icon'];
-			$wbList[$k]['nickName']=$userInfo['nickName'] ?$userInfo['nickName'] :$userInfo['userName'];
-		}
-		$data['wblist']=$wbList;
+		$data['wblist']=$this->parseTopicList($wbList);
 		$data['attlist']=$userLib->getUserAttList($userInfo['userId']);
 		$data['page']=$pageTool->showNum($userInfo['homePage'].'/index');
 		$this->loadView("home_index",$data);
+	}
+	
+	private function parseTopicList($list)
+	{
+		$userLib=new userLib();
+		foreach ($list as $k=>$topic)
+		{
+			$userInfo=$userLib->getUserInfo($topic['userId'],'id');
+			$list[$k]['icon']=$userInfo['icon'];
+			$list[$k]['nickName']=$userInfo['nickName'] ?$userInfo['nickName'] :$userInfo['userName'];
+		}
+		return $list;
 	}
 	
 	private function showHome(userLib $userLib,topicLib $topicLib,$userInfo)
@@ -83,7 +87,7 @@ class EmptyAction extends CommonAction
 		$data=array();
 		$data['userInfo']=$userInfo;
 		$data['userExt']=$userLib->getUserExtInfo($userInfo['userId']);
-		$data['wblist']=$topicLib->getTopicByUserId($userInfo['userId']);
+		$data['wblist']=$this->parseTopicList($topicLib->getTopicByUserId($userInfo['userId']));
 		$data['attlist']=$userLib->getUserAttList($userInfo['userId']);
 		$this->loadView("home_login",$data);
 	}
@@ -93,7 +97,7 @@ class EmptyAction extends CommonAction
 		$data=array();
 		$data['userInfo']=$userInfo;
 		$data['userExt']=$userLib->getUserExtInfo($userInfo['userId']);
-		$data['wblist']=$topicLib->getTopicByUserId($userInfo['userId']);
+		$data['wblist']=$this->parseTopicList($topicLib->getTopicByUserId($userInfo['userId']));
 		$data['attlist']=$userLib->getUserAttList($userInfo['userId']);
 		$this->loadView("home_unlogin",$data);
 	}

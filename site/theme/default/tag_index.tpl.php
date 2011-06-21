@@ -1,11 +1,16 @@
 <?php subView("header")?>
-<div>
+<div id="main">
+<div id="tag_header"></div>
+<div id="tag_main">
 <?php 
 foreach ($list as $v)
 {
-	echo "<a href='".siteUrl('tag/'.$v['tagName'])."'>".$v['tagName']."</a>"."<br/>";
+	echo "<span>#<a href='".siteUrl('tag/'.$v['tagName'])."'>".$v['tagName']."</a>(".$v['count'].")"."</span>";
 }
 ?>
-</div>
 <?php echo $page?>
+</div>
+<div class="clear"></div>
+<div id="tag_footer"></div>
+</div>
 <?php subView("footer")?>
