@@ -61,3 +61,8 @@ function addIcon(div,k)
 {
 	$("#"+div).insertAtCaret("("+k+".gif)");
 }
+function showMapBlog(img,username,time,id,title,address)
+{
+	var html="<div style=\"width:350px;\" class='map'><div class='mapleft'><img src='"+img+"' alt='"+username+"' style='border:1px solid #ccc;padding:1px;'/></div><div class='mapconent'><div class='time'>"+username+"  发布于："+time+"</div><div class='title'><a href='"+id+"' target='_blank'>"+title+"</a></div></div></div></div>";
+	return html;
+}

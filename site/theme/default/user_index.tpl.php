@@ -1,4 +1,7 @@
 <?php subView("header")?>
+<div id="main">
+<div id="tag_header"></div>
+<div id="group_main">
 <?php load('js/city.js')?>
 <SCRIPT LANGUAGE = JavaScript>
 var s=["s1","s2"];
@@ -66,4 +69,7 @@ $(function(){
 	});
 });
 </script>
+</div>
+<div id="tag_footer"></div>
+</div>
 <?php subView("footer")?>

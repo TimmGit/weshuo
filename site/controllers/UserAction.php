@@ -5,6 +5,7 @@ class UserAction extends CommonAction
 	
 	function __construct()
 	{
+		parent::__construct();
 		$this->isLogin();
 		$this->userId=userSessionLib::getUserId();
 	}

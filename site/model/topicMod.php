@@ -29,7 +29,7 @@ class topicMod
 	
 	public function getTopicBytopicId($topicId)
 	{
-		$sql="select * from ".wsModel::dbPrefix().$this->table." where instr('".$topicId."',topicId) order by lastTime desc";
+		$sql="select * from ".wsModel::dbPrefix().$this->table." where instr('".$topicId."',topicId) order by lastTime desc,topicId desc";
 		return $this->db->querySql($sql);
 	}
 	
@@ -55,10 +55,10 @@ class topicMod
 		return $this->db->getOne("select count(*) from ".wsModel::dbPrefix().$this->table);
 	}
 	
-	public function getTopicList($start,$limit,$order='lastTime desc')
+	public function getTopicList($start,$limit,$where=FALSE,$order='lastTime desc')
 	{
 		$limit=$start.','.$limit;
-		return $this->db->selectData($this->table,'',$order,$limit);
+		return $this->db->selectData($this->table,$where,$order,$limit);
 	}
 	
 	public function getTopicByLimit($userId,$limit=10)
