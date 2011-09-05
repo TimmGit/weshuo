@@ -23,4 +23,13 @@ class userGroupLib
 		}
 		return $list;
 	}
+	
+	public function getUserPowerByGroupId($uerId,$groupId)
+	{
+		if($uerId && $groupId)
+		{
+			return $this->groupMod->getUserPowerByGroupId($uerId, $groupId);
+		}
+		return false;
+	}
 }

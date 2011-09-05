@@ -20,7 +20,7 @@ class topicLib
 	public function getListByGroup($id,$page,$limit)
 	{
 		$limit=($page-1)*$limit.','.$limit;
-		return $this->topicMod->getListByGroup($id,$limit);
+		return $this->parseList($this->topicMod->getListByGroup($id,$limit));
 	}
 	
 	public function getCountByGroup($id)
@@ -30,7 +30,7 @@ class topicLib
 	
 	public function getTopicByTopicId($topicId)
 	{
-		return $this->topicMod->getTopicBytopicId($topicId);
+		return $this->parseList($this->topicMod->getTopicBytopicId($topicId));
 	}
 	
 	public function getUserHomeCount($userId)
@@ -79,6 +79,11 @@ class topicLib
 	{
 		$start=($page-1)*$limit;
 		$list=$this->topicMod->getTopicList($start,$limit,$order);
+		return $this->parseList($list);
+	}
+	
+	private function parseList($list)
+	{
 		$userLib=new userLib();
 		foreach ($list as $k=>$topic)
 		{

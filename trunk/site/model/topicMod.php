@@ -75,8 +75,8 @@ class topicMod
 	{
 		return $this->db->insertData($this->table,
 				array('title'=>$title,'userId'=>$userId,'time'=>$time,'groupId'=>$groupId,'parentId'=>$parentId,
-				'shareCount'=>0,'tagName'=>$tagName,'status'=>$status,'share'=>$share,'client'=>$client,
-				'home'=>$home,'address'=>$address,'lastTime'=>$lastTime,'commentCount'=>0)
+				'tagName'=>$tagName,'status'=>$status,'share'=>$share,'client'=>$client,
+				'home'=>$home,'address'=>$address,'lastTime'=>$lastTime)
 			);
 	}
 }

@@ -3,19 +3,16 @@
 <div id="pub_header"></div>
 <div id="pub_main">
 <div id="main_left">
-<img src="<?php echo baseUrl()?>/static/upload/face/ws_<?php echo $userInfo['icon']?>"  width="120" height="120" alt="<?php echo $userInfo['nickName']?>" />
-昵称:<?php echo $userInfo['nickName']?>
-微博：<?php echo $userExt['wbCount']?>
-关注：<?php echo $userExt['gzCount']?>
-听众：<?php echo $userExt['fsCount']?>
+<?php subView("inc_sendMsg")?>
 <div>
 <?php 
 foreach ($wblist as $topic)
 {
 	?>
 	<div class="topic">
-	<div class="userIcon"><img src="<?php echo baseUrl() ?>/static/upload/face/ws_<?php echo $topic['icon']?>" 
-	alt="<?php echo $topic['home']?>" width="60"/></div>
+	<div class="userIcon">
+	<a href="<?php echo siteUrl($topic['home'])?>"><img src="<?php echo baseUrl() ?>/static/upload/face/ws_<?php echo $topic['icon']?>" 
+	alt="<?php echo $topic['home']?>" width="60"/></a></div>
 	<div class="topicMain">
 	<div class="topic_header">
 	<span><?php echo $topic['nickName']?></span>
@@ -38,13 +35,26 @@ foreach ($wblist as $topic)
 <?php echo $page?>
 </div>
 <div id="main_right">
-<?php 
-
-foreach ($attlist as $v)
-{
-	echo "<a href='".$v['homePage']."'>".$v['nickName']."</a>";
-}
-?>
+	<div class="right_top"></div>
+	<div class="top_guanzhu">我的关注(<?php echo $extInfo['gzCount']?>)</div>
+	<div class="top_shoucang">我的收藏</div>
+	<div class="line"></div>
+	<ul class="config">
+		<li><span class="myhome"></span><a href="<?php echo siteUrl($info['homePage'])?>"><?php echo str_replace("http://", '', siteUrl($info['homePage']))?></a></li>
+		<li><span class="mywb"></span><?php echo $extInfo['wbCount']?>条微博</li>
+		<li><span class="myfs"></span><?php echo $extInfo['fsCount']?>位听众</li>
+		<li><span class="mymsg"></span><a href="<?php echo siteUrl('user/message')?>">10条未读私信</a></li>
+		<li><span class="myconfig"></span><a href="<?php echo siteUrl('user')?>">账户设置</a></li>
+	</ul>
+	<div class="line"></div>
+	<ul class="config">
+	<?php 
+	foreach ($tag as $v)
+	{
+		echo "<li>#<a href='".siteUrl('tag/'.$v['tagName'])."'>".$v['tagName']."(".$v['count'].")</a></li>";
+	}
+	?>
+	</ul>
 </div>
 </div>
 <div class="clear"></div>

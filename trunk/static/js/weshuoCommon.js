@@ -44,7 +44,8 @@ function showIcon(path)
 {
 	var div="wbContent";
 	var htmlContent="<div class='close' onclick=\"closediv('iconMyBox');\">表情图片<em>x</em></div>";
-	for(var i=0;i<50;i++)
+	var i=0;
+	for(i=0;i<31;i++)
 	{
 		htmlContent+="<img src='"+path+"static/icon/"+i+".gif' class='box_icon' onclick=\"return addIcon('"+div+"','"+i+"')\"/>";
 	}

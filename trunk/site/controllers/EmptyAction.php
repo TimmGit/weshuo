@@ -22,9 +22,13 @@ class EmptyAction extends CommonAction
 				{
 					$this->showHome($userLib,$topicLib,$userInfo);
 				}
-				else 
+				elseif($userInfo['homePage']==$home)
 				{
 					$this->showIndex($userLib,$topicLib,$userInfo);
+				}
+				else 
+				{
+					$this->showUserHome($userLib,$topicLib,$userInfo);
 				}	
 			}
 			else 
@@ -58,6 +62,7 @@ class EmptyAction extends CommonAction
 		$page=$this->checkForm("page",array(3,1),'分页ID错误', array(wsForm::$int,1,wsForm::$intMax));
 		$start=($page-1)*$limit;
 		$topicLib=new topicLib();
+		$tag=new tagLib();
 		$allCount=$topicLib->getUserHomeCount($userInfo['userId']);
 		$pageTool=new pageTool($page, $allCount, $limit);
 		$data=array();
@@ -65,8 +70,8 @@ class EmptyAction extends CommonAction
 		$data['userExt']=$userLib->getUserExtInfo($userInfo['userId']);
 		$wbList=$topicLib->getUserHomeList($userInfo['userId'],$start,$limit);
 		$data['wblist']=$this->parseTopicList($wbList);
-		$data['attlist']=$userLib->getUserAttList($userInfo['userId']);
 		$data['page']=$pageTool->showNum($userInfo['homePage'].'/index');
+		$data['tag']=$tag->getHotTag();
 		$this->loadView("home_index",$data);
 	}
 	
