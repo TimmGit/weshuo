@@ -40,18 +40,11 @@ class commentLib
 		return $this->mod->getComment(array('topicId'=>$topicId));
 	}
 	
-	public function getCommentList($userId=FALSE,$page=FALSE,$limit=FALSE,$order='commentId desc')
+	public function getCommentList($where=FALSE,$page=1,$limit=8,$order='commentId desc')
 	{
-		if($limit && $page)
-		{
-			$start=($page-1)*$limit;
-			$limit=$start.','.$limit;
-		}
-		if($userId)
-		{
-			return $this->mod->getComment(array('userId'=>$userId),$limit,$order);
-		}
-		return $this->mod->getComment('',$limit,$order);
+		$start=($page-1)*$limit;
+		$limit=$start.','.$limit;
+		return $this->mod->getComment($where,$limit,$order);
 	}
 	
 	public function addComment($userId,$title,$parentId,$topicId,$home,$address,$status=1)

@@ -75,10 +75,10 @@ class topicLib
 		return $this->topicMod->getTopicCount();
 	}
 	
-	public function getTopicList($page,$limit,$order='lastTime desc')
+	public function getTopicList($page,$limit,$where=FALSE,$order='lastTime desc')
 	{
 		$start=($page-1)*$limit;
-		$list=$this->topicMod->getTopicList($start,$limit,$order);
+		$list=$this->topicMod->getTopicList($start,$limit,$where,$order);
 		return $this->parseList($list);
 	}
 	
