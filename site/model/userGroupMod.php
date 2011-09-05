@@ -16,4 +16,9 @@ class userGroupMod
 	{
 		return $this->db->selectData($this->table, array('groupId'=>$id),'ugId desc');
 	}
+	
+	public function getUserPowerByGroupId($uerId,$groupId)
+	{
+		return $this->db->findData($this->table, array('userId'=>$uerId,'groupId'=>$groupId));
+	}
 }

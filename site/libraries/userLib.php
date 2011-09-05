@@ -122,7 +122,7 @@ class userLib
 	 * @param int $userId
 	 * @param string $limit
 	 */
-	public function getUserAttList($userId,$limit=8)
+	public function getUserAttList($userId,$limit=9)
 	{
 		$arr=array();
 		$attMod=new attentionMod();

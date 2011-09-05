@@ -3,17 +3,6 @@
 <div id="pub_header"></div>
 <div id="pub_main">
 <div id="main_left">
-<div class="login_user_img">
-<img src="<?php echo baseUrl()?>/static/upload/face/ws_<?php echo $userInfo['icon']?>"  width="120" height="120" alt="<?php echo $userInfo['nickName']?>" />
-</div>
-<div class="login_user_info">
-<h3><?php echo $userInfo['nickName']?></h3>
-<ul>
-	<li><a href="<?php echo siteUrl($userInfo['homePage'])?>"><?php echo siteUrl($userInfo['homePage'])?></a></li>
-    <li><?php echo $userInfo['province']?>&nbsp;<?php echo $userInfo['city']?></li>
-    <li>介绍：&nbsp;<?php echo $userInfo['memo']?></li>
-</ul>
-</div>
 <div>
 <?php 
 foreach ($wblist as $topic)
@@ -43,25 +32,29 @@ foreach ($wblist as $topic)
 </div>
 </div>
 <div id="main_right">
-<div class="user_count">
-<ul>
-<li>微博：<?php echo $userExt['wbCount']?></li>
-<li>关注：<?php echo $userExt['gzCount']?></li>
-<li>听众：<?php echo $userExt['fsCount']?></li>
-</ul>
-</div>
-<div class="line"></div>
-<div class="login_usre_tag"><?php echo $userInfo['tags']?></div>
-<div class="line"></div>
-<ul class="hot_user">
-<?php 
-foreach ($attlist as $user)
-{
-?>
-	<li><a href="<?php echo siteUrl($user['homePage'])?>"><img src="<?php echo baseUrl() ?>/static/upload/face/ws_60_<?php echo $user['icon']?>" 
-		alt="<?php echo $user['nickName']?>" width="60" /></a></li>	
-<?php }?>
-</ul>
+	<div class="right_top"></div>
+	<div class="top_guanzhu">我的关注(<?php echo $extInfo['gzCount']?>)</div>
+	<div class="top_shoucang">我的收藏</div>
+	<div class="line"></div>
+	<ul class="config">
+		<li><span class="myhome"></span><a href="<?php echo siteUrl($info['homePage'])?>"><?php echo str_replace("http://", '', siteUrl($info['homePage']))?></a></li>
+		<li><span class="mywb"></span><?php echo $extInfo['wbCount']?>条微博</li>
+		<li><span class="myfs"></span><?php echo $extInfo['fsCount']?>位听众</li>
+		<li><span class="mymsg"></span><a href="<?php echo siteUrl('user/message')?>">10条未读私信</a></li>
+		<li><span class="myconfig"></span><a href="<?php echo siteUrl('user')?>">账户设置</a></li>
+	</ul>
+	<div class="line"></div>
+	<div class="login_usre_tag"><?php echo $userInfo['tags']?></div>
+	<div class="line"></div>
+	<ul class="att_user">
+	<?php 
+	foreach ($attlist as $user)
+	{
+	?>
+		<li><a href="<?php echo siteUrl($user['homePage'])?>"><img src="<?php echo baseUrl() ?>/static/upload/face/ws_60_<?php echo $user['icon']?>" 
+			alt="<?php echo $user['nickName']?>" width="60" /></a></li>	
+	<?php }?>
+	</ul>
 </div>
 </div>
 <div class="clear"></div>

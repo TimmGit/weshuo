@@ -45,8 +45,9 @@ class weShuoLib
 	 * @param int $zhuan
 	 * @param int $share
 	 * @param int $status
+	 * @param int $group
 	 */
-	private function sendWbLib($content,$url,$short,$ipAddress,$sendUser,$client='web',$parentId=0,$share=0,$status=1)
+	private function sendWbLib($content,$url,$short,$ipAddress,$sendUser,$client='web',$parentId=0,$share=0,$status=1,$group=0)
 	{
 		$topicExtra=new topicExtra();
 		$tagExtra=new tagExtra();
@@ -79,7 +80,7 @@ class weShuoLib
 		{
 			$this->addTag($tag);
 		}
-		return array('topicId'=>$topicId,'aboutMe'=>$userArr);
+		return array('topicId'=>$topicId,'aboutMe'=>$userArr,'title'=>$content);
 	}
 	
 	private function addTag($tag)

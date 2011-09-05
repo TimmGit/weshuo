@@ -64,6 +64,7 @@ a:hover{ text-decoration:underline}
 .close{ border-bottom:#999 1px solid; overflow:hidden}
 .close em{ cursor: pointer;float: right;font-size: 25px}
 #iconMyBox img{margin:1px}
+#sending{display:none;}
 /*right*/
 #main_right{color:#d5dae0}
 #main_right li{ list-style:none}
@@ -93,6 +94,7 @@ a:hover{ text-decoration:underline}
 .config a:link,.config a:visited{color:#D5DAE0; text-decoration:none}
 .config a:hover{color:#CCC; text-decoration:underline;}
 .right_tag_ul,.right_topic_ul{margin-left:10px;}
+.login_usre_tag{margin-left:16px;}
 /*un*/
 .un_user_img{border:#ccc 1px solid;margin-left:16px;width:120px;float:left}
 .un_usre_info{float:left;margin-left:10px;}
@@ -103,7 +105,19 @@ a:hover{ text-decoration:underline}
 #tag_header{background-image:url('images/topic_header.jpg'); width:900px;height:12px;}
 #tag_main{ background-color:#f3f7fa;overflow:hidden;height:400px;padding:20px 30px}
 #tag_footer{background-image:url('images/topic_footer.jpg'); width:900px;height:13px;}
-#tag_main span{margin:5px 10px;}
+#tag_main span{margin:9px 10px; line-height:180%; display:block;float:left}
+#tag_main a{color:#645b49}
+/*group*/
+#group_main{ background-color:#f3f7fa;overflow:hidden;height:550px;padding:20px 30px}
+.group_div{width:190px;height:150px;float:left;maring:5px 10px;padding:10px;}
+.group_div img{float:left}
+.group_div h2{float:left; margin-left:5px;color:#323429}
+.group_div .memo,.group_div .count{color:#676664}
+.group_div .count span{ font-weight:bold}
+/*home*/
+.att_user{margin-left:16px;}
+.att_user li{ float:left;margin-right:6px;}
+.att_user li img{border:1px #374d63 solid;}
 /*footer*/
 #footer{ width:900px; margin:0 auto;color:#8d9faf;font-weight:bold;}
 
