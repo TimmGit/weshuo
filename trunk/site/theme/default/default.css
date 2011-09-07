@@ -118,6 +118,10 @@ a:hover{ text-decoration:underline}
 .att_user{margin-left:16px;}
 .att_user li{ float:left;margin-right:6px;}
 .att_user li img{border:1px #374d63 solid;}
+/*images*/
+#images{
+	width:900px;margin:0 auto;height:560px;position:relative;
+}
 /*footer*/
 #footer{ width:900px; margin:0 auto;color:#8d9faf;font-weight:bold;}
 

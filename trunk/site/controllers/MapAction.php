@@ -11,7 +11,7 @@ class MapAction extends  CommonAction
 		$newArray=array_merge($listTopic,$listCm);
 		$newArray=list_sort_by($newArray,'time');
 		$data['newTopic']=$this->formatTopicInfo($userLib,$newArray[0]);
-		$this->loadView("mapIndex",$data);
+		$this->loadView("map_index",$data);
 	}
 	
 	private function formatTopicInfo(userLib $userLib,$info)
