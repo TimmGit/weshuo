@@ -16,14 +16,16 @@
 if(userSessionLib::getLogin())
 {
 ?>
-<li><a href="<?php echo siteUrl('public/loginOut')?>">退出</a></li>
-<?php }else{?>
+	<li><a href="<?php echo siteUrl('public/loginOut')?>">退出</a></li>
+	<?php
+	if($info['roleId']==9)
+	{
+		echo "<li><a href=\"".siteUrl('public/admLogin')."\">高级</a></li>";
+	}
+}else{?>
 <li><a href="<?php echo siteUrl('public/register')?>">注册</a></li>
 <li><a href="<?php echo siteUrl('public/login')?>">登录</a></li>
-<?php }
-if($info['roleId']==9)
-{
-	echo "<li><a href=\"".siteUrl('public/admLogin')."\">高级</a></li>";
+<?php
 }
 ?>
 </ul>
