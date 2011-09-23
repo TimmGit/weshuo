@@ -1,9 +1,10 @@
 <div>
 <textarea rows="5" cols="30" id="wbContent" name="wbContent"></textarea>
+<br/>&nbsp;&nbsp;
+<input type="checkbox" name="zhuan" id="zhuan" disabled value="1"/>转发&nbsp;&nbsp;
+<input type="checkbox" name="ping" id="ping" disabled value="1"/>评论&nbsp;&nbsp;
+<input type="checkbox" name="tome" id="tome" disabled value="1"/>转发到我的微博&nbsp;&nbsp;
 <input type="button" name="submit"  id="submit" value="回复微博"/>
-<input type="checkbox" name="zhuan" id="zhuan" value="1"/>转发
-<input type="checkbox" name="ping" id="ping" value="1"/>评论
-<input type="checkbox" name="tome" id="tome" value="1"/>转发到我的微博
 </div>
 <script type="text/javascript">
 $().ready(function(){

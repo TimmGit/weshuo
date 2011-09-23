@@ -4,7 +4,7 @@
 </div>
 <div id="sendBox">
 <ul>
-	<li>文字</li><li>图片</li><li>链接</li><li>话题</li>
+	<li>文字</li><li onclick="return showtopic();">话题</li>
 </ul>
 <div class="boxMain">
 	<br style="height:0px;line-height:0px;">
