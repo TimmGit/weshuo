@@ -3,7 +3,17 @@ class IndexAction extends CommonAction
 {
 	public function index()
 	{
-		$this->loadView('index',array('a'=>'weshuo.org'));
+		if(userSessionLib::getLogin())
+		{
+			$userInfo=userSessionLib::getUserInfo();
+			$home=isset($userInfo['homePage']) ?$userInfo['homePage'] :'pub';
+			$this->redirect($home);
+		}
+		else 
+		{
+			$this->loadView('public_login');
+		}
+		//$this->loadView('index',array('a'=>'weshuo.org'));
 	}
 	
 	public function test()

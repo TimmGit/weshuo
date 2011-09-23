@@ -5,12 +5,12 @@ class EmptyAction extends CommonAction
 	{
 		$home=wsRoute::segment(1);
 		$fun=wsRoute::segment(2);
+		require LIB_PATH.'userLib.php';
+		require LIB_PATH.'topicLib.php';
+		$userLib=new userLib();
+		$topicLib=new topicLib();
 		if(empty($fun) || $fun=="index" || $fun=='private')
 		{
-			require LIB_PATH.'userLib.php';
-			require LIB_PATH.'topicLib.php';
-			$userLib=new userLib();
-			$topicLib=new topicLib();
 			$userInfo=$userLib->getUserInfo($home);
 			if(!$userInfo)
 			{
@@ -38,7 +38,7 @@ class EmptyAction extends CommonAction
 		}
 		elseif (is_numeric($fun))
 		{
-			$this->showInfo($fun);
+			$this->showInfo($userLib,$topicLib,$fun);
 		}
 		else 
 		{
@@ -46,14 +46,20 @@ class EmptyAction extends CommonAction
 		}
 	}
 	
-	private function showInfo($topicId)
+	private function showInfo(userLib $userLib,topicLib $topicLib,$topicId)
 	{
 		$topicId=intval($topicId);
-		$topicLib=new topicLib();
+		$tagLib=new tagLib();
 		$commentLib=new commentLib();
 		$info=$topicLib->getInfo($topicId);
 		$list=$commentLib->getComment($topicId);
-		$this->loadView("blog_show",array('info'=>$info,'list'=>$list));
+		$data['tInfo']=$info;
+		$data['list']=$list;
+		$data['userInfo']=$userLib->getUserInfo($info['userId'],'id');
+		$data['hotUser']=$userLib->getHotUserList(6);
+		$data['hotTag']=$tagLib->getHotTag(8);
+		$data['newTopic']=$topicLib->getTopicList(1,8);
+		$this->loadView("blog_show",$data);
 	}
 	
 	private function showIndex(userLib $userLib,topicLib $topicLib,$userInfo)

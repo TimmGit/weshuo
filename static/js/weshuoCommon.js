@@ -66,3 +66,21 @@ function showMapBlog(img,username,time,id,title,address)
 	var html="<div style=\"width:350px;\" class='map'><div class='mapleft'><img src='"+img+"' alt='"+username+"' style='border:1px solid #ccc;padding:1px;'/></div><div class='mapconent'><div class='time'>"+username+"  发布于："+time+"</div><div class='title'><a href='"+id+"' target='_blank'>"+title+"</a></div></div></div></div>";
 	return html;
 }
+function showtopic()
+{
+	$("#wbContent").val("#请在这里输入自定义话题#");
+    var l = $("#wbContent").val().length;
+	var c=$("#wbContent").get(0);
+    //创建选择区域	
+    if(c.createTextRange){//IE浏览器
+        var range = c.createTextRange();
+        range.moveEnd("character",-l)         
+        //range.moveStart("character",-l)              
+        range.moveEnd("character",l-1);
+        range.moveStart("character", l-12);
+        range.select();
+    }else{
+        c.setSelectionRange(l-12,l-1);
+        c.focus();
+    }
+}

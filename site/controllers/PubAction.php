@@ -15,7 +15,7 @@ class PubAction extends CommonAction
 		$limit=10;
 		$allCount=$topicLib->getTopicCount();
 		$pageTool=new pageTool($page, $allCount, $limit);
-		$list=$topicLib->getTopicList($page,$limit,'topicId desc');
+		$list=$topicLib->getTopicList($page,$limit,false,'topicId desc');
 		$pageInfo=$pageTool->showNum('pub/index');
 		$data['list']=$list;
 		$data['pageInfo']=$pageInfo;

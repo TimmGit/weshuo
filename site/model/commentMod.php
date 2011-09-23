@@ -44,7 +44,7 @@ class commentMod
 		return $this->db->insertData($this->table, $data);
 	}
 	
-	public function getComment($where,$limit=FALSE,$order="commentId asc")
+	public function getComment($where,$limit=FALSE,$order="commentId desc")
 	{
 		return $this->db->selectData($this->table, $where,$order,$limit);
 	}

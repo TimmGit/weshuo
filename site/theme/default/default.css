@@ -122,6 +122,11 @@ a:hover{ text-decoration:underline}
 #images{
 	width:900px;margin:0 auto;height:560px;position:relative;
 }
+/*show*/
+.show_header{
+	margin-top:10px; margin-left:10px; overflow:hidden; margin-bottom:10px;
+}
+.show_main{padding:10px;}
 /*footer*/
 #footer{ width:900px; margin:0 auto;color:#8d9faf;font-weight:bold;}
 
