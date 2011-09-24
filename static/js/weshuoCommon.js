@@ -84,3 +84,8 @@ function showtopic()
         c.focus();
     }
 }
+
+function replaySomeBady(userName,topicId)
+{
+	$("#replayComemnt"+topicId+" .inputBox").val("回复@"+userName+":");
+}

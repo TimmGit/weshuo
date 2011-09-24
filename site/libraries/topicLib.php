@@ -112,4 +112,9 @@ class topicLib
 		$lastTime=date("Y-m-d H:i:s");
 		return $this->topicMod->addTopic($title,$userId,$groupId,$parentId,$tagName,$status,$share,$client,$home,$address,time(),$lastTime);
 	}
+	
+	public function setPingZhuanCount($topicId,$zhuan=FALSE)
+	{
+		return $this->topicMod->setPingZhuanCount($topicId,$zhuan);
+	}
 }

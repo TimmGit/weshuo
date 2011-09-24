@@ -52,14 +52,17 @@ class AjaxAction extends CommonAction
 		}
 		$wsLib=new weShuoLib();
 		$ipAddress=client::getIPaddress(client::getClientIp());
+		$topicLib=new topicLib();
 		if($zhuan || $tome)
 		{
+			$topicLib->setPingZhuanCount($topicId,TRUE);
 			$newContent=$content['content']."<div class='wbShare'>".$info['title']."</div>";
 			echo $wsLib->sendWeibo($newContent, $content['url'], $content['short'], $ipAddress, $sendUser);
 		}
 		if($ping)
 		{
 			$parentId=0;
+			$topicLib->setPingZhuanCount($topicId);
 			echo $wsLib->replayWeibo($content['content'], $content['url'], $content['short'], $ipAddress, $sendUser,$parentId,$topicId);
 		}
 	}
@@ -82,5 +85,27 @@ class AjaxAction extends CommonAction
 		$wsLib=new weShuoLib();
 		$ipAddress=client::getIPaddress(client::getClientIp());
 		echo $wsLib->sendWeibo($content['content'], $content['url'], $content['short'], $ipAddress, $sendUser);
+	}
+	
+	public function getComment()
+	{
+		$topicId=$this->checkForm("topicId","post",'微博ID错误',array(wsForm::$int,0,wsForm::$intMax),false,true);
+		$commentLib=new commentLib();
+		$list=$commentLib->getCommentList(array('topicId'=>$topicId));
+		if($list)
+		{
+			$userLib=new userLib();
+			$html='<ul>';
+			foreach ($list as $k=>$v)
+			{
+				$userInfo=$userLib->getUserInfo($v['userId'],'id');
+				$html.="<li><img src='".baseUrl('static/upload/face').'/ws_30_'.$userInfo['icon']."' />
+				<span><a href='".siteUrl($userInfo['homePage'])."'>".$userInfo['nickName']."</a>&nbsp;&nbsp;".$v['content']."
+				<em>".topicExtra::getTime($v['time'])."</em></span>&nbsp;
+				<a href='javascript:void(0)' onclick=\"return replaySomeBady('".$userInfo['nickName']."',$topicId);\">回复</a></li>";
+			}	
+			$html.='</ul>';
+			echo $html;
+		}
 	}
 }

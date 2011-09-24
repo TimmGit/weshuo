@@ -10,6 +10,10 @@ class CommonAction extends wsAction
 					'extInfo'=>userSessionLib::getUserExt(),'userId'=>userSessionLib::getUserId()
 			);
 		}
+		else 
+		{
+			$this->data=array('login'=>0);
+		}
 		hook("ws_load");
 		$this->checkCache();
 	}

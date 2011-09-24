@@ -20,10 +20,10 @@
 <div id="sendBtn"><input type="button" name="submit"  id="submit"/></div>
 </div>
 <script type="text/javascript">
+var userName='<?php echo $info['nickName']?>';
+var path='<?php echo baseUrl() ?>';
+var userImg=path+'/static/upload/face/ws_<?php echo $info['icon']?>';
 $().ready(function(){
-	var userName='<?php echo $info['nickName']?>';
-	var path='<?php echo baseUrl() ?>';
-	var userImg=path+'/static/upload/face/ws_<?php echo $info['icon']?>';
 	$("#submit").click(function(){
 		var content=$("#wbContent").val();
 		if(content=='' || content.length<3)

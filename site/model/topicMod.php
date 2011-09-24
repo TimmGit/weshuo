@@ -79,4 +79,19 @@ class topicMod
 				'home'=>$home,'address'=>$address,'lastTime'=>$lastTime)
 			);
 	}
+	
+	public function setPingZhuanCount($topicId,$zhuan=FALSE)
+	{
+		$sql="update ".wsModel::dbPrefix().$this->table." set";
+		if($zhuan)
+		{
+			$sql.=" zhuan=zhuan+1";
+		}
+		else 
+		{
+			$sql.=" ping=ping+1";
+		}
+		$sql.=" where topicId=".$topicId;
+		return $this->db->querySql($sql);
+	}
 }
