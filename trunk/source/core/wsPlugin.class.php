@@ -33,7 +33,7 @@ class wsPlugin
 					if(file_exists($fileName))
 					{
 						include_once $fileName;
-						$plugObj=& new $file();
+						$plugObj=new $file();
 						wsAction::$plug[$file]=$plugObj;
 					}
 				}

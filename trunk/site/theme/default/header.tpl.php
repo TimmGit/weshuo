@@ -1,6 +1,6 @@
 <?php subView("headerCommon");?>
 <div id="header">
-<h1 class="logo"><a href="<?php if($login) echo siteUrl($info['homePage']); else echo baseUrl()?>"></a></h1>
+<h1 class="logo"><a href="<?php if($login) echo siteUrl($info['homePage']); else echo baseUrl('pub')?>"></a></h1>
 <div class="header_menu">
 <ul>
 <li><a href="<?php echo siteUrl('pub')?>">广场</a></li>

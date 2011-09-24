@@ -17,9 +17,9 @@ a:hover{ text-decoration:underline}
 #map_logo{width:180px;height:53px; background-image:url('images/logo.png');background-repeat:no-repeat;margin-top:28px; margin-left:50px; float:left}
 #map_logo a{width:178px;height:53px; display:block;}
 .login_form{ margin-left:160px; margin-top:133px;}
-#loginMail{ width:190px; height:38px; border:0px; background-image:url('images/login_uid.jpg')}
-#loginPassword{ width:190px; height:38px; border:0px; background-image:url('images/login_pwd.jpg')}
-.loginBtn{ background-image:url('images/login_btn.jpg');width:70px; height:38px; background-repeat:no-repeat;}
+#loginMail{ width:185px; height:38px; border:0px; background-image:url('images/login_uid.jpg');padding-left:5px;}
+#loginPassword{ width:185px; height:38px; border:0px; background-image:url('images/login_pwd.jpg');padding-left:5px;}
+.loginBtn{ background-image:url('images/login_btn.jpg');width:66px; height:38px; background-repeat:no-repeat;border:0px; cursor: pointer;}
 
 /*header*/
 #header{ height:90px; width:900px; margin:0 auto;}
@@ -127,6 +127,13 @@ a:hover{ text-decoration:underline}
 	margin-top:10px; margin-left:10px; overflow:hidden; margin-bottom:10px;
 }
 .show_main{padding:10px;}
+/*ajax comment*/
+.commentDiv{padding:3px 10px; text-align: left;}
+.commentDiv ul li{ list-style-type: none;}
+.commentDiv li img{border:2px solid #ccc;}
+.commentDiv span{color:#575656;padding:2px 5px;}
+.commentDiv em{color:#B3BBC3; font-style: normal;}
+.commentDiv .inputBox{width:400px;}
 /*footer*/
 #footer{ width:900px; margin:0 auto;color:#8d9faf;font-weight:bold;}
 

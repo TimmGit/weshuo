@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET?>">
 <title>Insert title here</title>
+<?php load('default.css')?>
 <?php load('js/jquery-1.4.2.min.js')?>
 <?php load('js/weshuoCommon.js')?>
-<?php load('default.css')?>
 </head>
 <body>
