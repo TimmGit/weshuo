@@ -11,7 +11,7 @@
    模板文件必须是.tpl.php结尾
    core目录的文件手动加载
    source/util目录下的类文件必须是.class.php结尾
-6、import可以导入一个人 参数true时自动实例化 返回实例
+6、import可以导入一个类 参数true时自动实例化 返回实例
    其他的函数参见source/function/function.php
 7、目前只支持MYSQL PDO模式连接数据库
 8、内置的插件挂载点

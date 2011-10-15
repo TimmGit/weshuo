@@ -4,7 +4,7 @@
 $dbConfig=array(
 		'dbType'=>'mysqlPdo',
 		'dbHost'=>'localhost',
-		'dbName'=>'weshuo',
+		'dbName'=>'onlinedeng',
 		'dbUser'=>'root',
 		'dbPwd'=>'',
 		'dbPort'=>'3306',

@@ -29,7 +29,10 @@ class weShuoLib
 		$aboutLib=new aboutLib();
 		foreach ($userArr as $userId=>$nickName)
 		{
-			$aboutLib->addAbout($userId, $topicId);
+			if($userId!=userSessionLib::getUserId())
+			{
+				$aboutLib->addAbout($userId, $topicId);
+			}
 		}
 	}
 	
@@ -78,12 +81,12 @@ class weShuoLib
 		}
 		if(!empty($tag) && $topicId)
 		{
-			$this->addTag($tag);
+			$this->addTag($tag,$sendUser,$topicId);
 		}
 		return array('topicId'=>$topicId,'aboutMe'=>$userArr,'title'=>$content);
 	}
 	
-	private function addTag($tag)
+	private function addTag($tag,$sendUser,$topicId)
 	{
 		$tagLib=new tagLib();
 		foreach ($tag as $value)

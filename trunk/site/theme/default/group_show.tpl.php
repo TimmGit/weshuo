@@ -37,11 +37,24 @@ if($list)
 	<?php
 	}
 }
-echo $page;
+echo "<div class='page'>$page</div>";
 ?>
 </div>
 </div>
 <div id="main_right">
+	<div class="line"></div>
+	<div class="right_topic">
+		<h2>最新回复微博</h2>
+		<ul class="right_topic_ul">
+			<?php 
+			foreach ($newTopic as $topic)
+			{
+			?>
+			<li><a href="<?php echo siteUrl($topic['home'].'/'.$topic['topicId'])?>">
+			<?php echo string::u8_title_substr(replaceHtml($topic['title']),30)?></a>&nbsp;&nbsp;(<?php echo $topic['ping']?>)</li>	
+			<?php }?>
+		</ul>
+	</div>
 </div>
 </div>
 <div class="clear"></div>

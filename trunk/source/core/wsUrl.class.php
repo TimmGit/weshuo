@@ -36,11 +36,11 @@ class wsUrl
 			{
 				if(URL_MODE==1)
 				{
-					$urlPath=self::baseUrl().'index.php/'.$url;
+					$urlPath=self::baseUrl().'/'.$url;
 				}
 				else 
 				{
-					$urlPath=self::baseUrl().'index.php?p='.$url;
+					$urlPath=self::baseUrl().'?p='.$url;
 				}
 			}
 		}

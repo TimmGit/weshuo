@@ -8,20 +8,22 @@
 foreach ($wblist as $topic)
 {
 	?>
-	<div class="topic">
-	<div class="userIcon"><img src="<?php echo baseUrl() ?>/static/upload/face/ws_<?php echo $topic['icon']?>" 
-	alt="<?php echo $topic['home']?>" width="60"/></div>
+	<div class="topic" id="topic<?php echo $topic['topicId']?>">
+	<div class="userIcon">
+	<a href="<?php echo siteUrl($topic['home'])?>"><img src="<?php echo baseUrl() ?>/static/upload/face/ws_<?php echo $topic['icon']?>" 
+	alt="<?php echo $topic['home']?>" width="60"/></a></div>
 	<div class="topicMain">
 	<div class="topic_header">
 	<span><?php echo $topic['nickName']?></span>
 	<div class="topic_content">
-	<?php echo $topic['title']?>
+	<?php echo topicExtra::getBlogCommon($topic['title'])?>
 	</div>
 	</div>
-	<div class="topic_menu">
-	<span class="topic_show"><a href="<?php echo siteUrl($topic['home'].'/'.$topic['topicId'])?>" target='_blank'>
-	<?php echo topicExtra::getTime($topic['time'])?></a></span>
-	<span>评论(<?php echo $topic['ping']?>)</span><span>转发(<?php echo $topic['zhuan']?>)</span><span>收藏</span></div>
+	<div class="topic_menu" id="topicBody<?php echo $topic['topicId']?>">
+	<span class="topic_show"><a href="<?php echo siteUrl($topic['home'].'/'.$topic['topicId'])?>"><?php echo topicExtra::getTime($topic['time'])?></a></span>
+	<span onclick="return showComment(1,<?php echo $topic['topicId']?>)">评论(<?php echo $topic['ping']?>)</span>
+	<span onclick="return showComment(2,<?php echo $topic['topicId']?>)">转发(<?php echo $topic['zhuan']?>)</span>
+	<span onclick="return showFav(<?php echo $topic['topicId']?>)">收藏</span></div>
 	<div class="topic_footer"></div>
 	</div>
 	</div>
@@ -59,4 +61,5 @@ foreach ($wblist as $topic)
 </div>
 <div class="clear"></div>
 </div>
+<?php subView("inc_ajax")?>
 <?php subView("footer")?>

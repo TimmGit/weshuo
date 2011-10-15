@@ -6,7 +6,7 @@
 foreach ($list as $v)
 {
 	?>
-    <div class='group_div'><a href="<?php echo siteUrl('group/'.$v['groupName'])?>"><img src="<?php echo baseUrl().'static/upload/group/'.$v['icon']?>"></a>
+    <div class='group_div'><a href="<?php echo siteUrl('group/'.$v['groupName'])?>"><img border=0 src="<?php echo baseUrl().'static/upload/group/'.$v['icon']?>"></a>
 	<a href="<?php echo siteUrl('group/'.$v['groupName'])?>"><h2><?php echo $v['groupName']?></h2></a>
     <div class="clear"></div>
     <div class="memo"><?php echo $v['memo']?></div>

@@ -92,6 +92,6 @@ class topicMod
 			$sql.=" ping=ping+1";
 		}
 		$sql.=" where topicId=".$topicId;
-		return $this->db->querySql($sql);
+		return $this->db->execSql($sql);
 	}
 }

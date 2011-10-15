@@ -16,18 +16,20 @@ a:hover{ text-decoration:underline}
 #login_map{ background-image:url('images/login_map.jpg'); background-repeat:no-repeat;height:505px; width:1200px; margin:0 auto}
 #map_logo{width:180px;height:53px; background-image:url('images/logo.png');background-repeat:no-repeat;margin-top:28px; margin-left:50px; float:left}
 #map_logo a{width:178px;height:53px; display:block;}
-.login_form{ margin-left:160px; margin-top:133px;}
-#loginMail{ width:185px; height:38px; border:0px; background-image:url('images/login_uid.jpg');padding-left:5px;}
-#loginPassword{ width:185px; height:38px; border:0px; background-image:url('images/login_pwd.jpg');padding-left:5px;}
-.loginBtn{ background-image:url('images/login_btn.jpg');width:66px; height:38px; background-repeat:no-repeat;border:0px; cursor: pointer;}
-
+.login_form{ margin-left:160px;padding-top:133px;}
+#loginMail{ width:185px; height:38px; line-height:38px; vertical-align:middle; border:0px; background-image:url('images/login_uid.jpg');padding-left:5px;}
+#loginPassword{ width:185px; height:38px;line-height:38px; vertical-align:middle; border:0px; background-image:url('images/login_pwd.jpg');padding-left:5px;}
+.loginBtn{ background-image:url('images/login_btn.jpg');vertical-align:middle; width:66px; height:37px; background-repeat:no-repeat;border:0px; cursor: pointer;}
+.user_reg{background-image:url('images/reg_btn.jpg');width:66px; height:30px;background-repeat:no-repeat;border:0px;
+		float:right;cursor: pointer; margin-top:50px;}
+.user_reg a{ display:block;width:66px; height:30px;}
 /*header*/
 #header{ height:90px; width:900px; margin:0 auto;}
-.logo{ background-image:url('images/logo.jpg');width:180px;height:53px;float:left}
+.logo{ background-image:url('images/logo.png');width:175px;height:51px;float:left}
 .logo a{display:block;width:180px;height:53px;}
-.header_menu{float:left;width:660px}
+.header_menu{float:left;width:660px;margin-top:40px;margin-left:20px;}
 .header_menu li{float:left; list-style:none;}
-.header_menu a{color:#fff;display:block;margin:2px 5px;}
+.header_menu a{color:#fff;display:block;margin:2px 10px;font-size:15px;}
 
 /*pub*/
 #pub_header{ background-image:url('images/pub_header.jpg'); width:900px;height:14px;}
@@ -48,7 +50,7 @@ a:hover{ text-decoration:underline}
 /*send box*/
 #sendUser{ margin-top:30px; margin-left:20px;float:left;}
 #sendUser img{border:1px #ccc solid;}
-#sendBox{float:left;}
+#sendBox{float:left;width:553px}
 #sendBox ul{height:24px; margin-left:20px;color:#fff; font-size:13px; cursor:pointer;}
 #sendBox li{float:left;list-style:none;width:75px;height:23px; background-color:#1f354c;margin-right:10px; text-align:center;}
 .boxMain{ background-image:url('images/box_header.png');width:542px; background-repeat:no-repeat; margin-left:10px;}
@@ -105,7 +107,7 @@ a:hover{ text-decoration:underline}
 #tag_header{background-image:url('images/topic_header.jpg'); width:900px;height:12px;}
 #tag_main{ background-color:#f3f7fa;overflow:hidden;height:400px;padding:20px 30px}
 #tag_footer{background-image:url('images/topic_footer.jpg'); width:900px;height:13px;}
-#tag_main span{margin:9px 10px; line-height:180%; display:block;float:left}
+#tag_main span{margin:9px 10px; line-height:180%; display:block;float:left; white-space: nowrap;}
 #tag_main a{color:#645b49}
 /*group*/
 #group_main{ background-color:#f3f7fa;overflow:hidden;height:550px;padding:20px 30px}
@@ -127,6 +129,12 @@ a:hover{ text-decoration:underline}
 	margin-top:10px; margin-left:10px; overflow:hidden; margin-bottom:10px;
 }
 .show_main{padding:10px;}
+.wbShow{color:#fff}
+.cmList{color:#d3d6d9}
+.cmList td{padding-left:10px;padding-top:3px;}
+.cmList a,.wbShow a{color:#82b7e8}
+.cmList span{color:#b6b5b5}
+.wbContentshow{border:#183654 solid 1px; background-color:#37597b;padding:2px;color:#cccccc}
 /*ajax comment*/
 .commentDiv{padding:3px 10px; text-align: left;}
 .commentDiv ul li{ list-style-type: none;}
@@ -134,8 +142,39 @@ a:hover{ text-decoration:underline}
 .commentDiv span{color:#575656;padding:2px 5px;}
 .commentDiv em{color:#B3BBC3; font-style: normal;}
 .commentDiv .inputBox{width:400px;}
+/*img*/
+.iconImg{border:1px solid #ccc;padding:1px;}
+.iconImgNoSpace{ border: 2px solid #CCCCCC;}
+/*user*/
+.user_left{float:left;width:699px;}
+.user_right{float:left}
+.user_left li{margin:15px 0px;}
+.user_right ul li{ list-style-type:none; background-color:#2d6fcc;width:180px;height:26px;margin-bottom:10px; 
+		text-align:center;padding-top:10px;font-weight:bold;}
+.user_right a{color:#fff}
+.user_header{margin-left:21px;background-image:url('images/user_header.png'); background-color:#fff;height:6px;}
+.user_footer{ margin-left:20px;background-image:url('images/user_footer.jpg'); height:8px;}
+.user_main{padding:5px;margin-left:22px;overflow:hidden; background-color:#fff;}
+.user_now a{color:#000;}
+/*page*/
+.page{ text-align:center;}
+.page a{color:#ccc;display:block;float:left;padding-right:10px;}
+/*reg*/
+.userRegForm{margin-left:200px;padding-top:80px;}
+.userRegForm li{ list-style-type:none;margin-bottom:10px;color:#fff}
+.userRegForm li span{width:80px; display:block;float:left; font-weight:bold;color:#fff}
+.regInput,.regInputHome{width:300px; height:32px; line-height:32px; border:1px solid #ccc;padding-left:5px; background-repeat:no-repeat;}
+.regInputHome{width:160px;}
+.userRegForm input{ vertical-align:middle;}
+#reg_submit{ background-image:url('images/reg_acc_btn.jpg'); width:104px;height:37px;border:0px;margin-left:260px; cursor:pointer;}
 /*footer*/
-#footer{ width:900px; margin:0 auto;color:#8d9faf;font-weight:bold;}
+#footer{width:900px; text-align:center; margin:0 auto;color:#8d9faf;font-weight:bold;height:30px;overflow:hidden;}
+/*map*/
+.mapleft{float:left;width:64px;}
+.mapconent{float:right;width:280px;border:#fff 1px solid;}
+.map .title{overflow:hidden;width:270px;margin-left:10px;}
+.title a:link,.mpa .title a:visited{color:#535353;}
+.map .time{padding-left:10px}
 
 
 

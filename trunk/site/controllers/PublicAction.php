@@ -100,7 +100,6 @@ class PublicAction extends CommonAction
 	{
 		$formCheck=import("formCheck",true);
 		$mail=$this->checkForm("mail","POST","请输入email地址",array(wsForm::$string,5,72),array($formCheck,'isMail','email格式错误'));
-		$userName=$this->checkForm("username","POST","请输入帐号6-16位",array(wsForm::$string,6,16,true),array($formCheck,'isHome','登陆帐号不要输入特殊字符'));
 		$homePage=$this->checkForm("homepage","POST","请输入个性地址5-16位",array(wsForm::$string,5,16,true),array($formCheck,'isHome','个性地址不要输入特殊字符'));
 		$password=$this->checkForm("passwd","POST","请输入密码6-16位",array(wsForm::$string,6,16));
 		$repassword=$this->checkForm("repasswd","POST","请输入确认密码6-16位",array(wsForm::$string,6,16));
@@ -113,13 +112,14 @@ class PublicAction extends CommonAction
 		{
 			$this->error('个性主页地址已经存在请更换！');
 		}
+		$userName=$homePage;
 		if($userLib->checkExit('mail',$mail))
 		{
 			$this->error('电子邮件地址已经存在，请更换！');
 		}
 		if($userLib->checkExit('userName', $userName))
 		{
-			$this->error('帐号已经存在，请更换！');
+			$this->error('个性主页地址已经存在，请更换！');
 		}
 		hook('ready_register_user',array($homePage,$mail,$userName));
 		$userId=$userLib->addUser($userName, $mail, $password, $userName, $homePage);

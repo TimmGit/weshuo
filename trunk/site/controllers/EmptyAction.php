@@ -53,6 +53,10 @@ class EmptyAction extends CommonAction
 		$commentLib=new commentLib();
 		$info=$topicLib->getInfo($topicId);
 		$list=$commentLib->getComment($topicId);
+		foreach ($list as $k=>$v)
+		{
+			$list[$k]['userInfo']=$userLib->getUserInfo($v['userId'],'id');
+		}
 		$data['tInfo']=$info;
 		$data['list']=$list;
 		$data['userInfo']=$userLib->getUserInfo($info['userId'],'id');
@@ -64,6 +68,7 @@ class EmptyAction extends CommonAction
 	
 	private function showIndex(userLib $userLib,topicLib $topicLib,$userInfo)
 	{
+		parent::setTitle("我的主页--");
 		$limit=10;
 		$page=$this->checkForm("page",array(3,1),'分页ID错误', array(wsForm::$int,1,wsForm::$intMax));
 		$start=($page-1)*$limit;
@@ -95,6 +100,7 @@ class EmptyAction extends CommonAction
 	
 	private function showHome(userLib $userLib,topicLib $topicLib,$userInfo)
 	{
+		parent::setTitle("我的微博--");
 		$data=array();
 		$data['userInfo']=$userInfo;
 		$data['userExt']=$userLib->getUserExtInfo($userInfo['userId']);
@@ -105,6 +111,7 @@ class EmptyAction extends CommonAction
 	
 	private function noLogin(userLib $userLib,topicLib $topicLib,$userInfo)
 	{
+		parent::setTitle($userInfo['nickName']."的微博--");
 		$data=array();
 		$data['userInfo']=$userInfo;
 		$data['userExt']=$userLib->getUserExtInfo($userInfo['userId']);

@@ -9,6 +9,7 @@ class TagAction extends CommonAction
 	
 	public function index()
 	{
+		parent::setTitle("热门话题--");
 		$page=$this->checkForm("page",array(3,1), '分页ID错误', array(wsForm::$int,1,wsForm::$intMax));
 		$tagLib=new tagLib();
 		$limit=50;
@@ -36,8 +37,9 @@ class TagAction extends CommonAction
 			$topidArr=explode(',', $topidId);
 			$count=count($topidArr);
 			$topicLib=new topicLib();
-			$list=$topicLib->getTopicByTopicId($topidId);
-			$this->loadView("tag_show",array('list'=>$list));
+			$data['list']=$topicLib->getTopicByTopicId($topidId);
+			$data['newTopic']=$topicLib->getTopicList(1,8);
+			$this->loadView("tag_show",$data);
 		}
 		else 
 		{

@@ -12,7 +12,7 @@ class aboutLib
 	{
 		if(!$this->mod->checkExit($topicId, $userId))
 		{
-			return $this->mod->addAbout(array('topicId'=>$topicId,'userId'=>$userId));
+			return $this->mod->addAbout(array('topicId'=>$topicId,'userId'=>$userId,'time'=>time()));
 		}
 		return TRUE;
 	}

@@ -3,6 +3,7 @@ class PicAction extends CommonAction
 {
 	public function index()
 	{
+		parent::setTitle("图片微博--");
 		$attache=new attachmentLib();
 		$pic=$attache->getAttachementList(array('fileType'=>1,'publish'=>1),30,'rand()');
 		$imglist="";

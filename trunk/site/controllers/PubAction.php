@@ -8,6 +8,7 @@ class PubAction extends CommonAction
 	}
 	public function index()
 	{
+		parent::setTitle("微博广场--");
 		$userLib=new userLib();
 		$topicLib=new topicLib();
 		$tagLib=new tagLib();

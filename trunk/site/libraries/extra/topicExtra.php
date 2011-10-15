@@ -57,6 +57,7 @@ class topicExtra
 	{
 		$shortUrl=FALSE;
 		$content=replaceHtml($content);
+		if(!$content) return array('content'=>FALSE);
 		$url=$this->getUrlByContent($content);
 		if($url)
 		{
@@ -88,26 +89,33 @@ class topicExtra
 	 */
 	public function aboutMe($content)
 	{
+		if(preg_match('/回复@(\S+):/i', $content,$mat))
+		{
+			$userName=$mat[1];
+			$str='回复@'.$userName.':';
+			$content=str_replace($str,'@'.$userName.' ',$content);
+		}
 		preg_match_all('/@(\S+)\s/i',$content,$me);
 		$aboutme=$me[1];
 		if(!empty($aboutme))
 		{
-			$oldme=array();
-			$sendMsg=array();
 			$userLib=new userLib();
+			$sendMsg=array();
+			$oldme=array();
 			foreach ($aboutme as $k=>$userNick)
 			{
-				$oldme[$k]='/@'.$userNick.'/';
+				$oldme[$k]='@'.$userNick;
 				$info=$userLib->getUserInfo($userNick,'nick');
 				if(!$info)
 					$aboutme[$k]='@'.$userNick.' ';
 				else 
 				{
 					$sendMsg[$info['userId']]=$userNick;
-					$aboutme[$k]="<a href='".siteUrl($info['homePage'])."' target='_blank' class='aboutme'>@".$userNick."</a>";
+					$tmp="<a href='".siteUrl($info['homePage'])."' target='_blank' class='aboutme'>@".$userNick."</a>";
+					$aboutme[$k]=addslashes($tmp);
 				}
 			}
-			return array('content'=>preg_replace($oldme,$aboutme,$content),'sendUser'=>$sendMsg);
+			return array('content'=>str_replace($oldme,$aboutme,$content),'sendUser'=>$sendMsg);
 		}
 		return $content;
 	}
@@ -144,5 +152,19 @@ class topicExtra
 	    }
 	
 	    return $output[mt_rand(0,3)];
+	}
+	
+	public static function getBlogCommon($content)
+	{
+		$content=preg_replace ("/\((.+?)\.gif\)/i","<img src='".baseUrl('static/icon/')."/$1.gif' /> ", $content);
+		$content=preg_replace ("/@@(http:\/\/www\.tudou\.com\S+)\.swf(.+?)@@/i","<div><a href='#flash' onclick=\"showFlash(this,'$1.swf$2')\"><img src='".baseUrl()."/static/images/flash.gif' title='点击查看视频' /></a></div>", $content);//tudou.com musick
+		$content=preg_replace ("/@@(http:\/\/www\.tudou\.com\/\S\/\S+)@@/i","<div><a href='#flash' onclick=\"showFlash(this,'$1')\"><img src='".baseUrl()."/static/images/flash.gif' title='点击查看视频' /></a></div>", $content);//tudou.com swf
+		$content=preg_replace ("/@@(.+?)\.swf@@/i","<div><a href='#flash' onclick=\"showFlash(this,'$1.swf')\"><img src='".baseUrl()."/static/images/flash.gif' title='点击查看视频' /></a></div>", $content);//处理分享swf
+		$content=preg_replace ("/@@(.+?)\.mp3@@/i","<object type=\"application/x-shockwave-flash\" data=\"".baseUrl()."static/dewplayer.swf?son=$1.mp3\" width=\"200\" height=\"20\"><param name=\"movie\" value=\"".baseUrl()."static/dewplayer.swf?son=$1.mp3\" /></object>", $content);
+		$content=preg_replace ("/@@http:(.+?)\.(jpg|png|gif|jpeg)@@/i","<a class=\"miniImg artZoom\" href=\"http:$1.$2\" rel=\"http:$1.$2\"><img src='http:$1.$2' width='80' /></a>", $content);//处理分享图片
+		$content=preg_replace ("/@@(.+?)\.swf(.+?)@@/i","<div><a href='#flash' onclick=\"showFlash(this,'$1.swf$2')\"><img src='".baseUrl()."/static/images/flash.gif' title='点击查看视频' /></a></div>", $content);//cc swf
+		$content=preg_replace ("/@@(http:\/\/\S+\.\S+\.\S+\/)url\/(.+?)@@/i","<a href='$1url/$2' target='_blank'>url/$2</a>", $content);//处理分享url
+		$content=preg_replace ("/@@(http:\/\/.+?)@@/i","<a href='$1'>$1</a>", $content);//处理分享url
+		return $content;
 	}
 }

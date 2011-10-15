@@ -9,7 +9,7 @@
 foreach ($wblist as $topic)
 {
 	?>
-	<div class="topic">
+	<div class="topic" id="topic<?php echo $topic['topicId']?>">
 	<div class="userIcon">
 	<a href="<?php echo siteUrl($topic['home'])?>"><img src="<?php echo baseUrl() ?>/static/upload/face/ws_<?php echo $topic['icon']?>" 
 	alt="<?php echo $topic['home']?>" width="60"/></a></div>
@@ -17,7 +17,7 @@ foreach ($wblist as $topic)
 	<div class="topic_header">
 	<span><?php echo $topic['nickName']?></span>
 	<div class="topic_content">
-	<?php echo $topic['title']?>
+	<?php echo topicExtra::getBlogCommon($topic['title'])?>
 	</div>
 	</div>
 	<div class="topic_menu" id="topicBody<?php echo $topic['topicId']?>">
@@ -33,7 +33,7 @@ foreach ($wblist as $topic)
 	}
 ?>
 </div>
-<?php echo $page?>
+<?php echo "<div class='page'>$page</div>";?>
 </div>
 <div id="main_right">
 	<div class="right_top"></div>
