@@ -176,7 +176,7 @@ class UserAction extends CommonAction
 		{
 			$this->error('请选择省份和城市');
 		}
-		if(!$userLib->updateUserInfo(array('nickName'=>$nickName,'province'=>$province,'city'=>$capital,'sex'=>$sex,'tags'=>$tag,
+		if($userLib->updateUserInfo(array('nickName'=>$nickName,'province'=>$province,'city'=>$capital,'sex'=>$sex,'tags'=>$tag,
 									'memo'=>$content),$this->userId))
 		{
 			$this->success('恭喜你修改成功！', 'user/index');
@@ -230,7 +230,7 @@ class UserAction extends CommonAction
 			}
 			if ($posary[2] > 0 && $posary[3] > 0)
 			{
-				 $imageLib->resize($posary[2], $posary[3]);
+				$imageLib->resize(false,$posary[2], $posary[3]);
 			}
 			$imgNewName=time().mt_rand(1,999);
 			$imageLib->cutImg(UPLOAD_PATH.'/face/ws_'.$imgNewName,120, 120,$posary[0],$posary[1]);
@@ -249,13 +249,13 @@ class UserAction extends CommonAction
 				$userInfo=$userLib->getUserInfo($this->userId,'id');
 				if(is_array($userInfo) && $userInfo['icon'] && $userInfo['icon']!=='default_icon')
 				{
-					@unlink(UPLOAD_PATH.'/face/'.$userInfo['icon']);
+					@unlink(UPLOAD_PATH.'/face/ws_'.$userInfo['icon']);
 					@unlink(UPLOAD_PATH.'/face/ws_60_'.$userInfo['icon']);
 					@unlink(UPLOAD_PATH.'/face/ws_50_'.$userInfo['icon']);
 					@unlink(UPLOAD_PATH.'/face/ws_30_'.$userInfo['icon']);
 				}
 				$userLib->setUserIcon($imgNewName,$this->userId);
-				$this->redirect($userInfo['homePage']);
+				$this->redirect('user/icon');
 			}
 		}
 		else

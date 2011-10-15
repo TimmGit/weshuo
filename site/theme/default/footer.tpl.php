@@ -1,5 +1,5 @@
 <div id="footer">
-footer
+<?php echo $copy?>
 <?php hook('footer')?>
 </div>
 </body>

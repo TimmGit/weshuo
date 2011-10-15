@@ -81,7 +81,7 @@ class userMod
 	
 	public function updateUserInfo($userId,$data)
 	{
-		return $this->db->updateData($this->table,$data,'userId='.$userId);
+		return $this->db->updateData($this->table,$data,array('userId'=>$userId));
 	}
 	
 	public function addUser($data)

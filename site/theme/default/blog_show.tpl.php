@@ -7,21 +7,39 @@
 <div class="show_header">
 <script type="text/javascript">
 <!--
-	var topicId=<?php echo $tInfo['topicId']?>	
+	var topicId=<?php echo $tInfo['topicId']?>;
+	$().ready(function(){
+		$("#ping").attr("checked",true);
+	});
+	<?php 
+	if($login)
+	{
+	?>
+		var userName='<?php echo $info['nickName']?>';
+		var path='<?php echo baseUrl() ?>';
+		var userImg=path+'/static/upload/face/ws_<?php echo $info['icon']?>';
+	<?php
+	}
+	?>
 //-->
 </script>
-<table border="0" align="left" cellpadding="0" cellspacing="0"><tr><td>
-<img src="<?php echo baseUrl() ?>/static/upload/face/ws_60_<?php echo $userInfo['icon']?>" /></td>
-<td>&nbsp;&nbsp;<?php echo $tInfo['title']?><br/>&nbsp;&nbsp;<?php echo topicExtra::getTime($tInfo['time'])?></td></tr></table>
+<table border="0" class='wbShow' align="left" cellpadding="0" cellspacing="0"><tr><td>
+<img class='iconImg' src="<?php echo baseUrl() ?>/static/upload/face/ws_60_<?php echo $userInfo['icon']?>" /></td>
+<td>&nbsp;&nbsp;<?php echo topicExtra::getBlogCommon($tInfo['title'])?><br/>&nbsp;&nbsp;<?php echo topicExtra::getTime($tInfo['time'])?></td></tr></table>
 </div>
 <table border="0" align="left" cellpadding="0" cellspacing="0"><tr><td>
 <?php subView("inc_replayMsg")?>
 </td></tr></table>
-<table border="0" align="left" cellpadding="0" cellspacing="0">
+<div class='clear'></div>
+<table border="0" align="left" class="cmList" id="cmList" cellpadding="0" cellspacing="0">
 <?php 
 foreach ($list as $k=>$comment)
 {
-	echo "<tr><td>".$comment['content']."</td></tr>";
+	echo "<tr><td><img class='iconImgNoSpace' src='".baseUrl().'/static/upload/face/ws_30_'.$comment['userInfo']['icon']."' />
+	&nbsp;&nbsp;<span>".$comment['userInfo']['nickName']."</span>:&nbsp;".
+	$comment['content']."&nbsp;&nbsp;".topicExtra::getTime($comment['time'])."&nbsp;
+<a href='javascript:void(0)' onclick=\"return replaySomeBadyForShow('".$comment['userInfo']['nickName']."',".$tInfo['topicId'].");\">回复</a></td></tr>";
+	
 }
 ?>
 </table>
@@ -62,7 +80,7 @@ foreach ($list as $k=>$comment)
 			{
 			?>
 			<li><a href="<?php echo siteUrl($topic['home'].'/'.$topic['topicId'])?>">
-			<?php echo string::u8_title_substr($topic['title'],30)?></a>&nbsp;&nbsp;(<?php echo $topic['ping']?>)</li>	
+			<?php echo string::u8_title_substr(replaceHtml($topic['title']),30)?></a>&nbsp;&nbsp;(<?php echo $topic['ping']?>)</li>	
 			<?php }?>
 		</ul>
 	</div>

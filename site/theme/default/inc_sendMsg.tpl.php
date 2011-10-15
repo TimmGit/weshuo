@@ -31,6 +31,11 @@ $().ready(function(){
 			alert('请输入要内容');
 			return false;
 		}
+		else if(content.indexOf("#请在这里输入自定义话题#")!=-1)
+		{
+			alert('请修改话题的内容');
+			return false;
+		}
 		$("#sending").show();
 		$("#sending").html("<img src='"+path+"/static/images/loading.gif'>");
 		$.post("<?php echo siteUrl('ajax/send')?>", {content: content, group: group,tag : tag },

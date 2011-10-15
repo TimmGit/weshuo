@@ -176,7 +176,10 @@ class imageLib
 		}
 		$this->destroy();
 		$this->imgObj = $tmpimg;
-		$this->saveImg($imgName,$destroy);
+		if($imgName)
+		{
+			$this->saveImg($imgName,$destroy);
+		}
 	}
 	
 	public function destroy()

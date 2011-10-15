@@ -1,4 +1,13 @@
 <?php
+/**
+ * 
+ * @name uclogin
+ * @description ucenter login
+ * @link http://www.weshuo.org
+ * @version 1.0
+ * @author iceweb
+ *
+ */
 class uclogin_index extends wsAction
 {
 	function __construct()

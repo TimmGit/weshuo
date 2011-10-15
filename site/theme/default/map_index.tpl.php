@@ -17,7 +17,7 @@
       mapTypeId: google.maps.MapTypeId.TERRAIN
     }
     map = new google.maps.Map(document.getElementById("map"), myOptions);
-   codeAddress('<?php echo $newTopic['address']?>',showMapBlog('ws_60_<?php echo $newTopic['icon']?>','<?php echo $newTopic['nickName']?>','<?php echo $newTopic['time']?>','<?php echo siteUrl("show/".$newTopic["topicId"])?>','<?php echo $newTopic['title']?>','<?php echo $newTopic['address']?>'));
+   codeAddress('<?php echo $newTopic['address']?>',showMapBlog('<?php echo $newTopic['icon']?>','<?php echo $newTopic['nickName']?>','<?php echo $newTopic['time']?>','<?php echo siteUrl("show/".$newTopic["topicId"])?>',"<?php echo $newTopic['title']?>","<?php echo $newTopic['address']?>"));
   }
   function codeAddress(address,html) {
     geocoder.geocode( { 'address': address}, function(results, status) {

@@ -30,6 +30,7 @@ class mysqlPdo implements dbInterface
 			$options=array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
 			self::$dbConn=new PDO('mysql:dbname='.self::$dbConfig['dbName'].';host='.self::$dbConfig['dbHost'].';port='.self::$dbConfig['dbPort'],self::$dbConfig['dbUser'],self::$dbConfig['dbPwd'], $options);
 			self::$dbConn->query("set names ".str_replace("-",'',CHARSET));
+			self::$dbConn->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
 		}
 		catch (Exception $e)
 		{

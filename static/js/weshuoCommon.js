@@ -89,3 +89,8 @@ function replaySomeBady(userName,topicId)
 {
 	$("#replayComemnt"+topicId+" .inputBox").val("回复@"+userName+":");
 }
+
+function replaySomeBadyForShow(userName,topicId)
+{
+	$("#wbContent").val("回复@"+userName+":");
+}

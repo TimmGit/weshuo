@@ -5,7 +5,7 @@
 <title>error</title>
 </head>
 <body>
-<div style='width:600px;height:150px;margin:0 auto;bordre:#ccc 1px solid;'><?php echo $message?>,
+<div style='width:600px;height:150px;margin:60px auto;border:#ccc 0px solid;text-align: center;'><?php echo $message?>,
 <span style="cursor:pointer" onclick="javascript:history.go(-1)">click to back</span></div>
 </body>
 </html>

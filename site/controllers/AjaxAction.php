@@ -43,7 +43,7 @@ class AjaxAction extends CommonAction
 		{
 			echo "错误的微博ID";exit;
 		}
-		$content=replaceHtml($_POST['content']);
+		$content=$_POST['content'];
 		$topicExtra=new topicExtra();
 		$content=$topicExtra->getWbContent($content);
 		if(empty($content['content']))
@@ -52,19 +52,22 @@ class AjaxAction extends CommonAction
 		}
 		$wsLib=new weShuoLib();
 		$ipAddress=client::getIPaddress(client::getClientIp());
-		$topicLib=new topicLib();
+		$echoId=0;
 		if($zhuan || $tome)
 		{
+			$userLib=new userLib();
+			$userInfo=$userLib->getUserInfo($info['userId'],'id');
 			$topicLib->setPingZhuanCount($topicId,TRUE);
-			$newContent=$content['content']."<div class='wbShare'>".$info['title']."</div>";
-			echo $wsLib->sendWeibo($newContent, $content['url'], $content['short'], $ipAddress, $sendUser);
+			$newContent=$content['content']."//@".$userInfo['nickName']." <span class=\'wbShare\'>".$info['title']."</span>";
+			$echoId=$wsLib->sendWeibo(addslashes($newContent), $content['url'], $content['short'], $ipAddress, $sendUser);
 		}
 		if($ping)
 		{
 			$parentId=0;
 			$topicLib->setPingZhuanCount($topicId);
-			echo $wsLib->replayWeibo($content['content'], $content['url'], $content['short'], $ipAddress, $sendUser,$parentId,$topicId);
+			$echoId=$wsLib->replayWeibo($content['content'], $content['url'], $content['short'], $ipAddress, $sendUser,$parentId,$topicId);
 		}
+		echo $echoId;
 	}
 	
 	public function send()

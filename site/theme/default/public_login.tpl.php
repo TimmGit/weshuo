@@ -2,6 +2,7 @@
 <div id="login_map">
 <div id="main">
 <div id="map_logo"><a href="<?php echo siteUrl()?>"></a></div>
+<div class='user_reg'><a href="<?php echo siteUrl('public/register')?>"></a></div>
 <div class="clear"></div>
 <div class="login_form">
 <form action="<?php echo siteUrl('public/onlogin')?>" method="post">

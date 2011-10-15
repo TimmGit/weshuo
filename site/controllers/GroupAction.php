@@ -9,6 +9,7 @@ class GroupAction extends CommonAction
 	
 	public function index()
 	{
+		parent::setTitle("热门群组--");
 		$page=$this->checkForm("page",array(3,1),'分页ID错误', array(wsForm::$int,1,wsForm::$intMax));
 		$limit=12;
 		$groupLib=new groupLib();
@@ -42,8 +43,9 @@ class GroupAction extends CommonAction
 		$allCount=$topicLib->getCountByGroup($info['groupId']);
 		$pageTool=new pageTool($nowPage, $allCount, $pageSize);
 		$data['list']=$topicLib->getListByGroup($info['groupId'], $nowPage, $pageSize);
-		$data['page']=$pageTool->showNum('group/index');
+		$data['page']=$pageTool->showNum('group/'.$groupName);
 		$data['free']=$freeGroup;
+		$data['newTopic']=$topicLib->getTopicList(1,8);
 		$this->loadView('group_show',$data);
 	}
 }

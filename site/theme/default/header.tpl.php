@@ -1,12 +1,11 @@
 <?php subView("headerCommon");?>
 <div id="header">
-<h1 class="logo"><a href="<?php if($login) echo siteUrl($info['homePage']); else echo baseUrl('pub')?>"></a></h1>
+<h1 class="logo"><a href="<?php if($login) echo siteUrl($info['homePage']); else echo siteUrl('pub')?>"></a></h1>
 <div class="header_menu">
 <ul>
 <li><a href="<?php echo siteUrl('pub')?>">广场</a></li>
 <li><a href="<?php echo siteUrl('map')?>">地图</a></li>
 <li><a href="<?php echo siteUrl('pic')?>">图片</a></li>
-<li><a href="javascript:showMenu()">应用</a></li>
 <li><a href="<?php echo siteUrl('admin')?>">我到主页</a></li>
 <li><a href="<?php echo siteUrl('admin/private')?>">我的微博</a></li>
 <li><a href="<?php echo siteUrl('tag')?>">热门话题</a></li>
