@@ -24,7 +24,7 @@ class userLib
 	{
 		if($userName && $mail && $password)
 		{
-			$data=array('userName'=>$userName,'mail'=>$mail,'password'=>md5($password),'icon'=>'','createTime'=>time(),
+			$data=array('userName'=>$userName,'mail'=>$mail,'password'=>md5($password),'icon'=>'default_icon.jpg','createTime'=>time(),
 						'createIp'=>client::getClientIp(),'groupId'=>0,'roleId'=>0,'score'=>0,'nickName'=>$nickName,
 						'status'=>1,'tags'=>'','province'=>'','city'=>'','homePage'=>$homePage);
 			return $this->user->addUser($data);
